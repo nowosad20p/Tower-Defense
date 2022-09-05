@@ -34,7 +34,7 @@ class Board {
                         break;
                     case "w":
                         this.width=cur;
-                        console.log(cur)
+              
                         break;
                     case "h":
                         this.height=cur;
@@ -50,7 +50,7 @@ class Board {
                                 }
                                 this.board.push(piece);
                             }
-                            console.log(this.board);
+                         
                         }
                         break;
                     case "p":
@@ -162,6 +162,7 @@ class Board {
 
         this.updateBoardTilesGraphic();
         this.inputUtils.startListening();
+        this.board[0][0].findPath(new Vector2(0,0),new Vector2(3,3),this.board);
     }
 
 }
