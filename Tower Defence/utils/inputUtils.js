@@ -26,7 +26,7 @@ class InputUtils {
         let i = Math.floor(x / (this.board.canvas.width / this.board.width));
         let j = Math.floor(y / (this.board.canvas.height / this.board.height));
     
-        this.board.activeTile=[i,j];
+        this.board.activeTile=new Vector2(i,j);
        
     }
 }

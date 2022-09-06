@@ -19,7 +19,7 @@ class Board {
         
         this.inputUtils = new InputUtils(this,this.curUI,this.canvas);
         this.drawingUtils = new DrawingUtils(canvas.getContext("2d"), canvas.width, canvas.height, this.width, this.height);
-      
+       
     }
     loadMap(map) {
       
@@ -92,6 +92,7 @@ class Board {
 
 
             this.board[base[i]][base[i + 1]] = new PlayerBase(image);
+            this.playerBase=new Vector2(base[i],base[i + 1]);
         }
     }
     loadEnemySpawns(enemySpawns) {
@@ -100,7 +101,7 @@ class Board {
             image.src = "./graphics/enemySpawn.png";
 
 
-            this.board[enemySpawns[i]][enemySpawns[i + 1]] = new EnemySpawn(image);
+            this.board[enemySpawns[i]][enemySpawns[i + 1]] = new EnemySpawn(image,[],this.drawingUtils);
         }
     }
     loadPath(path) {
@@ -146,23 +147,31 @@ class Board {
             }
         }
         if (this.activeTile != null) {
-            if (this.board[this.activeTile[0]][this.activeTile[1]] instanceof Tower) {
-                this.drawingUtils.drawTurretRange(this.activeTile[0], this.activeTile[1], this.board);
+            if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
+                this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
+            }
+            if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
+                this.drawingUtils.drawPath(this.board[this.activeTile.x][this.activeTile.y]);
             }
         }
         for (let i = 0; i < this.curUI.length; i++) {
 
         }
+     
+      
     }
     startLevel() {
+      
+
+        this.updateBoardTilesGraphic();
+        this.inputUtils.startListening();
+        
+        this.board[0][0].findPath(new Vector2(0,0),this.playerBase,this.board);
         this.interval = window.setInterval(() => {
             this.update()
             
         }, 1000 / this.fpsCount);
-
-        this.updateBoardTilesGraphic();
-        this.inputUtils.startListening();
-        this.board[0][0].findPath(new Vector2(0,0),new Vector2(3,3),this.board);
+        
     }
 
 }

@@ -8,16 +8,7 @@ class DrawingUtils{
     }
     drawTile(tile,posX,posY){
       
-        // this.ctx.beginPath();
-        // this.ctx.fillColor="red";
-        // this.ctx.strokeColor="black";
-        // this.ctx.moveTo(this.width/this.tilesInRow*posX,this.width/this.tilesInColumn*posY);
-        // this.ctx.lineTo(this.width/this.tilesInRow*(posX+1),this.width/this.tilesInColumn*posY);
-        // this.ctx.lineTo(this.width/this.tilesInRow*(posX+1),this.width/this.tilesInColumn*(posY+1));
-        // this.ctx.lineTo(this.width/this.tilesInRow*posX,this.width/this.tilesInColumn*(posY+1));
-        // this.ctx.lineTo(this.width/this.tilesInRow*posX,this.width/this.tilesInColumn*posY);
-      
-        // this.ctx.stroke();
+   
         this.ctx.filter = 'blur(0px)';
         this.ctx.imageSmoothingEnabled=false;
         this.ctx['oImageSmoothingEnabled']
@@ -29,5 +20,20 @@ class DrawingUtils{
         this.ctx.strokeStyle = '#FF0000';
         this.ctx.stroke();
       
+    }
+    drawPath(spawn,offset=0.5){
+        this.ctx.beginPath();
+        console.log(offset)
+        let array = JSON.parse(JSON.stringify(spawn.path));
+        let a=array.shift();
+        let rowTileSize=this.width/this.tilesInRow;
+        let colTileSize=this.heigth/this.tilesInColumn;
+        this.ctx.moveTo(a.x+0.5*rowTileSize,a.y+0.5*colTileSize);
+        
+        array.forEach(element => {
+       
+            this.ctx.lineTo(element.x*rowTileSize+offset*rowTileSize,element.y*colTileSize+(1-offset)*colTileSize);
+        });
+        this.ctx.stroke();
     }
 }
