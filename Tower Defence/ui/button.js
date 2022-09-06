@@ -3,6 +3,6 @@ class Button{
 
     }
    onClick(){
-    
+    console.log("kliknięty");
    }
 }

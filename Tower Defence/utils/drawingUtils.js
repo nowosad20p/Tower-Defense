@@ -8,11 +8,13 @@ class DrawingUtils{
     }
     drawTile(tile,posX,posY){
       
-   
+        
         this.ctx.filter = 'blur(0px)';
         this.ctx.imageSmoothingEnabled=false;
         this.ctx['oImageSmoothingEnabled']
+        
         this.ctx.drawImage(tile.image,tile.startingPointOfImage.x,tile.startingPointOfImage.y,tile.tileWidth,tile.tileHeight,this.width/this.tilesInRow*posX,this.heigth/this.tilesInColumn*posY,this.width/this.tilesInRow,this.heigth/this.tilesInColumn);
+        
     }
     drawTurretRange(x,y,board){
         this.ctx.beginPath();
@@ -35,5 +37,26 @@ class DrawingUtils{
             this.ctx.lineTo(element.x*rowTileSize+offset*rowTileSize,element.y*colTileSize+(1-offset)*colTileSize);
         });
         this.ctx.stroke();
+    }
+    drawGrid(){
+        let rowTileSize=this.width/this.tilesInRow;
+        let colTileSize=this.heigth/this.tilesInColumn;
+     
+        
+        for(let i=0;i<this.tilesInRow;i++){
+            for(let j=0;j<this.tilesInColumn;j++){
+                this.ctx.moveTo(rowTileSize*i,colTileSize*j);
+                this.ctx.lineTo(rowTileSize*(i+1),colTileSize*j);
+                this.ctx.lineTo(rowTileSize*(i+1),colTileSize*(j+1));
+                this.ctx.lineTo(rowTileSize*i,colTileSize*(j+1));
+                this.ctx.lineTo(rowTileSize*(i),colTileSize*(j));
+                this.ctx.strokeStyle="black";
+              
+
+                this.ctx.stroke();
+            }
+        }
+       
+               
     }
 }

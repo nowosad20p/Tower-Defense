@@ -10,6 +10,8 @@ class InputUtils {
         })
     }
     getInput(e) {
+       
+
         let rect = this.canvas.getBoundingClientRect();
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
@@ -27,6 +29,7 @@ class InputUtils {
         let j = Math.floor(y / (this.board.canvas.height / this.board.height));
     
         this.board.activeTile=new Vector2(i,j);
+     
        
     }
 }
