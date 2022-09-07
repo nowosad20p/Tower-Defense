@@ -17,7 +17,7 @@ class Board {
 
 
 
-
+        this.timeUtils= new TimeUtils();
         this.inputUtils = new InputUtils(this, this.curUI, this.canvas);
         this.drawingUtils = new DrawingUtils(canvas.getContext("2d"), canvas.width, canvas.height, this.width, this.height);
 
@@ -140,7 +140,12 @@ class Board {
         }
     }
     update() {
-
+      
+        this.timeUtils.update();
+        this.timeElapsed+=this.timeUtils.deltaTime;
+        if(this.timeElapsed>1000/this.fpsCount){
+         
+            this.timeElapsed=0;
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
                 this.drawingUtils.drawTile(this.board[i][j], i, j);
@@ -157,6 +162,8 @@ class Board {
         for (let i = 0; i < this.curUI.length; i++) {
 
         }
+    }
+        requestAnimationFrame(this.update.bind(this))
 
 
     }
@@ -167,10 +174,8 @@ class Board {
         this.inputUtils.startListening();
 
         this.board[0][0].findPath(this.enemySpawns[0], this.playerBase, this.board);
-        this.interval = window.setInterval(() => {
-            this.update()
-
-        }, 1000 / this.fpsCount);
+        this.timeElapsed=0;
+       this.update()
 
     }
 

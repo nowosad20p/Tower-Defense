@@ -8,6 +8,7 @@ class TimeUtils{
     update(){
         let today = new Date();
         this.deltaTime=today.getTime()-this.currentMs;
+      
         this.currentMs=today.getTime();
   
     }
