@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,40 +8,44 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
     <main>
-    <form id="mapForm">
-        <input type="text" id="name" placeholder="Map name">
-        <input type="text" id="width" placeholder="width">
-        <input type="text" id="height" placeholder="height">
-        <input type="submit">
-    </form>
-</main>
-<footer id="narzedzia">
+        <form id="mapForm">
+            <input type="text" id="name" placeholder="Map name">
+            <input type="text" id="width" placeholder="width">
+            <input type="text" id="height" placeholder="height">
+            <input type="submit">
+        </form>
+    </main>
+    <footer id="narzedzia">
 
-    <button id="terrainBtn">Terrain</button>
-    <button id="pathBtn">Path</button>
-    <button id="towerBtn">Tower Slot</button>
-    <button id="campBtn">Enemy camp</button>
-    <button id="baseBtn">Player base</button>
+        <button id="terrainBtn">Terrain</button>
+        <button id="pathBtn">Path</button>
+        <button id="towerBtn">Tower Slot</button>
+        <button id="campBtn">Enemy camp</button>
+        <button id="baseBtn">Player base</button>
+        <br>
+        <button id="saveBtn">Save map</button>
 
-</footer>
-<script src="api/easystar.min.js"></script>
-<script src="datatypes/vector.js"></script>
-<script src="utils/drawingUtils.js"></script>
-<script src="utils/inputUtils.js"></script>
-<script src="gameObjects/tiles/tile.js"></script>
-<script src="gameObjects/tiles/pathTile.js"></script>
+    </footer>
+    <script src="api/easystar.min.js"></script>
+    <script src="datatypes/vector.js"></script>
+    <script src="utils/drawingUtils.js"></script>
+    <script src="utils/inputUtils.js"></script>
+    <script src="gameObjects/tiles/tile.js"></script>
+    <script src="gameObjects/tiles/pathTile.js"></script>
 
-<script src="gameObjects/tiles/enemySpawn.js"></script>
-<script src="gameObjects/tiles/playerBase.js"></script>
-<script src="gameObjects/towers/towerSlot.js"></script>
-<script src="gameObjects/tiles/terrainTile.js"></script>
-<script src="gameObjects/board.js"></script>
-<script src="gameObjects/boardCreator.js"></script>
+    <script src="gameObjects/tiles/enemySpawn.js"></script>
+    <script src="gameObjects/tiles/playerBase.js"></script>
+    <script src="gameObjects/towers/towerSlot.js"></script>
+    <script src="gameObjects/tiles/terrainTile.js"></script>
+    <script src="gameObjects/board.js"></script>
+    <script src="gameObjects/boardCreator.js"></script>
 
-  
+
     <script src="mapCreator.js"></script>
 
 </body>
+
 </html>

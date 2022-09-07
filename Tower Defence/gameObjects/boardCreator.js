@@ -1,74 +1,74 @@
 class BoardCreator {
-    constructor(canvas,width,height){
-      
-        this.canvas=canvas;
-        this.inputUtils = new InputUtils(this,[],canvas);
+    constructor(canvas, width, height) {
+
+        this.canvas = canvas;
+        this.inputUtils = new InputUtils(this, [], canvas);
         this.inputUtils.startListening();
         this.drawingUtils = new DrawingUtils(canvas.getContext("2d"), canvas.width, canvas.height, width, height);
-        this.board=[];
-        this.width=width;
-        this.height=height;
-        this.activeTile=null;
+        this.board = [];
+        this.width = width;
+        this.height = height;
+        this.activeTile = null;
         let img = new Image();
         img.src = "./graphics/roads.png";
 
-       
-   
-        this.tileToSet=new PathTile(img);
-        for(let i=0;i<width;i++){
+
+
+        this.tileToSet = new PathTile(img);
+        for (let i = 0; i < width; i++) {
             let piece = [];
-            for(let j=0;j<height;j++){
+            for (let j = 0; j < height; j++) {
                 let image = new Image();
-            
+
                 image.src = "./graphics/terrain.png";
-                
+
                 piece.push(new TerrainTile(image));
             }
             this.board.push(piece)
         }
         this.interval = window.setInterval(() => {
             this.update()
-            
+
         }, 1000);
     }
-    update(){
-       if(this.activeTile!=null){
-        let img = new Image();
-        switch(this.tileToSet){
-            case "terrain":
-                 
-                img.src = "./graphics/grass.png";
-                this.board[this.activeTile.x][this.activeTile.y]=new TerrainTile(img);
-                break;
-            case "path":
-            
-                img.src = "./graphics/roads.png";
-                this.board[this.activeTile.x][this.activeTile.y]=new PathTile(img);
-                break;
-            case "camp":
-               
-                img.src = "./graphics/enemySpawn.png";
-                this.board[this.activeTile.x][this.activeTile.y]=new EnemySpawn(img);
-                break;
-            case "base":
-               
-                img.src = "./graphics/playerBase.png";
-                this.board[this.activeTile.x][this.activeTile.y]=new PlayerBase(img);
-                break;
-            case "tower":
-              
-                img.src = "./graphics/towerSlot.png";
-                this.board[this.activeTile.x][this.activeTile.y]=new TowerSlot(img);
-                break;
-            default:
-                console.log("pozdro poćwicz")
+    update() {
+        if (this.activeTile != null) {
+            let img = new Image();
+            switch (this.tileToSet) {
+                case "terrain":
+
+                    img.src = "./graphics/grass.png";
+                    this.board[this.activeTile.x][this.activeTile.y] = new TerrainTile(img);
+                    break;
+                case "path":
+
+                    img.src = "./graphics/roads.png";
+                    this.board[this.activeTile.x][this.activeTile.y] = new PathTile(img);
+                    break;
+                case "camp":
+
+                    img.src = "./graphics/enemySpawn.png";
+                    this.board[this.activeTile.x][this.activeTile.y] = new EnemySpawn(img);
+                    break;
+                case "base":
+
+                    img.src = "./graphics/playerBase.png";
+                    this.board[this.activeTile.x][this.activeTile.y] = new PlayerBase(img);
+                    break;
+                case "tower":
+
+                    img.src = "./graphics/towerSlot.png";
+                    this.board[this.activeTile.x][this.activeTile.y] = new TowerSlot(img);
+                    break;
+                default:
+                    console.log("pozdro poćwicz")
+            }
+            this.activeTile = null;
+            this.updateBoardTilesGraphic();
         }
-        this.activeTile=null;
-        this.updateBoardTilesGraphic();
-       }
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
-            
+
                 this.drawingUtils.drawTile(this.board[i][j], i, j);
                 //this.drawingUtils.drawGrid();
             }
@@ -90,5 +90,55 @@ class BoardCreator {
                 }
             }
         }
+    }
+    generateMapCode() {
+        let map = "";
+        let towers = [];
+        let path = [];
+
+        let camps = [];
+        let playerBase;
+        for (let i = 0; i < this.board.length; i++) {
+            for (let j = 0; j < this.board[i].length; j++) {
+
+                if (this.board[i][j] instanceof PathTile) {
+                    path.push(new Vector2(i, j));
+                }
+                if (this.board[i][j] instanceof PlayerBase) {
+                    playerBase = new Vector2(i, j);
+
+                }
+                if (this.board[i][j] instanceof EnemySpawn) {
+                    camps.push(new Vector2(i, j));
+
+                }
+                if (this.board[i][j] instanceof TowerSlot) {
+                    towers.push(new Vector2(i, j));
+
+                }
+            }
+        }
+        map += this.width + "w" + this.height + "h";
+        path.forEach(element => {
+            map += element.x + " " + element.y + " ";
+        });
+        map = map.slice(0, -1)
+
+        map += "p";
+        towers.forEach(element => {
+            map += element.x + " " + element.y + " ";
+        });
+        map = map.slice(0, -1)
+        map += "t";
+
+        camps.forEach(element => {
+            map += element.x + " " + element.y + " ";
+        });
+        map = map.slice(0, -1)
+
+        map += "s";
+        map += playerBase.x + " " + playerBase.y + "e";
+
+        return map;
     }
 }
