@@ -5,8 +5,7 @@ class Board {
     
         //seting up canvas
         this.canvas = canvas;
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerWidth / this.width * this.height;
+    
         //creating needed values
         this.activeTile = null;
         this.board = [];
@@ -17,7 +16,8 @@ class Board {
         this.fpsCount = fpsCount;
         //loading map from string
         this.loadMap(map);
-        
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerWidth / this.width * this.height;
 
 
 
@@ -154,6 +154,7 @@ class Board {
         }
     }
     update() {
+       
         //updating time
         this.timeUtils.update();
         this.timeElapsed+=this.timeUtils.deltaTime;
