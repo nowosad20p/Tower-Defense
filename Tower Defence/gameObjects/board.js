@@ -1,31 +1,37 @@
 class Board {
 
     constructor(map, canvas, fpsCount) {
-
-        this.fpsCount = fpsCount;
+        
+    
+        //seting up canvas
         this.canvas = canvas;
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerWidth / this.width * this.height;
+        //creating needed values
         this.activeTile = null;
         this.board = [];
         this.curUI = [];
         this.width;
         this.height;
         this.enemySpawns = [];
+        this.fpsCount = fpsCount;
+        //loading map from string
         this.loadMap(map);
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerWidth / this.width * this.height;
+        
 
 
 
-
+        //creating needed utils
         this.timeUtils= new TimeUtils();
         this.inputUtils = new InputUtils(this, this.curUI, this.canvas);
         this.drawingUtils = new DrawingUtils(canvas.getContext("2d"), canvas.width, canvas.height, this.width, this.height);
 
     }
     loadMap(map) {
-
+        //creating arrays
         let cur = "";
         let curArray = [];
+        //reading map string
         for (let i = 0; i < map.length; i++) {
 
             if (isNaN(map[i]) || map[i] == " ") {
@@ -87,6 +93,7 @@ class Board {
 
     }
     loadPlayerBase(base) {
+        //loading player base
         for (let i = 0; i < base.length; i += 2) {
             let image = new Image();
             image.src = "./graphics/playerBase.png";
@@ -97,6 +104,7 @@ class Board {
         }
     }
     loadEnemySpawns(enemySpawns) {
+          //loading enemy spawns
         for (let i = 0; i < enemySpawns.length; i += 2) {
             let image = new Image();
             image.src = "./graphics/enemySpawn.png";
@@ -107,6 +115,8 @@ class Board {
         }
     }
     loadPath(path) {
+          //loading path
+
         for (let i = 0; i < path.length; i += 2) {
             let image = new Image();
             image.src = "./graphics/roads.png";
@@ -117,6 +127,8 @@ class Board {
         this.updateBoardTilesGraphic();
     }
     loadTowerSlots(slots) {
+          //loading tower slots
+
         for (let i = 0; i < slots.length; i += 2) {
             let image = new Image();
             image.src = "./graphics/towerSlot.png";
@@ -125,6 +137,8 @@ class Board {
         this.updateBoardTilesGraphic();
     }
     updateBoardTilesGraphic() {
+          //updating path directions
+
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
                 if (this.board[i][j] instanceof PathTile) {
@@ -140,9 +154,10 @@ class Board {
         }
     }
     update() {
-      
+        //updating time
         this.timeUtils.update();
         this.timeElapsed+=this.timeUtils.deltaTime;
+        //checking if another frame should be displayed
         if(this.timeElapsed>1000/this.fpsCount){
          
             this.timeElapsed=0;
@@ -163,13 +178,14 @@ class Board {
 
         }
     }
+    //requesting another frame
         requestAnimationFrame(this.update.bind(this))
 
 
     }
     startLevel() {
 
-
+        //starting utilities and update function
         this.updateBoardTilesGraphic();
         this.inputUtils.startListening();
 

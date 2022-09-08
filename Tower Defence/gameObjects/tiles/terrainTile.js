@@ -1,9 +1,10 @@
 class TerrainTile extends Tile{
     constructor(image){
+        //setting up display settings
         super(image)
         
-        this.tileWidth = 32;
-        this.tileHeight = 32;
+        
+        //setting up random terrain tile
         this.startingPointOfImage = new Vector2(Math.floor(Math.random() * 6)*32 , 0);
 
     }

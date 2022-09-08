@@ -1,14 +1,14 @@
 class PathTile extends Tile {
     constructor(image) {
+        //setting up display properties
         super(image);
-        this.startingPointOfImage = new Vector2(0, 0);
+    
 
-        this.tileWidth = 32;
-        this.tileHeight = 32;
+       
 
     }
     setCorrectTile(leftTile, rightTile, upTile, bottomTile) {
-
+        //setting correct tile graphic
       
         // 0 0 dół prawo
         // 0 1 lewo dół prawo 

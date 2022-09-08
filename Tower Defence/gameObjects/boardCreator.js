@@ -1,17 +1,23 @@
 class BoardCreator {
-    constructor(canvas, width, height) {
-
+    constructor(canvas, width, height,fpsCount=30) {
+        //setting canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerWidth / width * height;
         this.canvas = canvas;
+        //creating and starting needed utils
+        this.timeUtils=new TimeUtils();
         this.inputUtils = new InputUtils(this, [], canvas);
         this.inputUtils.startListening();
         this.drawingUtils = new DrawingUtils(canvas.getContext("2d"), canvas.width, canvas.height, width, height);
+        //setting object values
         this.board = [];
         this.width = width;
         this.height = height;
         this.activeTile = null;
-        let img = new Image();
-        img.src = "./graphics/roads.png";
 
+        let img = new Image();
+        
+        this.fpsCount=fpsCount
 
 
         this.tileToSet = new PathTile(img);
@@ -26,12 +32,18 @@ class BoardCreator {
             }
             this.board.push(piece)
         }
-        this.interval = window.setInterval(() => {
-            this.update()
-
-        }, 1000);
+        this.timeElapsed=0;
+        this.update();
     }
     update() {
+        //updating time elapsed since last frame
+        this.timeUtils.update();
+        this.timeElapsed+=this.timeUtils.deltaTime;
+        //checking if next frame should be displayed
+        if(this.timeElapsed>1000/this.fpsCount){
+         
+            this.timeElapsed=0;
+            //based on tile chosen in input utils setting tile
         if (this.activeTile != null) {
             let img = new Image();
             switch (this.tileToSet) {
@@ -64,8 +76,10 @@ class BoardCreator {
                     console.log("pozdro poćwicz")
             }
             this.activeTile = null;
+            //updating path directions
             this.updateBoardTilesGraphic();
         }
+        //drawing board
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
 
@@ -74,7 +88,13 @@ class BoardCreator {
             }
         }
     }
+    //getting another frame
+    requestAnimationFrame(this.update.bind(this))
+
+    
+    }
     updateBoardTilesGraphic() {
+        //setting correct graphic for path tile
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
                 if (this.board[i][j] instanceof PathTile) {
@@ -92,12 +112,14 @@ class BoardCreator {
         }
     }
     generateMapCode() {
+        //creating arrays
         let map = "";
         let towers = [];
         let path = [];
 
         let camps = [];
         let playerBase;
+        //adding vectors with tiles coordinates to correct arrays
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
 
@@ -118,6 +140,7 @@ class BoardCreator {
                 }
             }
         }
+        //writing array content to string readable by importing function
         map += this.width + "w" + this.height + "h";
         path.forEach(element => {
             map += element.x + " " + element.y + " ";
@@ -138,7 +161,7 @@ class BoardCreator {
 
         map += "s";
         map += playerBase.x + " " + playerBase.y + "e";
-
+        //returning result
         return map;
     }
 }

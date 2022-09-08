@@ -1,15 +1,18 @@
 let form = document.querySelector("#mapForm");
+//displaying editor after form is sent
 form.onsubmit = () => {
+    //getting needed values
     event.preventDefault();
     let canvas = document.createElement("canvas");
     let width = document.querySelector("#width").value;
     let height = document.querySelector("#height").value;
-
+    //changing form to canvas
     document.querySelector("main").appendChild(canvas);
     document.querySelector("main").removeChild(form);
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerWidth / width * height;
+    
+    //creating board editor
     let boardCreator = new BoardCreator(canvas, width, height)
+    
     document.querySelector("#terrainBtn").onclick = () => {
         boardCreator.tileToSet = "terrain";
     }

@@ -8,15 +8,16 @@ class DrawingUtils{
     }
     drawTile(tile,posX,posY){
       
-        
+        //setting up context properties
         this.ctx.filter = 'blur(0px)';
         this.ctx.imageSmoothingEnabled=false;
         this.ctx['oImageSmoothingEnabled']
-        
+        //drawing tile
         this.ctx.drawImage(tile.image,tile.startingPointOfImage.x,tile.startingPointOfImage.y,tile.tileWidth,tile.tileHeight,this.width/this.tilesInRow*posX,this.heigth/this.tilesInColumn*posY,this.width/this.tilesInRow,this.heigth/this.tilesInColumn);
         
     }
     drawTurretRange(x,y,board){
+        //drawing circle expressing turret range on x,y 
         this.ctx.beginPath();
         this.ctx.arc((this.width/this.tilesInRow)*x+0.5*(this.width/this.tilesInRow), (this.heigth/this.tilesInColumn)*y+0.5*(this.heigth/this.tilesInColumn), board[x][y].range*(this.width/this.tilesInRow), 0, 2 * Math.PI, false);
         this.ctx.strokeStyle = '#FF0000';
@@ -24,8 +25,8 @@ class DrawingUtils{
       
     }
     drawPath(spawn,offset=0.5){
+        //drawing lines to vectors saved in path in spawn object
         this.ctx.beginPath();
-        console.log(offset)
         let array = JSON.parse(JSON.stringify(spawn.path));
         let a=array.shift();
         let rowTileSize=this.width/this.tilesInRow;
@@ -39,10 +40,11 @@ class DrawingUtils{
         this.ctx.stroke();
     }
     drawGrid(){
+        //calculating tile sizes
         let rowTileSize=this.width/this.tilesInRow;
         let colTileSize=this.heigth/this.tilesInColumn;
      
-        
+        //drawing grid
         for(let i=0;i<this.tilesInRow;i++){
             for(let j=0;j<this.tilesInColumn;j++){
                 this.ctx.moveTo(rowTileSize*i,colTileSize*j);
