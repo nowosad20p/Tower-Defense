@@ -31,7 +31,7 @@ class InputUtils {
         let j = Math.floor(y / (this.board.canvas.height / this.board.height));
         //setting clicked tile as active
         this.board.activeTile=new Vector2(i,j);
-     
+        this.board.updateUI();
        
     }
 }

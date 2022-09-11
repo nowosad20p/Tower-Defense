@@ -19,6 +19,10 @@ class Vector2{
         this.x/=number;
         this.y/=number;
     }
+    offset(offset){
+        this.x+=offset;
+        this.y+=1-offset;
+    }
 }
 function distanceBetweenVectors(v1,v2){//calculating distance between two vectors
     let a=v2.x-v1.x;

@@ -9,6 +9,7 @@ class Tower{
         this.updateImage();
         this.range=range;
         this.damage=damage;
+        this.towerButtons=new TowerButtonsContainer(2,this)
     }
     onClick(){
         

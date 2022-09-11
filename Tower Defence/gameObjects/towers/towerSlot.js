@@ -5,5 +5,6 @@ class TowerSlot extends Tile{
 
         this.tileWidth = 16;
         this.tileHeight = 16;
+        this.towerButtons=new TowerButtonsContainer(0.75,this)
     }
 }

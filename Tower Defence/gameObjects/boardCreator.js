@@ -41,7 +41,7 @@ class BoardCreator {
         this.timeElapsed+=this.timeUtils.deltaTime;
         //checking if next frame should be displayed
         if(this.timeElapsed>1000/this.fpsCount){
-         
+            console.log(this.board)
             this.timeElapsed=0;
             //based on tile chosen in input utils setting tile
         if (this.activeTile != null) {
@@ -84,9 +84,10 @@ class BoardCreator {
             for (let j = 0; j < this.board[i].length; j++) {
 
                 this.drawingUtils.drawTile(this.board[i][j], i, j);
-                //this.drawingUtils.drawGrid();
+                
             }
         }
+        this.drawingUtils.drawGrid();
     }
     //getting another frame
     requestAnimationFrame(this.update.bind(this))

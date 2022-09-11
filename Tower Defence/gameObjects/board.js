@@ -13,9 +13,13 @@ class Board {
         this.width;
         this.height;
         this.enemySpawns = [];
+        this.enemies=[];
         this.fpsCount = fpsCount;
         //loading map from string
         this.loadMap(map);
+        let img=new Image();
+        img.src="./graphics/mageTower.png";
+        this.board[3][3]=new Tower(1,undefined,1,img,2,0);
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerWidth / this.width * this.height;
 
@@ -158,9 +162,12 @@ class Board {
         //updating time
         this.timeUtils.update();
         this.timeElapsed+=this.timeUtils.deltaTime;
+        if(this.enemies.length==0){
+            this.enemies.push(this.board[this.enemySpawns[0].x][this.enemySpawns[0].y].sendWave(0));
+        }
         //checking if another frame should be displayed
         if(this.timeElapsed>1000/this.fpsCount){
-         
+    
             this.timeElapsed=0;
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
@@ -168,21 +175,49 @@ class Board {
             }
         }
         if (this.activeTile != null) {
+            
             if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
                 this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
+                //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
             }
             if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
                 this.drawingUtils.drawPath(this.board[this.activeTile.x][this.activeTile.y]);
             }
+            if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
+              
+                //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons,new Vector2(this.activeTile.x,this.activeTile.y));
+                this.board[this.activeTile.x][this.activeTile.y].towerButtons.position=new Vector2(this.activeTile.x,this.activeTile.y);
+               
+            }
+          
         }
         for (let i = 0; i < this.curUI.length; i++) {
-
+            this.drawingUtils.drawTowerButtons(this.curUI[0],this.curUI[0].position);
         }
     }
     //requesting another frame
         requestAnimationFrame(this.update.bind(this))
 
 
+    }
+    updateUI(){
+        this.curUI=[];
+        if (this.activeTile != null) {
+            // if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
+            //     this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
+            //     //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
+            // }
+            // if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
+            //     this.drawingUtils.drawPath(this.board[this.activeTile.x][this.activeTile.y]);
+            // }
+            if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
+              
+                //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons,new Vector2(this.activeTile.x,this.activeTile.y));
+                //this.board[this.activeTile.x][this.activeTile.y].towerButtons.position=new Vector2(this.activeTile.x,this.activeTile.y);
+                this.curUI.push(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
+               
+            }
+        }
     }
     startLevel() {
 
@@ -192,6 +227,7 @@ class Board {
 
         this.board[0][0].findPath(this.enemySpawns[0], this.playerBase, this.board);
         this.timeElapsed=0;
+        
        this.update()
 
     }

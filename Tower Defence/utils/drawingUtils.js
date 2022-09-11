@@ -59,6 +59,32 @@ class DrawingUtils{
             }
         }
        
-               
+       
+    }
+    drawTowerButtons(container,position){
+        this.ctx.beginPath();
+  
+        
+        this.ctx.arc((this.width/this.tilesInRow)*position.x+0.5*(this.width/this.tilesInRow), (this.heigth/this.tilesInColumn)*position.y+0.5*(this.heigth/this.tilesInColumn), container.radius*this.width/this.tilesInRow, 0, 2 * Math.PI, false);
+        this.ctx.strokeStyle = '#000';
+        this.ctx.stroke();
+        let i=0;
+        container.buttons.forEach(element => {
+            let angle = 360/container.buttons.length*i;
+            angle*=Math.PI/180
+
+            element.position=new Vector2(container.radius*Math.sin(angle)+position.x,container.radius*Math.cos(angle)+position.y);
+           
+            this.drawButton(element)
+            i++;
+        });
+
+        
+     
+    }
+    drawButton(button){
+       
+        this.ctx.drawImage(button.image,button.startingPointOfImage.x,button.startingPointOfImage.y,button.width,button.height,this.width/this.tilesInRow*button.position.x+this.width/this.tilesInRow*0.25,this.heigth/this.tilesInColumn*button.position.y+this.heigth/this.tilesInColumn*0.25,this.width/this.tilesInRow*0.5,this.heigth/this.tilesInColumn*0.5);
+
     }
 }
