@@ -17,9 +17,8 @@ class Board {
         this.fpsCount = fpsCount;
         //loading map from string
         this.loadMap(map);
-        let img=new Image();
-        img.src="./graphics/mageTower.png";
-        this.board[3][3]=new Tower(1,undefined,1,img,2,0);
+        
+        this.board[3][3]=new Tower(1,undefined,1,new BetterImage("./graphics/mageTower.png",32,32,new Vector2(0,0)),2,0);
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerWidth / this.width * this.height;
 
@@ -53,10 +52,9 @@ class Board {
                             for (let i = 0; i < this.width; i++) {
                                 let piece = [];
                                 for (let j = 0; j < this.height; j++) {
-                                    let image = new Image();
-                                    image.src = "./graphics/terrain.png";
+                              
 
-                                    piece.push(new TerrainTile(image));
+                                    piece.push(new TerrainTile(new BetterImage("./graphics/grass.png",32,32,new Vector2(0,0))));
 
                                 }
                                 this.board.push(piece);
@@ -99,22 +97,19 @@ class Board {
     loadPlayerBase(base) {
         //loading player base
         for (let i = 0; i < base.length; i += 2) {
-            let image = new Image();
-            image.src = "./graphics/playerBase.png";
+            
 
 
-            this.board[base[i]][base[i + 1]] = new PlayerBase(image);
+            this.board[base[i]][base[i + 1]] = new PlayerBase(new BetterImage("./graphics/playerBase.png",32,32,new Vector2(0,0)));
             this.playerBase = new Vector2(base[i], base[i + 1]);
         }
     }
     loadEnemySpawns(enemySpawns) {
           //loading enemy spawns
         for (let i = 0; i < enemySpawns.length; i += 2) {
-            let image = new Image();
-            image.src = "./graphics/enemySpawn.png";
+          
 
-
-            this.board[enemySpawns[i]][enemySpawns[i + 1]] = new EnemySpawn(image, [], this.drawingUtils);
+            this.board[enemySpawns[i]][enemySpawns[i + 1]] = new EnemySpawn(new BetterImage("./graphics/enemySpawn.png",32,32,new Vector2(0,0)), [], this.drawingUtils);
             this.enemySpawns.push(new Vector2(enemySpawns[i], enemySpawns[i + 1]))
         }
     }
@@ -122,11 +117,9 @@ class Board {
           //loading path
 
         for (let i = 0; i < path.length; i += 2) {
-            let image = new Image();
-            image.src = "./graphics/roads.png";
+       
 
-
-            this.board[path[i]][path[i + 1]] = new PathTile(image);
+            this.board[path[i]][path[i + 1]] = new PathTile(new BetterImage("./graphics/roads.png",32,32,new Vector2(0,0)));
         }
         this.updateBoardTilesGraphic();
     }
@@ -134,9 +127,8 @@ class Board {
           //loading tower slots
 
         for (let i = 0; i < slots.length; i += 2) {
-            let image = new Image();
-            image.src = "./graphics/towerSlot.png";
-            this.board[slots[i]][slots[i + 1]] = new TowerSlot(image);
+         
+            this.board[slots[i]][slots[i + 1]] = new TowerSlot(new BetterImage("./graphics/towerSlot.png",16,16,new Vector2(0,0)));
         }
         this.updateBoardTilesGraphic();
     }

@@ -4,7 +4,7 @@ class Button{
         this.position=position;
         this.height=height;
         this.width=width;
-        this.startingPointOfImage=new Vector2(0,0)
+       
         this.onclick=onclick;
         this.size=size;
     }

@@ -1,14 +1,13 @@
 class TowerButtonsContainer{
     constructor(radius=1,tower){
-        let img=new Image();
         this.position=undefined;
-        img.src="./graphics/towerButtons.png";
-        let upgradeButton=new Button(img,16,16,new Vector2(0,0),()=>{console.log("ae")});
-        let ae=new Button(img,16,16,new Vector2(0,0),()=>{console.log("aea")});
-        let xD=new Button(img,16,16,new Vector2(0,0),()=>{console.log("ae")});
+       
+        let upgradeButton=new Button(new BetterImage("./graphics/towerButtons.png",16,16,new Vector2(0,0)),16,16,new Vector2(0,0),()=>{console.log("ae")});
+        let ae=new Button(new BetterImage("./graphics/towerButtons.png",16,16,new Vector2(0,0)),16,16,new Vector2(0,0),()=>{console.log("aea")});
+      
 
 
-        this.buttons=[upgradeButton,ae,xD];
+        this.buttons=[upgradeButton,ae];
         
         this.radius=radius*1;
      

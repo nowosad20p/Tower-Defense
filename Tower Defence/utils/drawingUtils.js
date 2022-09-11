@@ -7,13 +7,16 @@ class DrawingUtils {
         this.tilesInRow = tilesInRow;
     }
     drawTile(tile, posX, posY) {
+        console.log(tile)
+        tile=tile.image;
+       
 
         //setting up context properties
         this.ctx.filter = 'blur(0px)';
         this.ctx.imageSmoothingEnabled = false;
         this.ctx['oImageSmoothingEnabled']
         //drawing tile
-        this.ctx.drawImage(tile.image, tile.startingPointOfImage.x, tile.startingPointOfImage.y, tile.tileWidth, tile.tileHeight, this.width / this.tilesInRow * posX, this.heigth / this.tilesInColumn * posY, this.width / this.tilesInRow, this.heigth / this.tilesInColumn);
+        this.ctx.drawImage(tile.img, tile.startingPointOfImage.x, tile.startingPointOfImage.y, tile.width, tile.height, this.width / this.tilesInRow * posX, this.heigth / this.tilesInColumn * posY, this.width / this.tilesInRow, this.heigth / this.tilesInColumn);
 
     }
     drawTurretRange(x, y, board) {
@@ -87,7 +90,7 @@ class DrawingUtils {
     drawButton(button) {
 
 
-        this.ctx.drawImage(button.image, button.startingPointOfImage.x, button.startingPointOfImage.y, button.width, button.height, this.width / this.tilesInRow * button.position.x - 0.5 * button.size * this.width / this.tilesInRow, this.heigth / this.tilesInColumn * button.position.y - 0.5 * button.size * this.heigth / this.tilesInColumn, this.width / this.tilesInRow * button.size, this.heigth / this.tilesInColumn * button.size);
+        this.ctx.drawImage(button.image.img, button.image.startingPointOfImage.x, button.image.startingPointOfImage.y, button.image.width, button.image.height, this.width / this.tilesInRow * button.position.x - 0.5 * button.size * this.width / this.tilesInRow, this.heigth / this.tilesInColumn * button.position.y - 0.5 * button.size * this.heigth / this.tilesInColumn, this.width / this.tilesInRow * button.size, this.heigth / this.tilesInColumn * button.size);
         
     }
 }

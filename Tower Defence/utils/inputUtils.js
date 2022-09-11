@@ -32,7 +32,7 @@ class InputUtils {
                 this.ui[i].buttons.forEach(element => {
                     let leftTop=new Vector2(element.position.x*tileWidth-0.5*element.size*tileWidth,element.position.y*tileHeight-0.5*element.size*tileHeight);
                     let rightBot=new Vector2(element.position.x*tileWidth+0.5*element.size*tileWidth,element.position.y*tileHeight+0.5*element.size*tileHeight);
-                    console.log(x,y,leftTop,rightBot)
+                   
                     if(pointIntersectRectangle(new Vector2(x,y),leftTop,rightBot)){
                         element.onClick();
                         return true;
