@@ -1,5 +1,6 @@
 class DrawingUtils {
     constructor(ctx, width, heigth, tilesInRow, tilesInColumn) {
+        //saving needed information
         this.ctx = ctx;
         this.width = width;
         this.heigth = heigth;
@@ -8,8 +9,8 @@ class DrawingUtils {
     }
     drawTile(tile, posX, posY) {
         console.log(tile)
-        tile=tile.image;
-       
+        tile = tile.image;
+
 
         //setting up context properties
         this.ctx.filter = 'blur(0px)';
@@ -66,15 +67,17 @@ class DrawingUtils {
     }
     drawTowerButtons(container, position) {
         this.ctx.beginPath();
-
+        //changing position to center of a tile
         position.x += 0.5;
         position.y += 0.5;
+        //drawing circle
         this.ctx.arc((this.width / this.tilesInRow) * position.x, (this.heigth / this.tilesInColumn) * position.y, container.radius * this.width / this.tilesInRow, 0, 2 * Math.PI, false);
         this.ctx.strokeStyle = '#000';
         this.ctx.stroke();
-
+        //drawing buttons
         let i = 0;
         container.buttons.forEach(element => {
+            //calculating angle, and based on angle position on circle
             let angle = 360 / container.buttons.length * i;
             angle *= Math.PI / 180
 
@@ -89,8 +92,8 @@ class DrawingUtils {
     }
     drawButton(button) {
 
-
+        //drawing button image
         this.ctx.drawImage(button.image.img, button.image.startingPointOfImage.x, button.image.startingPointOfImage.y, button.image.width, button.image.height, this.width / this.tilesInRow * button.position.x - 0.5 * button.size * this.width / this.tilesInRow, this.heigth / this.tilesInColumn * button.position.y - 0.5 * button.size * this.heigth / this.tilesInColumn, this.width / this.tilesInRow * button.size, this.heigth / this.tilesInColumn * button.size);
-        
+
     }
 }

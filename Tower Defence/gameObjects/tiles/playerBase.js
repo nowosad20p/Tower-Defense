@@ -1,3 +1,3 @@
-class PlayerBase extends Tile{
-    
+class PlayerBase extends Tile {
+
 }

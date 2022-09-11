@@ -1,24 +1,27 @@
 class EnemySpawn extends Tile {
-    constructor(image, waves=[], drawingUtils) {
+    constructor(image, waves = [], drawingUtils) {
         //setting up display settings
         super(image);
-     
+
         //saving needed utils and informations
-        this.waves = [[],[]];
+        this.waves = [
+            [],
+            []
+        ];
         this.drawingUtils = drawingUtils;
     }
 
     sendWave(waveNumber) {
         //sends all mobs from wave
-       
-        
+
+
         this.waves[waveNumber].forEach(element => {
             element.spawn();
         });
         return "eeeee";
     }
     isWalkable(tile) { //returns if entity can walk on this tile
-        
+
         return (tile instanceof PathTile || tile instanceof EnemySpawn || tile instanceof PlayerBase);
     }
     findPath(startPoint, endPoint, board) {

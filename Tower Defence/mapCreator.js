@@ -9,10 +9,10 @@ form.onsubmit = () => {
     //changing form to canvas
     document.querySelector("main").appendChild(canvas);
     document.querySelector("main").removeChild(form);
-    
+
     //creating board editor
     let boardCreator = new BoardCreator(canvas, width, height)
-    
+
     document.querySelector("#terrainBtn").onclick = () => {
         boardCreator.tileToSet = "terrain";
     }
