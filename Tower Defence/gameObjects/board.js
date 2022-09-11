@@ -218,6 +218,7 @@ class Board {
                
             }
         }
+        this.inputUtils.ui=this.curUI;
     }
     startLevel() {
 
