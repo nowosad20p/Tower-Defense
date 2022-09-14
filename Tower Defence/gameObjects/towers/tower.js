@@ -9,7 +9,7 @@ class Tower {
         this.updateImage();
         this.range = range;
         this.damage = damage;
-        this.towerButtons = new TowerButtonsContainer(2, this)
+        //this.towerButtons = new TowerButtonsContainer(2, this)
     }
     onClick() {
 
@@ -17,5 +17,10 @@ class Tower {
     updateImage() {
         //getting new image part based on tier of tower
         this.startingPointOfImage = new Vector2(this.tier * this.tileWidth, 0);
+    }
+    levelUp(){
+        if(tier<3){
+            tier++;
+        }
     }
 }
