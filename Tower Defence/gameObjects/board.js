@@ -18,7 +18,7 @@ class Board {
         //loading map from string
         this.loadMap(map);
 
-        this.board[3][3] = new Tower(1, undefined, 1, new BetterImage("./graphics/mageTower.png", 32, 32, new Vector2(0, 0)), 2, 0);
+        this.board[3][3] = new MageTower();
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerWidth / this.width * this.height;
 

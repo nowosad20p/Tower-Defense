@@ -1,8 +1,7 @@
 class MageTower extends Tower {
     constructor() {
-        let image = new Image();
-        image.src = "./graphics/mageTower.png"
-        super(2, undefined, 0, image, 2, 100);
+     
+        super(1, undefined, 1, new BetterImage("./graphics/mageTower.png", 32, 32, new Vector2(0, 0)), 2, 0);
 
     }
 
