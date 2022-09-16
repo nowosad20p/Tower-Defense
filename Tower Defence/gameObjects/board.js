@@ -1,6 +1,6 @@
 class Board {
 
-    constructor(map, canvas, fpsCount) {
+    constructor(map, canvas, fpsCount, moneyCount) {
 
 
         //seting up canvas
@@ -15,6 +15,10 @@ class Board {
         this.enemySpawns = [];
         this.enemies = [];
         this.fpsCount = fpsCount;
+        this.coins = 0;
+        this.moneyCountDisplay = moneyCount;
+        this.paused = false;
+        this.loaded = false;
         //loading map from string
         this.loadMap(map);
 
@@ -42,11 +46,11 @@ class Board {
                     case " ":
                         curArray.push(cur);
                         break;
-                    case "w":
+                    case "w": //board width
                         this.width = cur;
 
                         break;
-                    case "h":
+                    case "h":   //board height
                         this.height = cur;
                         if (this.width != undefined) {
                             for (let i = 0; i < this.width; i++) {
@@ -54,7 +58,7 @@ class Board {
                                 for (let j = 0; j < this.height; j++) {
 
 
-                                    piece.push(new TerrainTile(new BetterImage("./graphics/grass.png", 32, 32, new Vector2(0, 0))));
+                                    piece.push(new TerrainTile(new BetterImage("./graphics/terrain.png", 32, 32, new Vector2(0, 0))));
 
                                 }
                                 this.board.push(piece);
@@ -62,25 +66,25 @@ class Board {
 
                         }
                         break;
-                    case "p":
+                    case "p": //path
                         curArray.push(cur);
 
                         this.loadPath(curArray);
                         curArray = [];
                         break;
-                    case "s":
+                    case "s": //enemy spawns
                         curArray.push(cur);
                         this.loadEnemySpawns(curArray);
                         curArray = [];
 
                         break;
-                    case "t":
+                    case "t": //tower slots
                         curArray.push(cur);
                         this.loadTowerSlots(curArray);
                         curArray = [];
 
                         break;
-                    case "e":
+                    case "e": //player base
                         curArray.push(cur);
                         this.loadPlayerBase(curArray);
                         curArray = [];
@@ -128,7 +132,7 @@ class Board {
 
         for (let i = 0; i < slots.length; i += 2) {
 
-            this.board[slots[i]][slots[i + 1]] = new TowerSlot(new BetterImage("./graphics/towerSlot.png", 16, 16, new Vector2(0, 0)),this, new Vector2(slots[i],slots[i + 1]));
+            this.board[slots[i]][slots[i + 1]] = new TowerSlot(new BetterImage("./graphics/towerSlot.png", 16, 16, new Vector2(0, 0)), this, new Vector2(slots[i], slots[i + 1]));
         }
         this.updateBoardTilesGraphic();
     }
@@ -150,41 +154,44 @@ class Board {
         }
     }
     update() {
+        //checking if game is paused
+        if (!this.paused) {
+            //updating time
+            this.timeUtils.update();
+            this.timeElapsed += this.timeUtils.deltaTime;
 
-        //updating time
-        this.timeUtils.update();
-        this.timeElapsed += this.timeUtils.deltaTime;
-        if (this.enemies.length == 0) {
-            this.enemies.push(this.board[this.enemySpawns[0].x][this.enemySpawns[0].y].sendWave(0));
-        }
-        //checking if another frame should be displayed
-        if (this.timeElapsed > 1000 / this.fpsCount) {
-
-            this.timeElapsed = 0;
-            for (let i = 0; i < this.board.length; i++) {
-                for (let j = 0; j < this.board[i].length; j++) {
-                    this.drawingUtils.drawTile(this.board[i][j], i, j);
-                }
+            if (this.enemies.length == 0) {
+                this.enemies.push(this.board[this.enemySpawns[0].x][this.enemySpawns[0].y].sendWave(0));
             }
-            if (this.activeTile != null) {
+            //checking if another frame should be displayed
+            if (this.timeElapsed > 1000 / this.fpsCount) {
 
-                if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
-                    this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
-                    //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
+                this.timeElapsed = 0;
+                for (let i = 0; i < this.board.length; i++) {
+                    for (let j = 0; j < this.board[i].length; j++) {
+                        this.drawingUtils.drawTile(this.board[i][j], i, j);
+                    }
                 }
-                if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
-                    this.drawingUtils.drawPath(this.board[this.activeTile.x][this.activeTile.y]);
+                if (this.activeTile != null) {
+
+                    if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
+                        this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
+                        //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
+                    }
+                    if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
+                        this.drawingUtils.drawPath(this.board[this.activeTile.x][this.activeTile.y]);
+                    }
+                    if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
+
+                        //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons,new Vector2(this.activeTile.x,this.activeTile.y));
+                        this.board[this.activeTile.x][this.activeTile.y].towerButtons.position = new Vector2(this.activeTile.x, this.activeTile.y);
+
+                    }
+
                 }
-                if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
-
-                    //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons,new Vector2(this.activeTile.x,this.activeTile.y));
-                    this.board[this.activeTile.x][this.activeTile.y].towerButtons.position = new Vector2(this.activeTile.x, this.activeTile.y);
-
+                for (let i = 0; i < this.curUI.length; i++) {
+                    this.drawingUtils.drawTowerButtons(this.curUI[0], this.curUI[0].position);
                 }
-
-            }
-            for (let i = 0; i < this.curUI.length; i++) {
-                this.drawingUtils.drawTowerButtons(this.curUI[0], this.curUI[0].position);
             }
         }
         //requesting another frame
@@ -193,24 +200,23 @@ class Board {
 
     }
     updateUI() {
-        this.curUI = [];
-        if (this.activeTile != null) {
-            // if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
-            //     this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
-            //     //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
-            // }
-            // if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
-            //     this.drawingUtils.drawPath(this.board[this.activeTile.x][this.activeTile.y]);
-            // }
-            if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
+        if (!this.paused) {
+            this.curUI = [];
+            if (this.activeTile != null) {
 
-                //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons,new Vector2(this.activeTile.x,this.activeTile.y));
-                //this.board[this.activeTile.x][this.activeTile.y].towerButtons.position=new Vector2(this.activeTile.x,this.activeTile.y);
-                this.curUI.push(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
+                if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
 
+
+                    this.curUI.push(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
+
+                }
             }
+            //displaying coin count
+            this.moneyCountDisplay.innerHTML = "Coins:" + this.coins;
+
+            this.inputUtils.ui = this.curUI;
+
         }
-        this.inputUtils.ui = this.curUI;
     }
     startLevel() {
 
@@ -220,7 +226,12 @@ class Board {
 
         this.board[0][0].findPath(this.enemySpawns[0], this.playerBase, this.board);
         this.timeElapsed = 0;
-
+        let tilesCount;
+        let i;
+        while (!this.loaded) {
+            document.write("Loading...");
+            this.loaded=true;
+        }
         this.update()
 
     }

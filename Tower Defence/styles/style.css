@@ -1,10 +1,15 @@
-canvas{
-    image-rendering: -moz-crisp-edges;
+canvas {
+  image-rendering: -moz-crisp-edges;
   image-rendering: -webkit-crisp-edges;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
-body{
-  margin:0;
-  padding:0;
+body {
+  margin: 0;
+  padding: 0;
+}
+nav {
+  display: flex;
+  flex-direction: row-reverse;
+  z-index: 1;
 }

@@ -5,7 +5,8 @@ class TerrainTile extends Tile {
 
 
         //setting up random terrain tile
-        this.startingPointOfImage = new Vector2(Math.floor(Math.random() * 6) * 32, 0);
+        this.image.startingPointOfImage = new Vector2(Math.floor(Math.random() * 6) * 32, 0);
+
 
     }
 }

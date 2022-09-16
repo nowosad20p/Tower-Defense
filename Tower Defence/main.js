@@ -1,6 +1,9 @@
 //creating and starting board
-let board = new Board("10w5h1 0 1 1 1 2 2 0 2 1 3 1 3 2 3 3 4 0 4 1 4 2 4 3 5 0 5 2 6 0 6 1 6 3 7 1 7 2 7 3p2 2 3 0 5 1t0 0s5 3e", document.querySelector("canvas"), 5)
+let board = new Board("10w4h1 0 1 1 1 2 2 0 2 1 3 1 3 2 3 3 4 0 4 1 4 2 4 3 5 0 5 2 6 0 6 1 6 3 7 1 7 2 7 3p2 2 3 0 5 1t0 0s5 3e", document.querySelector("canvas"), 5, document.querySelector("#moneyCount"))
 
+window.onscroll = () => {
+    window.scrollY == 0 ? document.querySelector("#moneyCount").style.position = "relative" : document.querySelector("#moneyCount").style.position = "fixed"
+}
 
 
 board.startLevel();

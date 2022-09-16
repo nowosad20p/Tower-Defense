@@ -24,11 +24,10 @@ class BoardCreator {
         for (let i = 0; i < width; i++) {
             let piece = [];
             for (let j = 0; j < height; j++) {
-                let image = new Image();
 
-                image.src = "./graphics/terrain.png";
 
-                piece.push(new TerrainTile(image));
+
+                piece.push(new TerrainTile(new BetterImage("./graphics/terrain.png", 32, 32, new Vector2(0, 0))));
             }
             this.board.push(piece)
         }
@@ -45,32 +44,31 @@ class BoardCreator {
             this.timeElapsed = 0;
             //based on tile chosen in input utils setting tile
             if (this.activeTile != null) {
-                let img = new Image();
+
                 switch (this.tileToSet) {
                     case "terrain":
 
-                        img.src = "./graphics/grass.png";
-                        this.board[this.activeTile.x][this.activeTile.y] = new TerrainTile(img);
+
+                        this.board[this.activeTile.x][this.activeTile.y] = new TerrainTile(new BetterImage("./graphics/terrain.png", 32, 32, new Vector2(0, 0)))
                         break;
                     case "path":
 
-                        img.src = "./graphics/roads.png";
-                        this.board[this.activeTile.x][this.activeTile.y] = new PathTile(img);
+                        this.board[this.activeTile.x][this.activeTile.y] = new PathTile(new BetterImage("./graphics/roads.png", 32, 32, new Vector2(0, 0)));
                         break;
                     case "camp":
 
-                        img.src = "./graphics/enemySpawn.png";
-                        this.board[this.activeTile.x][this.activeTile.y] = new EnemySpawn(img);
+
+                        this.board[this.activeTile.x][this.activeTile.y] = new EnemySpawn(new BetterImage("./graphics/enemySpawn.png", 32, 32, new Vector2(0, 0)), [], this.drawingUtils);
                         break;
                     case "base":
 
-                        img.src = "./graphics/playerBase.png";
-                        this.board[this.activeTile.x][this.activeTile.y] = new PlayerBase(img);
+
+                        this.board[this.activeTile.x][this.activeTile.y] = new PlayerBase(new BetterImage("./graphics/playerBase.png", 32, 32, new Vector2(0, 0)));
                         break;
                     case "tower":
 
-                        img.src = "./graphics/towerSlot.png";
-                        this.board[this.activeTile.x][this.activeTile.y] = new TowerSlot(img);
+
+                        this.board[this.activeTile.x][this.activeTile.y] = new TowerSlot(new BetterImage("./graphics/towerSlot.png", 16, 16, new Vector2(0, 0)), this, new Vector2(this.activeTile.x, this.activeTile.y));
                         break;
                     default:
                         console.log("pozdro poćwicz")
@@ -93,6 +91,9 @@ class BoardCreator {
         requestAnimationFrame(this.update.bind(this))
 
 
+    }
+    updateUI() {
+        
     }
     updateBoardTilesGraphic() {
         //setting correct graphic for path tile
