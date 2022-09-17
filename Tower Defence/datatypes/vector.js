@@ -1,7 +1,7 @@
 class Vector2 {
     constructor(x = 0, y = 0) { //saving x and y values
-        this.x = x;
-        this.y = y;
+        this.x = x*1;
+        this.y = y*1;
     }
     add(vector) { //adding another vector to this vector
         this.x += vector.x;
@@ -20,8 +20,12 @@ class Vector2 {
         this.y /= number;
     }
     offset(offset) {
+        offset*=1
+       
         this.x += offset;
         this.y += 1 - offset;
+      
+
     }
 }
 

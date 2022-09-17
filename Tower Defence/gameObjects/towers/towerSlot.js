@@ -10,7 +10,7 @@ class TowerSlot extends Tile {
             [
                 new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(32, 0)), 16, 16, new Vector2(0, 0), () => {
                     board.board[position.x * 1][position.y * 1] = new MageTower();//mag
-
+               
                     board.activeTile = null;
                 }),
                 new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(48, 0)), 16, 16, new Vector2(0, 0), () => {

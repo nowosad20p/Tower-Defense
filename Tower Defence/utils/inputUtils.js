@@ -24,6 +24,7 @@ class InputUtils {
 
     }
     checkUIInput(x, y) {
+   
         //calculatin tile size
         let tileWidth = this.canvas.width / this.board.width;
         let tileHeight = this.canvas.height / this.board.height;
@@ -41,6 +42,9 @@ class InputUtils {
                         return true;
                     }
                 });
+            }
+            if (this.ui[i] instanceof Button) {
+                this.ui[i].onClick();
             }
         }
         //if not clicked return false

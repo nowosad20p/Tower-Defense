@@ -10,6 +10,7 @@ class Button {
         this.size = size;
     }
     onClick() { //running function provided in constructor
+       
         this.onclick();
     }
 }
