@@ -24,7 +24,7 @@ class InputUtils {
 
     }
     checkUIInput(x, y) {
-   
+
         //calculatin tile size
         let tileWidth = this.canvas.width / this.board.width;
         let tileHeight = this.canvas.height / this.board.height;
@@ -44,10 +44,20 @@ class InputUtils {
                 });
             }
             if (this.ui[i] instanceof Button) {
-                this.ui[i].onClick();
+                   //calculating real position
+                let leftTop = new Vector2(this.ui[i].position.x * tileWidth - 0.5 * this.ui[i].size * tileWidth, this.ui[i].position.y * tileHeight - 0.5 * this.ui[i].size * tileHeight);
+                let rightBot = new Vector2(this.ui[i].position.x * tileWidth + 0.5 * this.ui[i].size * tileWidth, this.ui[i].position.y * tileHeight + 0.5 * this.ui[i].size * tileHeight);
+                    //checking if clicked
+
+                if (pointIntersectRectangle(new Vector2(x, y), leftTop, rightBot)) {
+
+                    this.ui[i].onClick();
+                    return true;
+                }
+
             }
         }
-        //if not clicked return false
+        //if nothing was clicked return false
         return false;
     }
     checkBoardInput(x, y) {

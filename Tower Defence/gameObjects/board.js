@@ -214,6 +214,7 @@ class Board {
                         }
 
                     }
+                    //drawing UI
                     for (let i = 0; i < this.curUI.length; i++) {
                         if (this.curUI[i] instanceof TowerButtonsContainer) {
                             this.drawingUtils.drawTowerButtons(this.curUI[i], this.curUI[i].position);
@@ -222,15 +223,18 @@ class Board {
                             this.drawingUtils.drawButton(this.curUI[i])
                         }
                     }
+                    //drawing enemies
                     for (let i = 0; i < this.enemies.length; i++) {
                         this.enemies[i].update(this.timeElapsed);
                         this.drawingUtils.drawEntity(this.enemies[i])
                     }
+                    //setting time since last frame to 0
                     this.timeElapsed = 0;
                 }
             }
 
         } else {
+            //displaying loading text
             this.drawingUtils.drawText("loading...")
         }
         //requesting another frame
@@ -278,8 +282,7 @@ class Board {
 
 
         this.timeElapsed = 0;
-        let tilesCount;
-        let i;
+    
 
         this.update();
         this.updateUI();

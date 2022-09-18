@@ -1,37 +1,37 @@
 class EnemySpawn extends Tile {
-    constructor(image, waves = [], drawingUtils,board) {
+    constructor(image, waves = [], drawingUtils, board) {
         //setting up display settings
         super(image);
-        this.board=board;
+        this.board = board;
 
         //saving needed utils and informations
         this.waves = [
             ["goblin"],
             []
         ];
-       
+
         this.drawingUtils = drawingUtils;
     }
 
     sendWave(waveNumber) {
         //sends all mobs from wave
-        
-        let enemies=[];
+
+        let enemies = [];
         this.waves[waveNumber].forEach(element => {
             enemies.push(this.spawnEnemy(element));
         });
         return enemies
-     
+
     }
-    spawnEnemy(name){
-        switch(name){
-        case "goblin":
-        
-       let ae=new Goblin(this.position,this.path);
-        
-        return ae;
-            
-            
+    spawnEnemy(name) {
+        switch (name) {
+            case "goblin":
+
+
+                return  new Goblin(this.position, this.path);
+                
+
+
         }
     }
     isWalkable(tile) { //returns if entity can walk on this tile
@@ -39,7 +39,7 @@ class EnemySpawn extends Tile {
         return (tile instanceof PathTile || tile instanceof EnemySpawn || tile instanceof PlayerBase);
     }
     findPath(startPoint, endPoint, board) {
-        this.position=startPoint;
+        this.position = startPoint;
         //setting arrays
         let result = [];
         let matrix = [];
