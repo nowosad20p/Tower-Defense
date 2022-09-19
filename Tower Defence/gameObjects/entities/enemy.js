@@ -1,14 +1,20 @@
 class Enemy extends Entity {
     constructor(image, position = new Vector2(0, 0), path) {
-        super(image, position);
-        this.path = JSON.parse(JSON.stringify(path));
+        super(image, Object.create(position));
+        this.path=[];
+        path.forEach(element => {
+            console.log(element)
+            this.path.push(Object.create(element));
+        });
         this.offset = (Math.random() * (0.55 - 0.45) + 0.45).toFixed(2);
         
         this.wasOffset=false;
        this.prevPosition=new Vector2();
       this.prevPath=[];
-     
-      
+      this.path.forEach(element => {
+            element.offset(this.offset);
+      });
+        
    
 
     }
