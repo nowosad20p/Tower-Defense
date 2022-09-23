@@ -1,6 +1,6 @@
 class Board {
 
-    constructor(map, canvas, fpsCount, moneyCount) {
+    constructor(map, canvas, fpsCount, moneyCount,hpCount) {
 
 
         //seting up canvas
@@ -17,8 +17,13 @@ class Board {
         this.fpsCount = fpsCount;
         this.coins = 0;
         this.moneyCountDisplay = moneyCount;
+        this.hpCountDisplay=hpCount;
         this.paused = false;
-
+        this.hp = 3;
+        //waves settings
+        this.timeBetweenWaves = 5;
+        this.curWave = 0;
+        this.timeSinceLastWave = 0;
         //loading map from string
         this.toLoad = 0;
         this.loadMap(map);
@@ -26,7 +31,7 @@ class Board {
         this.enemySpawns.forEach(element => {
             this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
         });
-        this.board[3][3] = new MageTower();
+
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerWidth / this.width * this.height;
 
@@ -223,10 +228,22 @@ class Board {
                             this.drawingUtils.drawButton(this.curUI[i])
                         }
                     }
-                    //drawing enemies
+                    //drawing enemies and checking their state
                     for (let i = 0; i < this.enemies.length; i++) {
-                        this.enemies[i].update(this.timeElapsed);
-                        this.drawingUtils.drawEntity(this.enemies[i])
+                        if (this.enemies[i].dead) {
+                            this.enemies.slice(i, 1);
+                        } else {
+                            if (this.enemies[i].finished) {
+                                this.hp -= this.enemies[i].damageToTurrets;
+
+                                this.enemies.splice(i, 1);
+                              
+                            } else {
+                                this.enemies[i].update(this.timeElapsed);
+                                this.drawingUtils.drawEntity(this.enemies[i]);
+                            }
+                        }
+
                     }
                     //setting time since last frame to 0
                     this.timeElapsed = 0;
@@ -269,6 +286,7 @@ class Board {
 
             //displaying coin count
             this.moneyCountDisplay.innerHTML = "Coins:" + this.coins;
+            this.hpCountDisplay.innerHTML = "HP:" + this.hp;
 
             this.inputUtils.ui = this.curUI;
 
@@ -282,7 +300,7 @@ class Board {
 
 
         this.timeElapsed = 0;
-    
+
 
         this.update();
         this.updateUI();
