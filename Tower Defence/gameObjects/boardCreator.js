@@ -93,7 +93,7 @@ class BoardCreator {
 
     }
     updateUI() {
-        
+
     }
     updateBoardTilesGraphic() {
         //setting correct graphic for path tile

@@ -3,7 +3,7 @@ class Enemy extends Entity {
         super(image, Object.create(position));
         this.path = [];
         path.forEach(element => {
-            console.log(element)
+          
             this.path.push(Object.create(element));
         });
         this.offset = (Math.random() * (0.55 - 0.45) + 0.45).toFixed(2);
@@ -13,6 +13,7 @@ class Enemy extends Entity {
         this.prevPath = [];
         this.dead=false;
         this.finished=false;
+        this.spawned=false;
         this.damageToTurret=1;
         this.path.forEach(element => {
             element.offset(this.offset);
@@ -21,12 +22,17 @@ class Enemy extends Entity {
 
 
     }
-    spawn() {
-
-
+    spawn(delay) {
+     
+        setTimeout(()=>{ 
+             this.spawned=true; 
+            
+        },delay)
+      
     }
     update(time) {
-        
+  
+        if(this.spawned){
 
 
         if (this.position.x == this.prevPosition.x && this.position.y == this.prevPosition.y) {
@@ -47,5 +53,5 @@ class Enemy extends Entity {
         this.position.x += (Math.ceil(this.path[0].x - this.position.x) * time / 100 * this.movementSpeed)
         this.position.y += (Math.ceil(this.path[0].y - this.position.y) * time / 100 * this.movementSpeed)
     }
-
+    }
 }

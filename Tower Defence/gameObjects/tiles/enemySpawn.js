@@ -6,8 +6,7 @@ class EnemySpawn extends Tile {
 
         //saving needed utils and informations
         this.waves = [
-            ["goblin"],
-            []
+            new Wave([new EnemyGroup(["goblin", "goblin"], 1000, 500)])
         ];
 
         this.drawingUtils = drawingUtils;
@@ -17,9 +16,17 @@ class EnemySpawn extends Tile {
         //sends all mobs from wave
 
         let enemies = [];
-        this.waves[waveNumber].forEach(element => {
-            enemies.push(this.spawnEnemy(element));
+
+        this.waves[waveNumber].groups.forEach(element => {
+            let i = 0;
+            element.enemies.forEach(enemy => {
+                enemies.push(this.spawnEnemy(enemy))
+                enemies[enemies.length - 1].spawn(element.delay + element.spawnRatio * i)
+
+                i++;
+            })
         });
+
         return enemies
 
     }
@@ -28,8 +35,8 @@ class EnemySpawn extends Tile {
             case "goblin":
 
 
-                return  new Goblin(this.position, this.path);
-                
+                return new Goblin(this.position, this.path);
+
 
 
         }

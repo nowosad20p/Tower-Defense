@@ -20,7 +20,7 @@ class Vector2 {
         this.y /= number;
     }
     offset(offset) {
-        console.log('ae')
+        
         offset*=1
        
         this.x += offset;

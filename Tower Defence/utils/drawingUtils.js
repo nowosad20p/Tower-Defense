@@ -20,11 +20,11 @@ class DrawingUtils {
         //drawing tile
         this.ctx.drawImage(tile.img, tile.startingPointOfImage.x, tile.startingPointOfImage.y, tile.width, tile.height, this.width / this.tilesInRow * posX, this.heigth / this.tilesInColumn * posY, this.width / this.tilesInRow, this.heigth / this.tilesInColumn);
     }
-    drawText(text){
-        this.ctx.fillText(text,this.width/2,this.heigth/2)
+    drawText(text) {
+        this.ctx.fillText(text, this.width / 2, this.heigth / 2)
     }
-    drawEntity(entity){
-        this.ctx.drawImage(entity.image.img, entity.image.startingPointOfImage.x, entity.image.startingPointOfImage.y, entity.image.width, entity.image.height, this.width / this.tilesInRow * entity.position.x, this.heigth / this.tilesInColumn * entity.position.y, this.width / this.tilesInRow* entity.image.size, this.heigth / this.tilesInColumn * entity.image.size);
+    drawEntity(entity) {
+        this.ctx.drawImage(entity.image.img, entity.image.startingPointOfImage.x, entity.image.startingPointOfImage.y, entity.image.width, entity.image.height, this.width / this.tilesInRow * entity.position.x, this.heigth / this.tilesInColumn * entity.position.y, this.width / this.tilesInRow * entity.image.size, this.heigth / this.tilesInColumn * entity.image.size);
 
     }
     drawTurretRange(x, y, board) {
@@ -100,7 +100,7 @@ class DrawingUtils {
     drawButton(button) {
 
         //drawing button image
-        
+
         this.ctx.drawImage(button.image.img, button.image.startingPointOfImage.x, button.image.startingPointOfImage.y, button.image.width, button.image.height, this.width / this.tilesInRow * button.position.x - 0.5 * button.size * this.width / this.tilesInRow, this.heigth / this.tilesInColumn * button.position.y - 0.5 * button.size * this.heigth / this.tilesInColumn, this.width / this.tilesInRow * button.size, this.heigth / this.tilesInColumn * button.size);
 
     }

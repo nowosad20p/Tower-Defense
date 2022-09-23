@@ -44,10 +44,10 @@ class InputUtils {
                 });
             }
             if (this.ui[i] instanceof Button) {
-                   //calculating real position
+                //calculating real position
                 let leftTop = new Vector2(this.ui[i].position.x * tileWidth - 0.5 * this.ui[i].size * tileWidth, this.ui[i].position.y * tileHeight - 0.5 * this.ui[i].size * tileHeight);
                 let rightBot = new Vector2(this.ui[i].position.x * tileWidth + 0.5 * this.ui[i].size * tileWidth, this.ui[i].position.y * tileHeight + 0.5 * this.ui[i].size * tileHeight);
-                    //checking if clicked
+                //checking if clicked
 
                 if (pointIntersectRectangle(new Vector2(x, y), leftTop, rightBot)) {
 
