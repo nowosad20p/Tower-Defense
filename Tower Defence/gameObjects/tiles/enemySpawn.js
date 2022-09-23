@@ -6,7 +6,7 @@ class EnemySpawn extends Tile {
 
         //saving needed utils and informations
         this.waves = [
-            new Wave([new EnemyGroup(["goblin", "goblin"], 1000, 500)])
+            new Wave([new EnemyGroup(["goblin", "goblin","goblin","goblin"], 1000, 500)])
         ];
 
         this.drawingUtils = drawingUtils;

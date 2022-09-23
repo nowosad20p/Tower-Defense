@@ -24,12 +24,14 @@ class Board {
         this.timeBetweenWaves = 5000;
         this.curWave = 0;
         this.timeSinceLastWave = 0;
+        this.numberOfWaves = 0;
         //loading map from string
         this.toLoad = 0;
         this.loadMap(map);
-        //creating paths
+        //creating paths and getting number of waves
         this.enemySpawns.forEach(element => {
             this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
+            this.numberOfWaves = Math.max(this.numberOfWaves, this.board[element.x][element.y].waves.length)
         });
 
         this.canvas.width = window.innerWidth;
@@ -236,8 +238,11 @@ class Board {
 
                         } else {
                             if (this.enemies[i].finished) {
-                                this.hp -= this.enemies[i].damageToTurrets;
-
+                                this.hp -= this.enemies[i].damageToTurret;
+                                
+                                if(this.hp<=0){
+                                    this.gameOver();
+                                }
                                 this.enemies.splice(i, 1);
                                 this.updateUI();
                             } else {
@@ -248,13 +253,18 @@ class Board {
 
                     }
                     if (this.enemies.length == 0 && this.curWave != 0) {
+                        if (this.curWave == this.numberOfWaves) {
+                            this.win();
 
-                        if (this.timeSinceLastWave > this.timeBetweenWaves) {
-                            this.sendNextWave();
                         } else {
-                            this.timeSinceLastWave += this.timeElapsed;
+                            if (this.timeSinceLastWave > this.timeBetweenWaves) {
+                                this.sendNextWave();
+                            } else {
+                                this.timeSinceLastWave += this.timeElapsed;
 
+                            }
                         }
+
                     }
                     //setting time since last frame to 0
                     this.timeElapsed = 0;
@@ -269,6 +279,14 @@ class Board {
         requestAnimationFrame(this.update.bind(this))
 
 
+    }
+    gameOver() {
+        document.write("Pozdro poćwicz")
+        this.paused = true;
+    }
+    win() {
+        document.write("Gratulacje! Wygrałeś")
+        this.paused = true;
     }
     sendNextWave() {
 
