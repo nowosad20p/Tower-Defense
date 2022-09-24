@@ -3,12 +3,27 @@ class Entity {
         this.image = image;
         this.position = position;
         this.movementSpeed = movementSpeed;
+        //entity stats
+        this.hp = 10;
+        this.damage = 100;
+        this.armor = 10;
+        //entity state
+        this.dead = false;
+        this.finished = false;
+        this.spawned = false;
     }
     spawn() {
 
 
     }
     die() {
-
+        this.dead = true;
+    }
+    takeDamage(damage, damageType) {
+        console.log(this.hp)
+        this.hp -= damage;
+        if (this.hp <= 0) {
+            this.die()
+        }
     }
 }

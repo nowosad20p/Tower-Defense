@@ -202,12 +202,26 @@ class Board {
                     for (let i = 0; i < this.board.length; i++) {
                         for (let j = 0; j < this.board[i].length; j++) {
                             this.drawingUtils.drawTile(this.board[i][j], i, j);
+                            
+                        }
+                    }
+                    for (let i = 0; i < this.board.length; i++) {
+                        for (let j = 0; j < this.board[i].length; j++) {
+                         
+                            if(this.board[i][j] instanceof Tower){
+                                this.board[i][j].update(this.enemies,this.timeElapsed);
+                                if(this.board[i][j].curTarget!=null){
+                                    this.drawingUtils.drawLine(new Vector2(i+0.5,j+0.5),this.board[i][j].curTarget.position);
+                                   
+                                }
+                            }
                         }
                     }
                     if (this.activeTile != null) {
 
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
                             this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
+                           
                             //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
@@ -273,7 +287,7 @@ class Board {
 
         } else {
             //displaying loading text
-            this.drawingUtils.drawText("loading...")
+            this.drawingUtils.drawText("loading...");
         }
         //requesting another frame
         requestAnimationFrame(this.update.bind(this))
@@ -281,11 +295,13 @@ class Board {
 
     }
     gameOver() {
-        document.write("Pozdro poćwicz")
+        this.drawingUtils.drawText("Pozdro poćwicz");
+
         this.paused = true;
     }
     win() {
-        document.write("Gratulacje! Wygrałeś")
+        this.drawingUtils.drawText("Kurde poćwiczył i wygrał");
+
         this.paused = true;
     }
     sendNextWave() {
@@ -310,11 +326,16 @@ class Board {
                 }
             }
             if (this.enemies.length == 0) {
-
-                this.curUI.push(new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(96, 0)), 16, 16, new Vector2(4, 3), () => {
-                    this.sendNextWave();
-
-                }))
+                //if there are no enemies left, show buttons to summon next wave
+                this.enemySpawns.forEach(element=>{
+                    let pos=Object.create(element)
+                    pos.offset(0.5);
+                    this.curUI.push(new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(96, 0)), 16, 16, pos, () => {
+                        this.sendNextWave();
+    
+                    }))
+                })
+               
 
 
             }

@@ -6,7 +6,8 @@ class DrawingUtils {
         this.heigth = heigth;
         this.tilesInColumn = tilesInColumn;
         this.tilesInRow = tilesInRow;
-
+        this.rowTileSize = this.width / this.tilesInRow;
+        this.colTileSize = this.heigth / this.tilesInColumn;
     }
     drawTile(tile, posX, posY) {
 
@@ -103,6 +104,12 @@ class DrawingUtils {
 
         this.ctx.drawImage(button.image.img, button.image.startingPointOfImage.x, button.image.startingPointOfImage.y, button.image.width, button.image.height, this.width / this.tilesInRow * button.position.x - 0.5 * button.size * this.width / this.tilesInRow, this.heigth / this.tilesInColumn * button.position.y - 0.5 * button.size * this.heigth / this.tilesInColumn, this.width / this.tilesInRow * button.size, this.heigth / this.tilesInColumn * button.size);
 
+    }
+    drawLine(start,end){
+        this.ctx.beginPath();
+        this.ctx.moveTo(start.x*this.rowTileSize,start.y*this.colTileSize);
+        this.ctx.lineTo(end.x*this.rowTileSize,end.y*this.colTileSize);
+        this.ctx.stroke();
     }
 
 }
