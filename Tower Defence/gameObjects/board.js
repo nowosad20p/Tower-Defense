@@ -44,6 +44,23 @@ class Board {
         this.inputUtils = new InputUtils(this, this.curUI, this.canvas);
         this.drawingUtils = new DrawingUtils(canvas.getContext("2d"), canvas.width, canvas.height, this.width, this.height);
 
+        window.onfocus = () => {
+            this.resume()
+        }
+        window.onblur = () => {
+            this.pause()
+        }
+
+    }
+    pause() {
+        this.paused = true
+
+    }
+    resume() {
+        this.paused = false;
+        this.timeUtils.update();
+
+
     }
     loadMap(map) {
         //creating arrays
@@ -202,17 +219,17 @@ class Board {
                     for (let i = 0; i < this.board.length; i++) {
                         for (let j = 0; j < this.board[i].length; j++) {
                             this.drawingUtils.drawTile(this.board[i][j], i, j);
-                            
+
                         }
                     }
                     for (let i = 0; i < this.board.length; i++) {
                         for (let j = 0; j < this.board[i].length; j++) {
-                         
-                            if(this.board[i][j] instanceof Tower){
-                                this.board[i][j].update(this.enemies,this.timeElapsed);
-                                if(this.board[i][j].curTarget!=null){
-                                    this.drawingUtils.drawLine(new Vector2(i+0.5,j+0.5),this.board[i][j].curTarget.position);
-                                   
+
+                            if (this.board[i][j] instanceof Tower) {
+                                this.board[i][j].update(this.enemies, this.timeElapsed);
+                                if (this.board[i][j].curTarget != null) {
+                                    this.drawingUtils.drawLine(new Vector2(i + 0.5, j + 0.5), this.board[i][j].curTarget.position);
+
                                 }
                             }
                         }
@@ -221,7 +238,7 @@ class Board {
 
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
                             this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
-                           
+
                             //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
@@ -245,20 +262,20 @@ class Board {
                         }
                     }
                     //drawing enemies and checking their state
-              
+
                     for (let i = 0; i < this.enemies.length; i++) {
-                        console.log(this.enemies[i].dead)
+
                         if (this.enemies[i].dead) {
                             this.enemies.splice(i, 1);
-                            
+
                             this.updateUI();
 
                         } else {
-                            
+
                             if (this.enemies[i].finished) {
                                 this.hp -= this.enemies[i].damageToTurret;
-                                
-                                if(this.hp<=0){
+
+                                if (this.hp <= 0) {
                                     this.gameOver();
                                 }
                                 this.enemies.splice(i, 1);
@@ -270,17 +287,17 @@ class Board {
                         }
 
                     }
-                    console.log(this.enemies)
-                   
+
+
 
                     if (this.enemies.length == 0 && this.curWave != 0) {
                         if (this.curWave == this.numberOfWaves) {
                             this.win();
-                          
+
 
 
                         } else {
-                            console.log(this.curWave,this.numberOfWaves)
+                            console.log(this.curWave, this.numberOfWaves)
                             if (this.timeSinceLastWave > this.timeBetweenWaves) {
                                 this.sendNextWave();
                             } else {
@@ -337,15 +354,15 @@ class Board {
             }
             if (this.enemies.length == 0) {
                 //if there are no enemies left, show buttons to summon next wave
-                this.enemySpawns.forEach(element=>{
-                    let pos=Object.create(element)
+                this.enemySpawns.forEach(element => {
+                    let pos = Object.create(element)
                     pos.offset(0.5);
                     this.curUI.push(new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(96, 0)), 16, 16, pos, () => {
                         this.sendNextWave();
-    
+
                     }))
                 })
-               
+
 
 
             }
