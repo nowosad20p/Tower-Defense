@@ -245,12 +245,16 @@ class Board {
                         }
                     }
                     //drawing enemies and checking their state
+              
                     for (let i = 0; i < this.enemies.length; i++) {
+                        console.log(this.enemies[i].dead)
                         if (this.enemies[i].dead) {
-                            this.enemies.slice(i, 1);
+                            this.enemies.splice(i, 1);
+                            
                             this.updateUI();
 
                         } else {
+                            
                             if (this.enemies[i].finished) {
                                 this.hp -= this.enemies[i].damageToTurret;
                                 
@@ -266,11 +270,17 @@ class Board {
                         }
 
                     }
+                    console.log(this.enemies)
+                   
+
                     if (this.enemies.length == 0 && this.curWave != 0) {
                         if (this.curWave == this.numberOfWaves) {
                             this.win();
+                          
+
 
                         } else {
+                            console.log(this.curWave,this.numberOfWaves)
                             if (this.timeSinceLastWave > this.timeBetweenWaves) {
                                 this.sendNextWave();
                             } else {

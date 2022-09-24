@@ -11,7 +11,7 @@ class Enemy extends Entity {
         this.wasOffset = false;
         this.prevPosition = new Vector2();
         this.prevPath = [];
-
+        this.dead=false;
 
 
         this.damageToTurret = 1;
@@ -30,14 +30,17 @@ class Enemy extends Entity {
         }, delay)
 
     }
+    die() {
+        
+    }
     update(time) {
 
         if (this.spawned) {
 
             if (this.hp <= 0) {
 
-
                 this.dead = true;
+                this.die()
                 return false;
             }
             if (this.position.x == this.prevPosition.x && this.position.y == this.prevPosition.y) {

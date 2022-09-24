@@ -20,9 +20,10 @@ class Entity {
         this.dead = true;
     }
     takeDamage(damage, damageType) {
-        console.log(this.hp)
+        
         this.hp -= damage;
         if (this.hp <= 0) {
+     
             this.die()
         }
     }
