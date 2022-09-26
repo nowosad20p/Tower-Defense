@@ -6,7 +6,7 @@ class EnemySpawn extends Tile {
 
         //saving needed utils and informations
         this.waves = [
-            new Wave([new EnemyGroup(["goblin", "goblin","goblin","goblin"], 1000, 500)])
+            new Wave([new EnemyGroup(["goblin", "goblin", "goblin", "goblin"], 1000, 500),new EnemyGroup(["goblin", "goblin", "goblin", "goblin"], 1000, 500)])
         ];
 
         this.drawingUtils = drawingUtils;
@@ -21,7 +21,7 @@ class EnemySpawn extends Tile {
             let i = 0;
             element.enemies.forEach(enemy => {
                 enemies.push(this.spawnEnemy(enemy, element.delay + element.spawnRatio * i))
-               
+
 
                 i++;
             })
@@ -30,15 +30,10 @@ class EnemySpawn extends Tile {
         return enemies
 
     }
-    spawnEnemy(name,delay) {
+    spawnEnemy(name, delay) {
         switch (name) {
             case "goblin":
-
-
-                return new Goblin(this.position, this.path,delay);
-
-
-
+              return new Goblin(this.position, this.path, delay);
         }
     }
     isWalkable(tile) { //returns if entity can walk on this tile
@@ -46,6 +41,7 @@ class EnemySpawn extends Tile {
         return (tile instanceof PathTile || tile instanceof EnemySpawn || tile instanceof PlayerBase);
     }
     findPath(startPoint, endPoint, board) {
+
         this.position = startPoint;
         //setting arrays
         let result = [];
@@ -54,7 +50,7 @@ class EnemySpawn extends Tile {
         for (let i = 0; i < board.length; i++) {
             let piece = [];
             for (let j = 0; j < board[i].length; j++) {
-                piece.push((board[i][j] instanceof PathTile || board[i][j] instanceof EnemySpawn || board[i][j] instanceof PlayerBase) ? 1 : 0)
+                piece.push((board[i][j] instanceof PathTile || board[i][j] == this || board[i][j] instanceof PlayerBase) ? 1 : 0)
 
             }
             matrix.push(piece);
@@ -79,6 +75,7 @@ class EnemySpawn extends Tile {
 
         easystar.calculate();
         //saving path
+
         this.path = result;
     }
 

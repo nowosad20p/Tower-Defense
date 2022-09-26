@@ -6,6 +6,10 @@ class Enemy extends Entity {
 
             this.path.push(Object.create(element));
         });
+        this.xDir=Math.sign(this.path[0].x - this.position.x);
+                this.yDir=Math.sign(this.path[0].y - this.position.y);
+             
+
         this.offset = (Math.random() * (0.55 - 0.45) + 0.45).toFixed(2);
 
         this.wasOffset = false;
@@ -20,7 +24,8 @@ class Enemy extends Entity {
         });
         this.delay=delay;
         this.timeWaited=0;
-
+        this.xDir;
+        this.yDir;
 
     }
    
@@ -30,30 +35,57 @@ class Enemy extends Entity {
     update(time) {
 
         if (this.spawned) {
-
+           
             if (this.hp <= 0) {
 
                 this.dead = true;
                 this.die()
                 return false;
             }
-            if (this.position.x == this.prevPosition.x && this.position.y == this.prevPosition.y) {
+
+            if ((this.position.x == this.path[0].x && this.position.y == this.path[0].y) || (this.position.x==this.prevPosition.x&&this.position.y==this.prevPosition.y)) {
                 this.prevPath.push(this.path.shift());
                 if (this.path.length == 0) {
                     this.finished = true;
-
+                  return false;
                 }
+                this.xDir=Math.sign(this.path[0].x - this.position.x);
+                this.yDir=Math.sign(this.path[0].y - this.position.y);
+                console.log(this.xDir,this.yDir);
             }
 
 
-            if (this.path.length == 0) {
-                return false;
-            }
+           
             this.prevPosition.x = this.position.x;
             this.prevPosition.y = this.position.y;
-
-            this.position.x += (Math.ceil(this.path[0].x - this.position.x) * time / 100 * this.movementSpeed)
-            this.position.y += (Math.ceil(this.path[0].y - this.position.y) * time / 100 * this.movementSpeed)
+            let x = (this.path[0].x - this.position.x).toFixed(5)
+            let y = (this.path[0].y - this.position.y).toFixed(5)
+           
+            let movementMultiplier = (time / 100 * this.movementSpeed).toFixed(5);
+            x >= 0 ?  this.position.x += Math.ceil(x)*movementMultiplier  : this.position.x +=Math.floor(x)* movementMultiplier;
+            y >= 0 ?  this.position.y += Math.ceil(y)* movementMultiplier : this.position.y +=Math.floor(y)* movementMultiplier;
+            console.log(x,y)
+            if(this.xDir==-1){
+                if(this.position.x<this.path[0].x){
+                    this.position.x=this.path[0].x;
+                }
+            }else{
+                if(this.position.x>this.path[0].x){
+                    this.position.x=this.path[0].x;
+                }
+            }
+            if(this.yDir==-1){
+                if(this.position.y<this.path[0].y){
+                    this.position.y=this.path[0].y;;
+                }
+            }else{
+                if(this.position.y>this.path[0].y){
+                    this.position.y=this.path[0].y;
+                }
+            }
+            // this.position.x += 
+            // this.position.y += (Math.ceil(this.path[0].y - this.position.y) * time / 100 * this.movementSpeed)
+            
         }else{
             if(this.timeWaited>=this.delay){
                 this.spawned=true;

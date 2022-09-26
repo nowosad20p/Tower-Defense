@@ -19,7 +19,7 @@ class Board {
 
         //player resourses
         this.coins = 200;
-        this.hp = 3;
+        this.hp = 5;
 
         //containters to display player information
         this.moneyCountDisplay = moneyCount;
@@ -254,6 +254,7 @@ class Board {
                             //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
+                          
                             this.drawingUtils.drawPath(this.board[this.activeTile.x][this.activeTile.y]);
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
@@ -345,10 +346,13 @@ class Board {
         this.paused = true;
     }
     sendNextWave() {
-
-        this.board[this.enemySpawns[0].x][this.enemySpawns[0].y].sendWave(0).forEach(element => {
-            this.enemies.push(element)
-        });
+        //sending waves and saving spawned enemies in enemies array
+        this.enemySpawns.forEach(element=>{
+            this.board[element.x][element.y].sendWave(this.curWave).forEach(enemy=>{
+                this.enemies.push(enemy)
+            })
+        })
+        
         this.curWave++;
         this.updateUI();
 

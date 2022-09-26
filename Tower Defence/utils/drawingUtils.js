@@ -37,14 +37,16 @@ class DrawingUtils {
 
     }
     drawPath(spawn, offset = 0.5) {
+    
         //drawing lines to vectors saved in path in spawn object
         this.ctx.beginPath();
         let array = JSON.parse(JSON.stringify(spawn.path));
         let a = array.shift();
+       
         let rowTileSize = this.width / this.tilesInRow;
         let colTileSize = this.heigth / this.tilesInColumn;
-        this.ctx.moveTo(a.x + 0.5 * rowTileSize, a.y + 0.5 * colTileSize);
-
+        this.ctx.moveTo(a.x *rowTileSize+ 0.5 * rowTileSize, a.y *colTileSize+ + 0.5 * colTileSize);
+     
         array.forEach(element => {
 
             this.ctx.lineTo(element.x * rowTileSize + offset * rowTileSize, element.y * colTileSize + (1 - offset) * colTileSize);
