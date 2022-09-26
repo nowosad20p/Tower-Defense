@@ -1,20 +1,23 @@
 class Tower {
-    constructor(tier, upgradeChosen, exp, image = undefined, range, damage, position) {
+    constructor(tier, price, exp, image = undefined, range, damage, position, board) {
+        
+        this.price = price;
         this.tier = tier;
-        this.upgradeChosen = upgradeChosen;
         this.exp = 0;
         this.image = image;
-        this.tileWidth = 32;
-        this.tileHeight = 32;
+        
         this.updateImage();
-        this.range = range;
-        this.damage = damage;
+      
         this.curTarget = null;
         this.position = position;
         //attack settings
+        this.range = range;
+        this.damage = damage;
         this.projectiles = [];
         this.timeSinceLastAttack = 0;
         this.attackSpeed = 500;
+        this.board = board;
+
         //this.towerButtons = new TowerButtonsContainer(2, this)
     }
     onClick() {

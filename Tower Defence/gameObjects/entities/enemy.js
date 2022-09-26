@@ -1,5 +1,5 @@
 class Enemy extends Entity {
-    constructor(image, position = new Vector2(0, 0), path) {
+    constructor(image, position = new Vector2(0, 0), path,delay) {
         super(image, Object.create(position));
         this.path = [];
         path.forEach(element => {
@@ -11,27 +11,21 @@ class Enemy extends Entity {
         this.wasOffset = false;
         this.prevPosition = new Vector2();
         this.prevPath = [];
-        this.dead=false;
+        this.dead = false;
 
-
+        this.value = 10;
         this.damageToTurret = 1;
         this.path.forEach(element => {
             element.offset(this.offset);
         });
-
+        this.delay=delay;
+        this.timeWaited=0;
 
 
     }
-    spawn(delay) {
-
-        setTimeout(() => {
-            this.spawned = true;
-
-        }, delay)
-
-    }
+   
     die() {
-        
+
     }
     update(time) {
 
@@ -60,6 +54,12 @@ class Enemy extends Entity {
 
             this.position.x += (Math.ceil(this.path[0].x - this.position.x) * time / 100 * this.movementSpeed)
             this.position.y += (Math.ceil(this.path[0].y - this.position.y) * time / 100 * this.movementSpeed)
+        }else{
+            if(this.timeWaited>=this.delay){
+                this.spawned=true;
+            }else{
+                this.timeWaited+=time;
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 class MageTower extends Tower {
-    constructor(position) {
+    constructor(position, board, price) {
 
-        super(1, undefined, 1, new BetterImage("./graphics/mageTower.png", 32, 32, new Vector2(0, 0)), 1, 2, position);
+        super(1, price, 1, new BetterImage("./graphics/mageTower.png", 32, 32, new Vector2(0, 0)), 1, 2, position, board);
 
     }
 

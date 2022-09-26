@@ -5,28 +5,55 @@ class TowerSlot extends Tile {
 
         this.tileWidth = 16;
         this.tileHeight = 16;
-
+        this.board = board;
+        console.log(board)
         this.towerButtons = new TowerButtonsContainer(0.5,
             [
                 new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(32, 0)), 16, 16, new Vector2(0, 0), () => {
-                    board.board[position.x * 1][position.y * 1] = new MageTower(position); //mag
+                    let price = 100;
 
-                    board.activeTile = null;
+                    if (price <= this.board.coins) {
+                        board.board[position.x * 1][position.y * 1] = new MageTower(position, board, price); //mag
+
+                        board.activeTile = null;
+                        this.board.coins -= price;
+                    } else {
+
+                    }
                 }),
                 new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(48, 0)), 16, 16, new Vector2(0, 0), () => {
-                    board.board[position.x * 1][position.y * 1] = new IceTower(position); //łuk
+                    let price = 100;
+                    if (price <= this.board.coins) {
+                        board.board[position.x * 1][position.y * 1] = new ArcherTower(position, board, price); //łuk
 
-                    board.activeTile = null;
+                        board.activeTile = null;
+                        this.board.coins -= price;
+                    } else {
+
+                    }
                 }),
                 new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(64, 0)), 16, 16, new Vector2(0, 0), () => {
-                    board.board[position.x * 1][position.y * 1] = new IceTower(position); //ludziki
+                    let price = 100;
+                    if (price <= this.board.coins) {
+                        board.board[position.x * 1][position.y * 1] = new TrooperTower(position, board, price); //ludziki
 
-                    board.activeTile = null;
+                        board.activeTile = null;
+                        this.board.coins -= price;
+                    } else {
+
+                    }
                 }),
                 new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(80, 0)), 16, 16, new Vector2(0, 0), () => {
-                    board.board[position.x * 1][position.y * 1] = new IceTower(position); //ice tower button
+                    let price = 100;
+                    if (price <= this.board.coins) {
+                        board.board[position.x * 1][position.y * 1] = new IceTower(position, board, price); //ice tower button
 
-                    board.activeTile = null;
+                        board.activeTile = null;
+
+                        this.board.coins -= price;
+                    } else {
+
+                    }
                 })
             ]
 

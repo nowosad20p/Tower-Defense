@@ -20,8 +20,8 @@ class EnemySpawn extends Tile {
         this.waves[waveNumber].groups.forEach(element => {
             let i = 0;
             element.enemies.forEach(enemy => {
-                enemies.push(this.spawnEnemy(enemy))
-                enemies[enemies.length - 1].spawn(element.delay + element.spawnRatio * i)
+                enemies.push(this.spawnEnemy(enemy, element.delay + element.spawnRatio * i))
+               
 
                 i++;
             })
@@ -30,12 +30,12 @@ class EnemySpawn extends Tile {
         return enemies
 
     }
-    spawnEnemy(name) {
+    spawnEnemy(name,delay) {
         switch (name) {
             case "goblin":
 
 
-                return new Goblin(this.position, this.path);
+                return new Goblin(this.position, this.path,delay);
 
 
 

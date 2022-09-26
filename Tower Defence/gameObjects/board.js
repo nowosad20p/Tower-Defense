@@ -2,38 +2,49 @@ class Board {
 
     constructor(map, canvas, fpsCount, moneyCount, hpCount) {
 
-
         //seting up canvas
         this.canvas = canvas;
 
-        //creating needed values
-        this.activeTile = null;
-        this.board = [];
-        this.curUI = [];
+        //arrays with board content
         this.width;
         this.height;
+        this.board = [];
+        this.curUI = [];
         this.enemySpawns = [];
         this.enemies = [];
+        this.activeTile = null;
+
+        //board settings
         this.fpsCount = fpsCount;
-        this.coins = 0;
+
+        //player resourses
+        this.coins = 200;
+        this.hp = 3;
+
+        //containters to display player information
         this.moneyCountDisplay = moneyCount;
         this.hpCountDisplay = hpCount;
+
+        //game states
         this.paused = false;
-        this.hp = 3;
+
         //waves settings
         this.timeBetweenWaves = 5000;
         this.curWave = 0;
         this.timeSinceLastWave = 0;
         this.numberOfWaves = 0;
+
         //loading map from string
         this.toLoad = 0;
         this.loadMap(map);
+
         //creating paths and getting number of waves
         this.enemySpawns.forEach(element => {
             this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
             this.numberOfWaves = Math.max(this.numberOfWaves, this.board[element.x][element.y].waves.length)
         });
 
+        //setting up canvas size
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerWidth / this.width * this.height;
 
@@ -44,6 +55,7 @@ class Board {
         this.inputUtils = new InputUtils(this, this.curUI, this.canvas);
         this.drawingUtils = new DrawingUtils(canvas.getContext("2d"), canvas.width, canvas.height, this.width, this.height);
 
+        //handling alt tab
         window.onfocus = () => {
             this.resume()
         }
@@ -52,11 +64,11 @@ class Board {
         }
 
     }
-    pause() {
+    pause() { //pausing game
         this.paused = true
 
     }
-    resume() {
+    resume() { //resuming game
         this.paused = false;
         this.timeUtils.update();
 
@@ -266,6 +278,7 @@ class Board {
                     for (let i = 0; i < this.enemies.length; i++) {
 
                         if (this.enemies[i].dead) {
+                            this.coins += this.enemies[i].value;
                             this.enemies.splice(i, 1);
 
                             this.updateUI();
@@ -369,8 +382,8 @@ class Board {
 
 
             //displaying coin count
-            this.moneyCountDisplay.innerHTML = "Coins:" + this.coins;
-            this.hpCountDisplay.innerHTML = "HP:" + this.hp;
+            this.moneyCountDisplay.innerHTML = '<div><img src="./graphics/coin.png" alt="coins">:' + this.coins + "</div>";
+            this.hpCountDisplay.innerHTML = '<div><img src="./graphics/hp.png" alt="hp">:' + this.hp + "</div>";
 
             this.inputUtils.ui = this.curUI;
 
