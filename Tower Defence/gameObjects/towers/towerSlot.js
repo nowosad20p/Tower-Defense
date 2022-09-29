@@ -6,7 +6,7 @@ class TowerSlot extends Tile {
         this.tileWidth = 16;
         this.tileHeight = 16;
         this.board = board;
-       
+        //creating buttons to display on click
         this.towerButtons = new TowerButtonsContainer(0.5,
             [
                 new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(32, 0)), 16, 16, new Vector2(0, 0), () => {

@@ -37,7 +37,7 @@ class Board {
         //loading map from string
         this.toLoad = 0;
         this.loadMap(map);
-
+   
         //creating paths and getting number of waves
         this.enemySpawns.forEach(element => {
             this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
@@ -65,6 +65,9 @@ class Board {
 
     }
     pause() { //pausing game
+       
+        this.drawingUtils.drawRectangle(new Vector2(0,0),new Vector2(this.canvas.width,this.canvas.height),"rgba(92, 95, 90, 0.5)");
+        console.log("pauza moment")
         this.paused = true
 
     }
@@ -278,7 +281,7 @@ class Board {
 
                     for (let i = 0; i < this.enemies.length; i++) {
 
-                        if (this.enemies[i].dead) {
+                        if (this.enemies[i].dead) { //deleting dead enemies and adding coins for killing enemies
                             this.coins += this.enemies[i].value;
                             this.enemies.splice(i, 1);
 
@@ -286,15 +289,15 @@ class Board {
 
                         } else {
 
-                            if (this.enemies[i].finished) {
+                            if (this.enemies[i].finished) {//deleting enemies that finished their path
                                 this.hp -= this.enemies[i].damageToTurret;
 
-                                if (this.hp <= 0) {
+                                if (this.hp <= 0) { //checking if player base is destroyed
                                     this.gameOver();
                                 }
                                 this.enemies.splice(i, 1);
                                 this.updateUI();
-                            } else {
+                            } else {//updating enemies
                                 this.enemies[i].update(this.timeElapsed);
                                 this.drawingUtils.drawEntity(this.enemies[i]);
                             }
@@ -304,14 +307,12 @@ class Board {
 
 
 
-                    if (this.enemies.length == 0 && this.curWave != 0) {
+                    if (this.enemies.length == 0 && this.curWave != 0) {//sending next waves and checking if player won
                         if (this.curWave == this.numberOfWaves) {
                             this.win();
 
-
-
                         } else {
-                            console.log(this.curWave, this.numberOfWaves)
+                           
                             if (this.timeSinceLastWave > this.timeBetweenWaves) {
                                 this.sendNextWave();
                             } else {
@@ -324,23 +325,25 @@ class Board {
                     //setting time since last frame to 0
                     this.timeElapsed = 0;
                 }
+            }else{//if game is paused
+              
             }
 
         } else {
             //displaying loading text
-            this.drawingUtils.drawText("loading...");
+            this.drawingUtils.drawText("loading... images left: "+this.toLoad);
         }
         //requesting another frame
         requestAnimationFrame(this.update.bind(this))
 
 
     }
-    gameOver() {
+    gameOver() {//game over function
         this.drawingUtils.drawText("Pozdro poćwicz");
 
         this.paused = true;
     }
-    win() {
+    win() {//win function
         this.drawingUtils.drawText("Kurde poćwiczył i wygrał");
 
         this.paused = true;
@@ -355,12 +358,13 @@ class Board {
         
         this.curWave++;
         this.updateUI();
+        this.timeSinceLastWave=0;
 
     }
     updateUI() {
         if (!this.paused) {
             this.curUI = [];
-            if (this.activeTile != null) {
+            if (this.activeTile != null) {//drawing active tile ui if needed to
 
                 if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
 
@@ -395,7 +399,7 @@ class Board {
     }
     startLevel() {
 
-        //starting utilities and update function
+        //starting utilities and update loops
         this.updateBoardTilesGraphic();
         this.inputUtils.startListening();
 

@@ -36,12 +36,12 @@ class Tower {
         this.curTarget.takeDamage(this.damage)
     }
     update(enemies, deltaTime) {
-
-        if (this.curTarget == null || this.curTarget == undefined || distanceBetweenVectors(this.position, this.curTarget.position) > this.range || this.curTarget.dead || this.curTarget.finished) {
+        //checking if current target is in range and alive
+        if (this.curTarget == null || this.curTarget == undefined || distanceBetweenVectors(this.position, this.curTarget.position) > this.range || this.curTarget.dead || this.curTarget.finished ) {
             this.getNewTarget(enemies);
             this.timeSinceLastAttack = 0;
 
-        } else {
+        } else {//attacking
             if (this.timeSinceLastAttack > this.attackSpeed) {
                 this.attack();
                 this.timeSinceLastAttack = 0;
@@ -53,7 +53,7 @@ class Tower {
 
         }
     }
-    getNewTarget(enemies) {
+    getNewTarget(enemies) {//getting closest enemy in range
 
         let middleOfTower = new Vector2(this.position.x + 0.5, this.position.y + 0.5);
         if (enemies.length == 0) {
@@ -61,7 +61,7 @@ class Tower {
         }
         let min = enemies[0];
         for (let i = 1; i < enemies.length; i++) {
-
+            if(enemies[i].spawned){
             let position1 = distanceBetweenVectors(middleOfTower, min.position);
             let position2 = distanceBetweenVectors(middleOfTower, enemies[i].position);
 
@@ -69,8 +69,14 @@ class Tower {
                 min = enemies[i];
             }
         }
+        }
         if (distanceBetweenVectors(middleOfTower, min.position) < this.range) {
+            if(min.spawned){
             this.curTarget = min;
+            }else{
+            this.curTarget = null;
+
+            }
 
         } else {
             this.curTarget = null;

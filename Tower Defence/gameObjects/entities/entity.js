@@ -1,12 +1,15 @@
 class Entity {
     constructor(image, position = new Vector2(0, 0), movementSpeed = 0.1) {
-        this.image = image;
+        
+        this.image = image; 
         this.position = position;
-        this.movementSpeed = movementSpeed;
+
         //entity stats
+        this.movementSpeed = movementSpeed;
         this.hp = 10;
         this.damage = 100;
         this.armor = 10;
+
         //entity state
         this.dead = false;
         this.finished = false;

@@ -107,11 +107,25 @@ class DrawingUtils {
         this.ctx.drawImage(button.image.img, button.image.startingPointOfImage.x, button.image.startingPointOfImage.y, button.image.width, button.image.height, this.width / this.tilesInRow * button.position.x - 0.5 * button.size * this.width / this.tilesInRow, this.heigth / this.tilesInColumn * button.position.y - 0.5 * button.size * this.heigth / this.tilesInColumn, this.width / this.tilesInRow * button.size, this.heigth / this.tilesInColumn * button.size);
 
     }
-    drawLine(start,end){
+    drawLine(start,end){//drawing line between two points
         this.ctx.beginPath();
         this.ctx.moveTo(start.x*this.rowTileSize,start.y*this.colTileSize);
         this.ctx.lineTo(end.x*this.rowTileSize,end.y*this.colTileSize);
         this.ctx.stroke();
+    }
+    drawRectangle(leftTop,rightBot,color){//drawing rectangle
+        
+        this.ctx.beginPath();
+        this.ctx.fillStyle=color;
+        this.ctx.moveTo(leftTop.x,leftTop.y);
+        this.ctx.lineTo(rightBot.x,leftTop.y);
+        this.ctx.lineTo(rightBot.x,rightBot.y);
+        this.ctx.lineTo(leftTop.x,rightBot.y);
+        this.ctx.lineTo(leftTop.x,leftTop.y);
+        this.ctx.fill();
+    }
+    drawHpBar(enemy){
+        
     }
 
 }

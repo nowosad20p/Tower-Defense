@@ -1,4 +1,4 @@
-class Vector2 {
+    class Vector2 {
     constructor(x = 0, y = 0) { //saving x and y values
         this.x = x * 1;
         this.y = y * 1;

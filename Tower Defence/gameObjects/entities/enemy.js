@@ -24,6 +24,7 @@ class Enemy extends Entity {
         });
         this.delay=delay;
         this.timeWaited=0;
+        
         this.xDir;
         this.yDir;
 
@@ -64,7 +65,7 @@ class Enemy extends Entity {
             let movementMultiplier = (time / 100 * this.movementSpeed).toFixed(5);
             x >= 0 ?  this.position.x += Math.ceil(x)*movementMultiplier  : this.position.x +=Math.floor(x)* movementMultiplier;
             y >= 0 ?  this.position.y += Math.ceil(y)* movementMultiplier : this.position.y +=Math.floor(y)* movementMultiplier;
-            console.log(x,y)
+            
             if(this.xDir==-1){
                 if(this.position.x<this.path[0].x){
                     this.position.x=this.path[0].x;
