@@ -1,11 +1,11 @@
 class Tower {
-    constructor(tier, price, exp, image = undefined, range, damage, position, board) {
+    constructor(tier, value, exp, image = undefined, range, damage, position, board,maxTier=3,upgradePrice=150) {
         
-        this.price = price;
+        this.value = value;
         this.tier = tier;
         this.exp = 0;
         this.image = image;
-        
+        this.upgradePrice=upgradePrice;
         this.updateImage();
       
         this.curTarget = null;
@@ -17,19 +17,37 @@ class Tower {
         this.timeSinceLastAttack = 0;
         this.attackSpeed = 500;
         this.board = board;
+        this.maxTier=maxTier;
+        this.towerButtons = new TowerButtonsContainer(0.5,
+            [
+                new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(0, 0)), 16, 16, new Vector2(0, 0), () => {
+                    this.levelUp();
 
-        //this.towerButtons = new TowerButtonsContainer(2, this)
+                  
+                }),
+                new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(16, 0)), 16, 16, new Vector2(0, 0), () => {
+                    this.board[this.position.x][this.position.x]=new TowerSlot(new TowerSlot(new BetterImage("./graphics/towerSlot.png", 16, 16, new Vector2(0, 0)), this.board, Object.create(this.position)))
+                })
+            ]
+
+        );
     }
     onClick() {
 
     }
     updateImage() {
+       
         //getting new image part based on tier of tower
-        this.startingPointOfImage = new Vector2(this.tier * this.tileWidth, 0);
+     
+        this.image.startingPointOfImage = new Vector2((this.tier-1) * this.image.width, 0);
+       
     }
     levelUp() {
-        if (tier < 3) {
-            tier++;
+        if (this.tier < this.maxTier&&this.board.coins>this.upgradePrice) {
+            this.tier++;
+            this.board.coins-=this.upgradePrice;
+            this.upgradePrice*=1.1;
+            this.updateImage();
         }
     }
     attack() {

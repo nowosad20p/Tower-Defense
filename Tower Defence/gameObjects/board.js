@@ -253,6 +253,7 @@ class Board {
 
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
                             this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
+                            this.board[this.activeTile.x][this.activeTile.y].towerButtons.position = new Vector2(this.activeTile.x, this.activeTile.y);
 
                             //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
                         }
@@ -366,7 +367,7 @@ class Board {
             this.curUI = [];
             if (this.activeTile != null) {//drawing active tile ui if needed to
 
-                if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
+                if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot||this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
 
 
                     this.curUI.push(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
