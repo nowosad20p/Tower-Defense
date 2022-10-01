@@ -1,13 +1,13 @@
 class Tower {
     constructor(tier, value, exp, image = undefined, range, damage, attackSpeed, position, board, maxTier = 3, upgradePrice = 150) {
-
+      
         this.value = value;
         this.tier = tier;
         this.exp = 0;
         this.image = image;
         this.upgradePrice = upgradePrice;
         this.updateImage();
-
+       
         this.curTarget = null;
         this.position = position;
         //attack settings
@@ -26,7 +26,10 @@ class Tower {
 
                 }),
                 new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(16, 0)), 16, 16, new Vector2(0, 0), () => {
-                    this.board[this.position.x][this.position.x] = new TowerSlot(new TowerSlot(new BetterImage("./graphics/towerSlot.png", 16, 16, new Vector2(0, 0)), this.board, Object.create(this.position)))
+                  
+                   
+                    board.board[position.x][position.y] = new TowerSlot(new BetterImage("./graphics/towerSlot.png", 16, 16, new Vector2(0, 0)), this.board, Object.create(this.position))
+                    board.coins+=0.8*this.value;
                 })
             ]
 

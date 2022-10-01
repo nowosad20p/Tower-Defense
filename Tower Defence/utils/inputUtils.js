@@ -29,11 +29,12 @@ class InputUtils {
     
         if (element === this.lastClicked) {
             return false;
-        }
+        }else{
         if (this.lastClicked instanceof Button) {
             this.lastClicked.unclick();
 
         }
+    }
     }
     checkUIInput(x, y) {
         let found=false;
@@ -93,7 +94,7 @@ class InputUtils {
         let i = Math.floor(x / (this.board.canvas.width / this.board.width));
         let j = Math.floor(y / (this.board.canvas.height / this.board.height));
         //setting clicked tile as active
-        //this.removeButtonOnClick();
+        this.removeButtonOnClick();
 
         this.board.activeTile = new Vector2(i, j);
 
