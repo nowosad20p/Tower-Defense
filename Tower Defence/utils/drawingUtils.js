@@ -25,8 +25,18 @@ class DrawingUtils {
         this.ctx.fillText(text, this.width / 2, this.heigth / 2)
     }
     drawEntity(entity) {
-        this.ctx.drawImage(entity.image.img, entity.image.startingPointOfImage.x, entity.image.startingPointOfImage.y, entity.image.width, entity.image.height, this.width / this.tilesInRow * entity.position.x, this.heigth / this.tilesInColumn * entity.position.y, this.width / this.tilesInRow * entity.image.size, this.heigth / this.tilesInColumn * entity.image.size);
 
+        this.ctx.drawImage(entity.image.img, entity.image.startingPointOfImage.x, entity.image.startingPointOfImage.y, entity.image.width, entity.image.height, this.width / this.tilesInRow * entity.position.x, this.heigth / this.tilesInColumn * entity.position.y, this.width / this.tilesInRow * entity.image.size, this.heigth / this.tilesInColumn * entity.image.size);
+        if (entity.hp < entity.maxHp) { //drawing hp bar 
+            let leftTop = new Vector2(entity.position.x, entity.position.y - (entity.image.size * 0.1));
+            let rightBot = new Vector2(entity.position.x + entity.image.size, entity.position.y);
+
+            this.drawRectangle(leftTop, rightBot, "#2ca849");
+
+            rightBot.x -= entity.image.size * entity.hp / entity.maxHp;
+            this.drawRectangle(leftTop, rightBot, "#a63c24");
+
+        }
     }
     drawTurretRange(x, y, board) {
         //drawing circle expressing turret range on x,y 
@@ -37,16 +47,16 @@ class DrawingUtils {
 
     }
     drawPath(spawn, offset = 0.5) {
-    
+
         //drawing lines to vectors saved in path in spawn object
         this.ctx.beginPath();
         let array = JSON.parse(JSON.stringify(spawn.path));
         let a = array.shift();
-       
+
         let rowTileSize = this.width / this.tilesInRow;
         let colTileSize = this.heigth / this.tilesInColumn;
-        this.ctx.moveTo(a.x *rowTileSize+ 0.5 * rowTileSize, a.y *colTileSize+ + 0.5 * colTileSize);
-     
+        this.ctx.moveTo(a.x * rowTileSize + 0.5 * rowTileSize, a.y * colTileSize + +0.5 * colTileSize);
+
         array.forEach(element => {
 
             this.ctx.lineTo(element.x * rowTileSize + offset * rowTileSize, element.y * colTileSize + (1 - offset) * colTileSize);
@@ -107,25 +117,25 @@ class DrawingUtils {
         this.ctx.drawImage(button.image.img, button.image.startingPointOfImage.x, button.image.startingPointOfImage.y, button.image.width, button.image.height, this.width / this.tilesInRow * button.position.x - 0.5 * button.size * this.width / this.tilesInRow, this.heigth / this.tilesInColumn * button.position.y - 0.5 * button.size * this.heigth / this.tilesInColumn, this.width / this.tilesInRow * button.size, this.heigth / this.tilesInColumn * button.size);
 
     }
-    drawLine(start,end){//drawing line between two points
+    drawLine(start, end) { //drawing line between two points
+       
         this.ctx.beginPath();
-        this.ctx.moveTo(start.x*this.rowTileSize,start.y*this.colTileSize);
-        this.ctx.lineTo(end.x*this.rowTileSize,end.y*this.colTileSize);
+        this.ctx.strokeStyle="black";
+        this.ctx.moveTo(start.x * this.rowTileSize, start.y * this.colTileSize);
+        this.ctx.lineTo(end.x * this.rowTileSize, end.y * this.colTileSize);
         this.ctx.stroke();
     }
-    drawRectangle(leftTop,rightBot,color){//drawing rectangle
-        
+    drawRectangle(leftTop, rightBot, color) { //drawing rectangle
+
         this.ctx.beginPath();
-        this.ctx.fillStyle=color;
-        this.ctx.moveTo(leftTop.x,leftTop.y);
-        this.ctx.lineTo(rightBot.x,leftTop.y);
-        this.ctx.lineTo(rightBot.x,rightBot.y);
-        this.ctx.lineTo(leftTop.x,rightBot.y);
-        this.ctx.lineTo(leftTop.x,leftTop.y);
+        this.ctx.fillStyle = color;
+        this.ctx.moveTo(leftTop.x * this.rowTileSize, leftTop.y * this.colTileSize);
+        this.ctx.lineTo(rightBot.x * this.rowTileSize, leftTop.y * this.colTileSize);
+        this.ctx.lineTo(rightBot.x * this.rowTileSize, rightBot.y * this.colTileSize);
+        this.ctx.lineTo(leftTop.x * this.rowTileSize, rightBot.y * this.colTileSize);
+        this.ctx.lineTo(leftTop.x * this.rowTileSize, leftTop.y * this.colTileSize);
         this.ctx.fill();
     }
-    drawHpBar(enemy){
-        
-    }
+
 
 }

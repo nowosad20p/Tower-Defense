@@ -33,7 +33,7 @@ class Board {
         this.curWave = 0;
         this.timeSinceLastWave = 0;
         this.numberOfWaves = 0;
-
+  
         //loading map from string
         this.toLoad = 0;
         this.loadMap(map);
@@ -220,6 +220,7 @@ class Board {
         if (this.toLoad == 0) {
             //checking if game is paused
             if (!this.paused) {
+                
                 //updating time
                 this.timeUtils.update();
                 this.timeElapsed += this.timeUtils.deltaTime;
@@ -334,6 +335,7 @@ class Board {
             //displaying loading text
             this.drawingUtils.drawText("loading... images left: "+this.toLoad);
         }
+        
         //requesting another frame
         requestAnimationFrame(this.update.bind(this))
 

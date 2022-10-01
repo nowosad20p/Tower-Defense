@@ -9,7 +9,7 @@ class TowerSlot extends Tile {
         //creating buttons to display on click
         this.towerButtons = new TowerButtonsContainer(0.5,
             [
-                new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(32, 0)), 16, 16, new Vector2(0, 0), () => {
+                new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(32, 0)), 16, 16, new Vector2(0, 0), () => {
                     let price = 100;
 
                     if (price <= this.board.coins) {
@@ -21,7 +21,7 @@ class TowerSlot extends Tile {
 
                     }
                 }),
-                new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(48, 0)), 16, 16, new Vector2(0, 0), () => {
+                new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(48, 0)), 16, 16, new Vector2(0, 0), () => {
                     let price = 100;
                     if (price <= this.board.coins) {
                         board.board[position.x * 1][position.y * 1] = new ArcherTower(position, board, price); //łuk
@@ -32,7 +32,7 @@ class TowerSlot extends Tile {
 
                     }
                 }),
-                new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(64, 0)), 16, 16, new Vector2(0, 0), () => {
+                new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(64, 0)), 16, 16, new Vector2(0, 0), () => {
                     let price = 100;
                     if (price <= this.board.coins) {
                         board.board[position.x * 1][position.y * 1] = new TrooperTower(position, board, price); //ludziki
@@ -43,7 +43,7 @@ class TowerSlot extends Tile {
 
                     }
                 }),
-                new Button(new BetterImage("./graphics/towerButtons.png", 16, 16, new Vector2(80, 0)), 16, 16, new Vector2(0, 0), () => {
+                new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(80, 0)), 16, 16, new Vector2(0, 0), () => {
                     let price = 100;
                     if (price <= this.board.coins) {
                         board.board[position.x * 1][position.y * 1] = new IceTower(position, board, price); //ice tower button

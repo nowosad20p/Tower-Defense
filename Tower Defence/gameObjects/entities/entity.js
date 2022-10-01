@@ -7,6 +7,7 @@ class Entity {
         //entity stats
         this.movementSpeed = movementSpeed;
         this.hp = 10;
+        this.maxHp=this.hp;
         this.damage = 100;
         this.armor = 10;
 

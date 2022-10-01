@@ -8,9 +8,22 @@ class Button {
 
         this.onclick = onclick;
         this.size = size;
+        this.confirmed = false;
+        this.normalImage = this.image.startingPointOfImage.x;
+    }
+    unclick() {
+        this.confirmed = false;
+        this.image.startingPointOfImage.x = this.normalImage;
+
     }
     onClick() { //running function provided in constructor
-       
-        this.onclick();
+        if (this.confirmed) {
+            this.onclick();
+        } else {
+            this.confirmed = true;
+
+            this.image.startingPointOfImage.x = 112;
+
+        }
     }
 }
