@@ -1,14 +1,14 @@
 class Enemy extends Entity {
-    constructor(image, position = new Vector2(0, 0), path,delay) {
+    constructor(image, position = new Vector2(0, 0), path, delay) {
         super(image, Object.create(position));
         this.path = [];
         path.forEach(element => {
 
             this.path.push(Object.create(element));
         });
-        this.xDir=Math.sign(this.path[0].x - this.position.x);
-                this.yDir=Math.sign(this.path[0].y - this.position.y);
-             
+        this.xDir = Math.sign(this.path[0].x - this.position.x);
+        this.yDir = Math.sign(this.path[0].y - this.position.y);
+
 
         this.offset = (Math.random() * (0.55 - 0.45) + 0.45).toFixed(2);
 
@@ -22,21 +22,21 @@ class Enemy extends Entity {
         this.path.forEach(element => {
             element.offset(this.offset);
         });
-        this.delay=delay;
-        this.timeWaited=0;
-        
+        this.delay = delay;
+        this.timeWaited = 0;
+
         this.xDir;
         this.yDir;
 
     }
-   
+
     die() {
 
     }
     update(time) {
 
         if (this.spawned) {
-           
+
             if (this.hp <= 0) {
 
                 this.dead = true;
@@ -44,54 +44,54 @@ class Enemy extends Entity {
                 return false;
             }
 
-            if ((this.position.x == this.path[0].x && this.position.y == this.path[0].y) || (this.position.x==this.prevPosition.x&&this.position.y==this.prevPosition.y)) {
+            if ((this.position.x == this.path[0].x && this.position.y == this.path[0].y) || (this.position.x == this.prevPosition.x && this.position.y == this.prevPosition.y)) {
                 this.prevPath.push(this.path.shift());
                 if (this.path.length == 0) {
                     this.finished = true;
-                  return false;
+                    return false;
                 }
-                this.xDir=Math.sign(this.path[0].x - this.position.x);
-                this.yDir=Math.sign(this.path[0].y - this.position.y);
-                console.log(this.xDir,this.yDir);
+                this.xDir = Math.sign(this.path[0].x - this.position.x);
+                this.yDir = Math.sign(this.path[0].y - this.position.y);
+                console.log(this.xDir, this.yDir);
             }
 
 
-           
+
             this.prevPosition.x = this.position.x;
             this.prevPosition.y = this.position.y;
             let x = (this.path[0].x - this.position.x).toFixed(5)
             let y = (this.path[0].y - this.position.y).toFixed(5)
-           
+
             let movementMultiplier = (time / 100 * this.movementSpeed).toFixed(5);
-            x >= 0 ?  this.position.x += Math.ceil(x)*movementMultiplier  : this.position.x +=Math.floor(x)* movementMultiplier;
-            y >= 0 ?  this.position.y += Math.ceil(y)* movementMultiplier : this.position.y +=Math.floor(y)* movementMultiplier;
-            
-            if(this.xDir==-1){
-                if(this.position.x<this.path[0].x){
-                    this.position.x=this.path[0].x;
+            x >= 0 ? this.position.x += Math.ceil(x) * movementMultiplier : this.position.x += Math.floor(x) * movementMultiplier;
+            y >= 0 ? this.position.y += Math.ceil(y) * movementMultiplier : this.position.y += Math.floor(y) * movementMultiplier;
+
+            if (this.xDir == -1) {
+                if (this.position.x < this.path[0].x) {
+                    this.position.x = this.path[0].x;
                 }
-            }else{
-                if(this.position.x>this.path[0].x){
-                    this.position.x=this.path[0].x;
+            } else {
+                if (this.position.x > this.path[0].x) {
+                    this.position.x = this.path[0].x;
                 }
             }
-            if(this.yDir==-1){
-                if(this.position.y<this.path[0].y){
-                    this.position.y=this.path[0].y;;
+            if (this.yDir == -1) {
+                if (this.position.y < this.path[0].y) {
+                    this.position.y = this.path[0].y;;
                 }
-            }else{
-                if(this.position.y>this.path[0].y){
-                    this.position.y=this.path[0].y;
+            } else {
+                if (this.position.y > this.path[0].y) {
+                    this.position.y = this.path[0].y;
                 }
             }
             // this.position.x += 
             // this.position.y += (Math.ceil(this.path[0].y - this.position.y) * time / 100 * this.movementSpeed)
-            
-        }else{
-            if(this.timeWaited>=this.delay){
-                this.spawned=true;
-            }else{
-                this.timeWaited+=time;
+
+        } else {
+            if (this.timeWaited >= this.delay) {
+                this.spawned = true;
+            } else {
+                this.timeWaited += time;
             }
         }
     }

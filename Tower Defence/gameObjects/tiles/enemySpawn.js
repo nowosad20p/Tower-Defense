@@ -1,13 +1,13 @@
 class EnemySpawn extends Tile {
-    constructor(image, waves = [], drawingUtils, board) {
+    constructor(waves = [], drawingUtils, board) {
         //setting up display settings
-        super(image);
+        super(new BetterImage("./graphics/enemySpawn.png", 32, 32, new Vector2(0, 0)));
         this.board = board;
 
         //saving needed utils and informations
         this.waves = [
-            new Wave([new EnemyGroup(["goblin", "goblin", "goblin", "goblin"], 1000, 500),new EnemyGroup(["goblin", "goblin", "goblin", "goblin"], 1000, 500)]),
-            new Wave([new EnemyGroup(["goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin"], 1000, 500),new EnemyGroup(["goblin", "goblin", "goblin", "goblin"], 7000, 500)])
+            new Wave([new EnemyGroup(["goblin", "goblin", "goblin", "goblin"], 1000, 500), new EnemyGroup(["goblin", "goblin", "goblin", "goblin"], 1000, 500)]),
+            new Wave([new EnemyGroup(["goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin"], 1000, 500), new EnemyGroup(["goblin", "goblin", "goblin", "goblin"], 7000, 500)])
 
         ];
 
@@ -35,7 +35,7 @@ class EnemySpawn extends Tile {
     spawnEnemy(name, delay) {
         switch (name) {
             case "goblin":
-              return new Goblin(this.position, this.path, delay);
+                return new Goblin(this.position, this.path, delay);
         }
     }
     isWalkable(tile) { //returns if entity can walk on this tile

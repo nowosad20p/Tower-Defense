@@ -118,9 +118,9 @@ class DrawingUtils {
 
     }
     drawLine(start, end) { //drawing line between two points
-       
+
         this.ctx.beginPath();
-        this.ctx.strokeStyle="black";
+        this.ctx.strokeStyle = "black";
         this.ctx.moveTo(start.x * this.rowTileSize, start.y * this.colTileSize);
         this.ctx.lineTo(end.x * this.rowTileSize, end.y * this.colTileSize);
         this.ctx.stroke();

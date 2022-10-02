@@ -1,13 +1,13 @@
 class Entity {
     constructor(image, position = new Vector2(0, 0), movementSpeed = 0.1) {
-        
-        this.image = image; 
+
+        this.image = image;
         this.position = position;
 
         //entity stats
         this.movementSpeed = movementSpeed;
         this.hp = 10;
-        this.maxHp=this.hp;
+        this.maxHp = this.hp;
         this.damage = 100;
         this.armor = 10;
 
@@ -24,10 +24,10 @@ class Entity {
         this.dead = true;
     }
     takeDamage(damage, damageType) {
-        
+
         this.hp -= damage;
         if (this.hp <= 0) {
-     
+
             this.die()
         }
     }

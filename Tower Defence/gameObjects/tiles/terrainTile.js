@@ -1,7 +1,7 @@
 class TerrainTile extends Tile {
-    constructor(image) {
+    constructor() {
         //setting up display settings
-        super(image)
+        super(new BetterImage("./graphics/terrain.png", 32, 32, new Vector2(0, 0)))
 
 
         //setting up random terrain tile

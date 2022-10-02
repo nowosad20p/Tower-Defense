@@ -33,11 +33,11 @@ class Board {
         this.curWave = 0;
         this.timeSinceLastWave = 0;
         this.numberOfWaves = 0;
-  
+
         //loading map from string
         this.toLoad = 0;
         this.loadMap(map);
-   
+
         //creating paths and getting number of waves
         this.enemySpawns.forEach(element => {
             this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
@@ -65,8 +65,8 @@ class Board {
 
     }
     pause() { //pausing game
-       
-        this.drawingUtils.drawRectangle(new Vector2(0,0),new Vector2(this.canvas.width,this.canvas.height),"rgba(92, 95, 90, 0.5)");
+
+        this.drawingUtils.drawRectangle(new Vector2(0, 0), new Vector2(this.canvas.width, this.canvas.height), "rgba(92, 95, 90, 0.5)");
         console.log("pauza moment")
         this.paused = true
 
@@ -101,7 +101,7 @@ class Board {
                                 for (let j = 0; j < this.height; j++) {
 
 
-                                    piece.push(new TerrainTile(new BetterImage("./graphics/terrain.png", 32, 32, new Vector2(0, 0))));
+                                    piece.push(new TerrainTile());
                                     this.toLoad++;
                                     piece[j].image.img.onload = () => {
                                         this.toLoad--
@@ -150,7 +150,7 @@ class Board {
 
 
 
-            this.board[base[i]][base[i + 1]] = new PlayerBase(new BetterImage("./graphics/playerBase.png", 32, 32, new Vector2(0, 0)));
+            this.board[base[i]][base[i + 1]] = new PlayerBase();
             this.toLoad++;
             this.board[base[i]][base[i + 1]].image.img.onload = () => {
                 this.toLoad--
@@ -164,7 +164,7 @@ class Board {
         for (let i = 0; i < enemySpawns.length; i += 2) {
 
 
-            this.board[enemySpawns[i]][enemySpawns[i + 1]] = new EnemySpawn(new BetterImage("./graphics/enemySpawn.png", 32, 32, new Vector2(0, 0)), [], this.drawingUtils);
+            this.board[enemySpawns[i]][enemySpawns[i + 1]] = new EnemySpawn([], this.drawingUtils);
             this.toLoad++;
             this.board[enemySpawns[i]][enemySpawns[i + 1]].image.img.onload = () => {
                 this.toLoad--
@@ -178,7 +178,7 @@ class Board {
         for (let i = 0; i < path.length; i += 2) {
 
 
-            this.board[path[i]][path[i + 1]] = new PathTile(new BetterImage("./graphics/roads.png", 32, 32, new Vector2(0, 0)));
+            this.board[path[i]][path[i + 1]] = new PathTile();
             this.toLoad++;
             this.board[path[i]][path[i + 1]].image.img.onload = () => {
                 this.toLoad--
@@ -220,7 +220,7 @@ class Board {
         if (this.toLoad == 0) {
             //checking if game is paused
             if (!this.paused) {
-                
+
                 //updating time
                 this.timeUtils.update();
                 this.timeElapsed += this.timeUtils.deltaTime;
@@ -259,7 +259,7 @@ class Board {
                             //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
-                          
+
                             this.drawingUtils.drawPath(this.board[this.activeTile.x][this.activeTile.y]);
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
@@ -291,7 +291,7 @@ class Board {
 
                         } else {
 
-                            if (this.enemies[i].finished) {//deleting enemies that finished their path
+                            if (this.enemies[i].finished) { //deleting enemies that finished their path
                                 this.hp -= this.enemies[i].damageToTurret;
 
                                 if (this.hp <= 0) { //checking if player base is destroyed
@@ -299,7 +299,7 @@ class Board {
                                 }
                                 this.enemies.splice(i, 1);
                                 this.updateUI();
-                            } else {//updating enemies
+                            } else { //updating enemies
                                 this.enemies[i].update(this.timeElapsed);
                                 this.drawingUtils.drawEntity(this.enemies[i]);
                             }
@@ -309,12 +309,12 @@ class Board {
 
 
 
-                    if (this.enemies.length == 0 && this.curWave != 0) {//sending next waves and checking if player won
+                    if (this.enemies.length == 0 && this.curWave != 0) { //sending next waves and checking if player won
                         if (this.curWave == this.numberOfWaves) {
                             this.win();
 
                         } else {
-                           
+
                             if (this.timeSinceLastWave > this.timeBetweenWaves) {
                                 this.sendNextWave();
                             } else {
@@ -327,49 +327,49 @@ class Board {
                     //setting time since last frame to 0
                     this.timeElapsed = 0;
                 }
-            }else{//if game is paused
-              
+            } else { //if game is paused
+
             }
 
         } else {
             //displaying loading text
-            this.drawingUtils.drawText("loading... images left: "+this.toLoad);
+            this.drawingUtils.drawText("loading... images left: " + this.toLoad);
         }
-        
+
         //requesting another frame
         requestAnimationFrame(this.update.bind(this))
 
 
     }
-    gameOver() {//game over function
+    gameOver() { //game over function
         this.drawingUtils.drawText("Pozdro poćwicz");
 
         this.paused = true;
     }
-    win() {//win function
+    win() { //win function
         this.drawingUtils.drawText("Kurde poćwiczył i wygrał");
 
         this.paused = true;
     }
     sendNextWave() {
         //sending waves and saving spawned enemies in enemies array
-        this.enemySpawns.forEach(element=>{
-            this.board[element.x][element.y].sendWave(this.curWave).forEach(enemy=>{
+        this.enemySpawns.forEach(element => {
+            this.board[element.x][element.y].sendWave(this.curWave).forEach(enemy => {
                 this.enemies.push(enemy)
             })
         })
-        
+
         this.curWave++;
         this.updateUI();
-        this.timeSinceLastWave=0;
+        this.timeSinceLastWave = 0;
 
     }
     updateUI() {
         if (!this.paused) {
             this.curUI = [];
-            if (this.activeTile != null) {//drawing active tile ui if needed to
+            if (this.activeTile != null) { //drawing active tile ui if needed to
 
-                if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot||this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
+                if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot || this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
 
 
                     this.curUI.push(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
