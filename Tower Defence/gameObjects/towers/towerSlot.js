@@ -14,9 +14,12 @@ class TowerSlot extends Tile {
 
                     if (price <= this.board.coins) {
                         board.board[position.x * 1][position.y * 1] = new MageTower(position, board, price); //mag
+                    
 
-                        board.activeTile = null;
+                    
                         this.board.coins -= price;
+                       
+
                     } else {
 
                     }
@@ -26,7 +29,7 @@ class TowerSlot extends Tile {
                     if (price <= this.board.coins) {
                         board.board[position.x * 1][position.y * 1] = new ArcherTower(position, board, price); //łuk
 
-                        board.activeTile = null;
+                      
                         this.board.coins -= price;
                     } else {
 
@@ -37,7 +40,7 @@ class TowerSlot extends Tile {
                     if (price <= this.board.coins) {
                         board.board[position.x * 1][position.y * 1] = new TrooperTower(position, board, price); //ludziki
 
-                        board.activeTile = null;
+                      
                         this.board.coins -= price;
                     } else {
 
@@ -48,7 +51,7 @@ class TowerSlot extends Tile {
                     if (price <= this.board.coins) {
                         board.board[position.x * 1][position.y * 1] = new IceTower(position, board, price); //ice tower button
 
-                        board.activeTile = null;
+                     
 
                         this.board.coins -= price;
                     } else {

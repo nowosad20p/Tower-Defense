@@ -21,7 +21,8 @@ class DrawingUtils {
         //drawing tile
         this.ctx.drawImage(tile.img, tile.startingPointOfImage.x, tile.startingPointOfImage.y, tile.width, tile.height, this.width / this.tilesInRow * posX, this.heigth / this.tilesInColumn * posY, this.width / this.tilesInRow, this.heigth / this.tilesInColumn);
     }
-    drawText(text) {
+    drawText(text, color = "black") {
+        this.ctx.fillStyle = color;
         this.ctx.fillText(text, this.width / 2, this.heigth / 2)
     }
     drawEntity(entity) {

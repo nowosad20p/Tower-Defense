@@ -10,7 +10,7 @@ class InputUtils {
         //setting canvas mouse down event
         this.canvas.addEventListener('mouseup', (e) => {
             this.getInput(e)
-            
+
         })
     }
     getInput(e) {
@@ -26,18 +26,18 @@ class InputUtils {
 
     }
     removeButtonOnClick(element) {
-    
+
         if (element === this.lastClicked) {
             return false;
-        }else{
-        if (this.lastClicked instanceof Button) {
-            this.lastClicked.unclick();
+        } else {
+            if (this.lastClicked instanceof Button) {
+                this.lastClicked.unclick();
 
+            }
         }
     }
-    }
     checkUIInput(x, y) {
-        let found=false;
+        let found = false;
         //calculatin tile size
         let tileWidth = this.canvas.width / this.board.width;
         let tileHeight = this.canvas.height / this.board.height;
@@ -47,21 +47,21 @@ class InputUtils {
             if (this.ui[i] instanceof TowerButtonsContainer) {
                 this.ui[i].buttons.forEach(element => {
                     //calculating real position
-                    let leftTop = new Vector2(element.position.x * tileWidth - ((0.5 * element.size) * tileWidth), element.position.y * tileHeight - ((0.5 * element.size)*tileHeight));
-                    let rightBot = new Vector2(element.position.x * tileWidth + ((0.5 * element.size) * tileWidth), element.position.y * tileHeight + ((0.5 * element.size)*tileHeight));
+                    let leftTop = new Vector2(element.position.x * tileWidth - ((0.5 * element.size) * tileWidth), element.position.y * tileHeight - ((0.5 * element.size) * tileHeight));
+                    let rightBot = new Vector2(element.position.x * tileWidth + ((0.5 * element.size) * tileWidth), element.position.y * tileHeight + ((0.5 * element.size) * tileHeight));
                     //checking if clicked
-              
-                   
-                    
-                    
+
+
+
+
                     if (pointIntersectRectangle(new Vector2(x, y), leftTop, rightBot)) {
                         this.removeButtonOnClick(element);
 
                         element.onClick();
-                        
+
 
                         this.lastClicked = element;
-                        found=true;
+                        found = true;
 
                         return true;
                     }
@@ -78,16 +78,16 @@ class InputUtils {
                     this.ui[i].onClick();
 
                     this.lastClicked = this.ui[i];
-                    found=true;
+                    found = true;
                     return true;
                 }
 
             }
         }
         //if nothing was clicked return false
-        
-        return  found;
-      
+
+        return found;
+
     }
     checkBoardInput(x, y) {
         //calculating which tile was clicked
