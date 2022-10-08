@@ -298,13 +298,14 @@ class Board {
 
                             if (this.enemies[i].finished) { //deleting enemies that finished their path
                                 this.hp -= this.enemies[i].damageToTurret;
-                                i--;
+                               
 
                                 if (this.hp <= 0) { //checking if player base is destroyed
                                     this.gameOver();
                                 }
                                 this.enemies.splice(i, 1);
                                 this.updateUI();
+                                i--;
                             } else { //updating enemies
                                 this.enemies[i].update(this.timeElapsed);
                                 this.drawingUtils.drawEntity(this.enemies[i]);

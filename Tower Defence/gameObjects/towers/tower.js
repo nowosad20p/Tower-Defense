@@ -76,7 +76,7 @@ class Tower {
 
         }
         for(let i=0;i<this.projectiles.length;i++){
-            console.log(this.projectiles[i])
+         
             if(this.projectiles[i].finished){
                 this.projectiles.splice(i,1);
                 i--;
@@ -94,7 +94,7 @@ class Tower {
         }
         let min = enemies[0];
         for (let i = 1; i < enemies.length; i++) {
-            if (enemies[i].spawned) {
+            if (enemies[i].spawned && !min.dead && !min.finished) {
                 let position1 = distanceBetweenVectors(middleOfTower, min.position);
                 let position2 = distanceBetweenVectors(middleOfTower, enemies[i].position);
 
@@ -104,7 +104,7 @@ class Tower {
             }
         }
         if (distanceBetweenVectors(middleOfTower, min.position) < this.range) {
-            if (min.spawned) {
+            if (min.spawned && !min.dead && !min.finished) {
                 this.curTarget = min;
             } else {
                 this.curTarget = null;
