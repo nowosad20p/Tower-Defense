@@ -7,5 +7,6 @@ class BetterImage {
         this.height = height;
         this.startingPointOfImage = startingPointOfImage;
         this.size=size;
+        
     }
 }

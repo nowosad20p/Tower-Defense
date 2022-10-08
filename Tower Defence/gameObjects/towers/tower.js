@@ -54,7 +54,9 @@ class Tower {
         }
     }
     attack() {
-        this.curTarget.takeDamage(this.damage)
+        if(this.curTarget!=null){
+        this.projectiles.push(new Projectile(new BetterImage("./graphics/fireball.png",8,8,new Vector2(0,0),0.25),Object.create(this.position),this.curTarget,2,this.damage,"normal"));
+        }
     }
     update(enemies, deltaTime) {
         //checking if current target is in range and alive
@@ -73,6 +75,16 @@ class Tower {
             }
 
         }
+        for(let i=0;i<this.projectiles.length;i++){
+            console.log(this.projectiles[i])
+            if(this.projectiles[i].finished){
+                this.projectiles.splice(i,1);
+                i--;
+            }else{
+                this.projectiles[i].update(deltaTime);
+            }
+        }
+        
     }
     getNewTarget(enemies) { //getting closest enemy in range
 

@@ -24,7 +24,7 @@ class Board {
         //containters to display player information
         this.moneyCountDisplay = moneyCount;
         this.hpCountDisplay = hpCount;
-
+      
         //game states
         this.paused = false;
 
@@ -247,6 +247,11 @@ class Board {
                                     this.drawingUtils.drawLine(new Vector2(i + 0.5, j + 0.5), this.board[i][j].curTarget.position);
 
                                 }
+                                //drawing tower projectiles
+                                this.board[i][j].projectiles.forEach(element=>{
+                                    
+                                    this.drawingUtils.drawProjectile(element);
+                                })
                             }
                         }
                     }
@@ -256,7 +261,7 @@ class Board {
                             this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
                             this.board[this.activeTile.x][this.activeTile.y].towerButtons.position = new Vector2(this.activeTile.x, this.activeTile.y);
 
-                            //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons);
+                           
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
 
@@ -264,7 +269,7 @@ class Board {
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
 
-                            //this.drawingUtils.drawTowerButtons(this.board[this.activeTile.x][this.activeTile.y].towerButtons,new Vector2(this.activeTile.x,this.activeTile.y));
+                           
                             this.board[this.activeTile.x][this.activeTile.y].towerButtons.position = new Vector2(this.activeTile.x, this.activeTile.y);
 
                         }
@@ -286,13 +291,14 @@ class Board {
                         if (this.enemies[i].dead) { //deleting dead enemies and adding coins for killing enemies
                             this.coins += this.enemies[i].value;
                             this.enemies.splice(i, 1);
-
+                            i--;
                             this.updateUI();
 
                         } else {
 
                             if (this.enemies[i].finished) { //deleting enemies that finished their path
                                 this.hp -= this.enemies[i].damageToTurret;
+                                i--;
 
                                 if (this.hp <= 0) { //checking if player base is destroyed
                                     this.gameOver();

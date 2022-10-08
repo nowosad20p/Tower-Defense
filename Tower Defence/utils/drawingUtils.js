@@ -38,6 +38,11 @@ class DrawingUtils {
             this.drawRectangle(leftTop, rightBot, "#a63c24");
 
         }
+
+    }
+    drawProjectile(projectile){
+        this.ctx.drawImage(projectile.image.img, projectile.image.startingPointOfImage.x, projectile.image.startingPointOfImage.y, projectile.image.width, projectile.image.height, this.width / this.tilesInRow * projectile.position.x, this.heigth / this.tilesInColumn * projectile.position.y, this.width / this.tilesInRow * projectile.image.size, this.heigth / this.tilesInColumn * projectile.image.size);
+
     }
     drawTurretRange(x, y, board) {
         //drawing circle expressing turret range on x,y 
