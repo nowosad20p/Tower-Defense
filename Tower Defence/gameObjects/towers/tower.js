@@ -1,7 +1,7 @@
 class Tower {
     constructor(tier, value, exp, image = undefined, range, damage, attackSpeed, position, board, maxTier = 3, upgradePrice = 150) {
 
-      
+
         this.tier = tier;
 
         this.image = image;
@@ -11,11 +11,11 @@ class Tower {
         this.curTarget = null;
         this.position = position;
         //attack settings
-        this.stats=new TowerStats(range,damage,attackSpeed*100,exp,value);
-       
+        this.stats = new TowerStats(range, damage, attackSpeed * 100, exp, value);
+
         this.projectiles = [];
         this.timeSinceLastAttack = 0;
-    
+
         this.board = board;
         this.maxTier = maxTier;
         this.towerButtons = new TowerButtonsContainer(0.5,
@@ -54,8 +54,8 @@ class Tower {
         }
     }
     attack() {
-        if(this.curTarget!=null){
-        this.projectiles.push(new Projectile(new BetterImage("./graphics/fireball.png",8,8,new Vector2(0,0),0.25),Object.create(this.position),this.curTarget,2,this.stats.damage,"normal"));
+        if (this.curTarget != null) {
+            this.projectiles.push(new Projectile(new BetterImage("./graphics/fireball.png", 8, 8, new Vector2(0, 0), 0.25), Object.create(this.position), this.curTarget, 2, this.stats.damage, "normal"));
         }
     }
     update(enemies, deltaTime) {
@@ -75,16 +75,16 @@ class Tower {
             }
 
         }
-        for(let i=0;i<this.projectiles.length;i++){
-         
-            if(this.projectiles[i].finished){
-                this.projectiles.splice(i,1);
+        for (let i = 0; i < this.projectiles.length; i++) {
+
+            if (this.projectiles[i].finished) {
+                this.projectiles.splice(i, 1);
                 i--;
-            }else{
+            } else {
                 this.projectiles[i].update(deltaTime);
             }
         }
-        
+
     }
     getNewTarget(enemies) { //getting closest enemy in range
 

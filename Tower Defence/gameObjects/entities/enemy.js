@@ -24,7 +24,7 @@ class Enemy extends Entity {
         });
         this.delay = delay;
         this.timeWaited = 0;
-        this.size=this.image.size;
+        this.size = this.image.size;
         this.xDir;
         this.yDir;
 
@@ -52,7 +52,7 @@ class Enemy extends Entity {
                 }
                 this.xDir = Math.sign(this.path[0].x - this.position.x);
                 this.yDir = Math.sign(this.path[0].y - this.position.y);
-           
+
             }
 
 

@@ -15,8 +15,8 @@ class Entity {
         this.dead = false;
         this.finished = false;
         this.spawned = false;
-        this.widthRatio=this.image.width/this.image.height;
-        this.heightRatio=this.image.height/this.image.width;
+        this.widthRatio = this.image.width / this.image.height;
+        this.heightRatio = this.image.height / this.image.width;
 
     }
     spawn() {

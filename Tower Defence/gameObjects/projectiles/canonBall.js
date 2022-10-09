@@ -1,3 +1,3 @@
-class CanonBall extends Projectile{
+class CanonBall extends Projectile {
 
 }

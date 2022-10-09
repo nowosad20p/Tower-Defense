@@ -1,5 +1,5 @@
-class Arrow extends Projectile{
-    constructor(){
+class Arrow extends Projectile {
+    constructor() {
 
     }
 }

@@ -4,7 +4,7 @@ class TimeUtils {
         this.deltaTime = 0;
         let today = new Date();
         this.currentMs = today.getTime();
-        this.startTime=new Date();
+        this.startTime = new Date();
     }
     update() {
         //calculating how much time elapsed since last update
