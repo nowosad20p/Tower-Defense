@@ -23,7 +23,7 @@ class Button {
         } else {
             this.confirmed = true;
 
-            this.image.startingPointOfImage.x = 112;
+            this.image.startingPointOfImage.x = 128;
 
         }
     }

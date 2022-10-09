@@ -389,7 +389,7 @@ class Board {
                 this.enemySpawns.forEach(element => {
                     let pos = Object.create(element)
                     pos.offset(0.5);
-                    this.curUI.push(new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(96, 0)), 16, 16, pos, () => {
+                    this.curUI.push(new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(112, 0)), 16, 16, pos, () => {
                         this.sendNextWave();
 
                     }))

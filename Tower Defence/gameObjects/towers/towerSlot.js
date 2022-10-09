@@ -57,6 +57,18 @@ class TowerSlot extends Tile {
                     } else {
 
                     }
+                }),
+                new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(96, 0)), 16, 16, new Vector2(0, 0), () => {
+                    let price = 100;
+                    if (price <= this.board.coins) {
+                        board.board[position.x][position.y] = new Mortar(position, board, price); //ice tower button
+
+                     
+
+                        this.board.coins -= price;
+                    } else {
+
+                    }
                 })
             ]
 
