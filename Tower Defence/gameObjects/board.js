@@ -24,7 +24,7 @@ class Board {
         //containters to display player information
         this.moneyCountDisplay = moneyCount;
         this.hpCountDisplay = hpCount;
-      
+
         //game states
         this.paused = false;
 
@@ -244,24 +244,25 @@ class Board {
                             if (this.board[i][j] instanceof Tower) {
                                 this.board[i][j].update(this.enemies, this.timeElapsed);
                                 if (this.board[i][j].curTarget != null) {
-                                    this.drawingUtils.drawLine(new Vector2(i + 0.5, j + 0.5), this.board[i][j].curTarget.position);
+                                    //this.drawingUtils.drawLine(new Vector2(i + 0.5, j + 0.5), this.board[i][j].curTarget.position);
 
                                 }
                                 //drawing tower projectiles
-                                this.board[i][j].projectiles.forEach(element=>{
-                                    
+                                this.board[i][j].projectiles.forEach(element => {
+
                                     this.drawingUtils.drawProjectile(element);
                                 })
                             }
                         }
                     }
-                    if (this.activeTile != null) {
+                    if (this.activeTile != null) { //handling active tile
 
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof Tower) {
+                            this.drawingUtils.drawTurretStats(this.board[this.activeTile.x][this.activeTile.y]);
                             this.drawingUtils.drawTurretRange(this.activeTile.x, this.activeTile.y, this.board);
                             this.board[this.activeTile.x][this.activeTile.y].towerButtons.position = new Vector2(this.activeTile.x, this.activeTile.y);
 
-                           
+
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof EnemySpawn) {
 
@@ -269,7 +270,7 @@ class Board {
                         }
                         if (this.board[this.activeTile.x][this.activeTile.y] instanceof TowerSlot) {
 
-                           
+
                             this.board[this.activeTile.x][this.activeTile.y].towerButtons.position = new Vector2(this.activeTile.x, this.activeTile.y);
 
                         }
@@ -298,7 +299,7 @@ class Board {
 
                             if (this.enemies[i].finished) { //deleting enemies that finished their path
                                 this.hp -= this.enemies[i].damageToTurret;
-                               
+
 
                                 if (this.hp <= 0) { //checking if player base is destroyed
                                     this.gameOver();

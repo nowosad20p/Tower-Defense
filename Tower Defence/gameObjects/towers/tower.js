@@ -1,9 +1,9 @@
 class Tower {
     constructor(tier, value, exp, image = undefined, range, damage, attackSpeed, position, board, maxTier = 3, upgradePrice = 150) {
 
-        this.value = value;
+      
         this.tier = tier;
-        this.exp = 0;
+
         this.image = image;
         this.upgradePrice = upgradePrice;
         this.updateImage();
@@ -11,11 +11,11 @@ class Tower {
         this.curTarget = null;
         this.position = position;
         //attack settings
-        this.range = range;
-        this.damage = damage;
+        this.stats=new TowerStats(range,damage,attackSpeed*100,exp,value);
+       
         this.projectiles = [];
         this.timeSinceLastAttack = 0;
-        this.attackSpeed = attackSpeed * 100;
+    
         this.board = board;
         this.maxTier = maxTier;
         this.towerButtons = new TowerButtonsContainer(0.5,
@@ -29,7 +29,7 @@ class Tower {
 
 
                     board.board[position.x][position.y] = new TowerSlot(new BetterImage("./graphics/towerSlot.png", 16, 16, new Vector2(0, 0)), this.board, Object.create(this.position))
-                    board.coins += 0.8 * this.value;
+                    board.coins += 0.8 * this.stats.value;
                 })
             ]
 
@@ -55,17 +55,17 @@ class Tower {
     }
     attack() {
         if(this.curTarget!=null){
-        this.projectiles.push(new Projectile(new BetterImage("./graphics/fireball.png",8,8,new Vector2(0,0),0.25),Object.create(this.position),this.curTarget,2,this.damage,"normal"));
+        this.projectiles.push(new Projectile(new BetterImage("./graphics/fireball.png",8,8,new Vector2(0,0),0.25),Object.create(this.position),this.curTarget,2,this.stats.damage,"normal"));
         }
     }
     update(enemies, deltaTime) {
         //checking if current target is in range and alive
-        if (this.curTarget == null || this.curTarget == undefined || distanceBetweenVectors(this.position, this.curTarget.position) > this.range || this.curTarget.dead || this.curTarget.finished) {
+        if (this.curTarget == null || this.curTarget == undefined || distanceBetweenVectors(this.position, this.curTarget.position) > this.stats.range || this.curTarget.dead || this.curTarget.finished) {
             this.getNewTarget(enemies);
             this.timeSinceLastAttack = 0;
 
         } else { //attacking
-            if (this.timeSinceLastAttack > this.attackSpeed) {
+            if (this.timeSinceLastAttack > this.stats.attackSpeed) {
                 this.attack();
                 this.timeSinceLastAttack = 0;
 
@@ -103,7 +103,7 @@ class Tower {
                 }
             }
         }
-        if (distanceBetweenVectors(middleOfTower, min.position) < this.range) {
+        if (distanceBetweenVectors(middleOfTower, min.position) < this.stats.range) {
             if (min.spawned && !min.dead && !min.finished) {
                 this.curTarget = min;
             } else {

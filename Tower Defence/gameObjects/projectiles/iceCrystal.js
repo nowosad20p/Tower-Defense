@@ -1,0 +1,3 @@
+class IceCrystal extends Projectile{
+
+}

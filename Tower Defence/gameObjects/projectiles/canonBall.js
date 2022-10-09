@@ -1,0 +1,3 @@
+class CanonBall extends Projectile{
+
+}

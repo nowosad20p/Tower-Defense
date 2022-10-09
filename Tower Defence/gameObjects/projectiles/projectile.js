@@ -7,6 +7,9 @@ class Projectile{
         this.damageType=damageType;
         this.image=image;
         this.finished=false;
+        this.position.x+=0.5;
+        this.position.y+=0.33;
+        console.log("co jes")
     }
     update(deltaTime){
         
@@ -24,7 +27,7 @@ class Projectile{
             this.finished=true;
         }
 
-        if(this.target.dead){
+        if(this.target.dead || this.target.finished){
             this.finished=true;
         }
     }
