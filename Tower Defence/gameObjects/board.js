@@ -67,7 +67,7 @@ class Board {
     pause() { //pausing game
 
         this.drawingUtils.drawRectangle(new Vector2(0, 0), new Vector2(this.canvas.width, this.canvas.height), "rgba(92, 95, 90, 0.5)");
-        console.log("pauza moment")
+       
         this.paused = true
 
     }

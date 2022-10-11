@@ -1,0 +1,15 @@
+form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  background-color: lightgray;
+  height: 200px;
+  border: none;
+}
+form fieldset {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: lightgray;
+  height: 100%;
+}/*# sourceMappingURL=forms.css.map */

@@ -9,7 +9,7 @@ class Projectile {
         this.finished = false;
         this.position.x += 0.5;
         this.position.y += 0.33;
-        console.log("co jes")
+        
     }
     update(deltaTime) {
 
