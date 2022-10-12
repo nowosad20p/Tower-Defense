@@ -10,7 +10,7 @@ class DrawingUtils {
         this.colTileSize = this.heigth / this.tilesInColumn;
     }
     drawTile(tile, posX, posY) {
-   
+
         tile = tile.image;
 
 
@@ -51,7 +51,7 @@ class DrawingUtils {
 
 
     }
-    drawProjectile(projectile) {
+    drawProjectile(projectile) { //drawing image based on projectile object
         this.ctx.drawImage(projectile.image.img, projectile.image.startingPointOfImage.x, projectile.image.startingPointOfImage.y, projectile.image.width, projectile.image.height, this.width / this.tilesInRow * projectile.position.x, this.heigth / this.tilesInColumn * projectile.position.y, this.width / this.tilesInRow * projectile.image.size, this.heigth / this.tilesInColumn * projectile.image.size);
 
     }

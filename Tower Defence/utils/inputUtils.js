@@ -26,7 +26,7 @@ class InputUtils {
 
     }
     removeButtonOnClick(element) {
-
+        //unclicking last clicked button
         if (element === this.lastClicked) {
             return false;
         } else {

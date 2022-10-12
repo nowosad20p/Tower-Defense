@@ -13,6 +13,7 @@ form.onsubmit = () => {
     //creating board editor
     let boardCreator = new BoardCreator(canvas, width, height)
 
+    //setting map creator buttons
     document.querySelector("#terrainBtn").onclick = () => {
         boardCreator.tileToSet = "terrain";
     }

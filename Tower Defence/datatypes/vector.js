@@ -41,6 +41,7 @@
     }
 
     function directionVectorPercents(v1, v2) { //returns what percent of ms should be added to x and y, to achieve vector2
+      
         let result = new Vector2();
         let x = v2.x - v1.x;
         x *= Math.sign(x);
@@ -51,6 +52,7 @@
         result.y = y / (x + y);
         v2.x - v1.x < 0 ? result.x *= -1 : result.x *= 1;
         v2.y - v1.y < 0 ? result.y *= -1 : result.y *= 1;
+    
 
         return result;
     }
