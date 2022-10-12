@@ -1,7 +1,6 @@
 class Board {
 
     constructor(map, canvas, fpsCount, moneyCount, hpCount) {
-
         //seting up canvas
         this.canvas = canvas;
         this.preloadedImages=new PreloadedImages();
@@ -37,7 +36,13 @@ class Board {
         //loading map from string
         
         this.loadMap(map);
-
+        //loading waves
+        let waves = stringToWave('(0,0){<1000,500>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<700,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}(7,2){<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}')
+        
+        for(let i=0;i<waves.length;i+=2){
+           
+            this.board[waves[i].x][waves[i].y].waves=waves[i+1];
+        }
         //creating paths and getting number of waves
         this.enemySpawns.forEach(element => {
             this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);

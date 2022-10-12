@@ -1,0 +1,6 @@
+function stringToBoard(){
+
+}
+function boardToString(){
+    
+}
