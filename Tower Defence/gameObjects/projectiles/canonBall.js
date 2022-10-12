@@ -11,7 +11,7 @@ class CanonBall extends Projectile {
         this.enemies=enemies;
     }
     update(deltaTime) {
-
+        
         let movementVector = directionVectorPercents(this.position, this.target);
 
         this.position.x += this.speed * movementVector.x * (deltaTime / 1000);

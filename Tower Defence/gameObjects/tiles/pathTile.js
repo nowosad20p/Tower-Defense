@@ -1,7 +1,7 @@
 class PathTile extends Tile {
     constructor() {
         //setting up display properties
-        super(new BetterImage("./graphics/roads.png", 32, 32, new Vector2(0, 0)));
+        super(new BetterImage("roads", 32, 32, new Vector2(0, 0)));
 
 
 

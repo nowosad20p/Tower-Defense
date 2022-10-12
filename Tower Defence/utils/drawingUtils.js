@@ -10,7 +10,7 @@ class DrawingUtils {
         this.colTileSize = this.heigth / this.tilesInColumn;
     }
     drawTile(tile, posX, posY) {
-
+   
         tile = tile.image;
 
 

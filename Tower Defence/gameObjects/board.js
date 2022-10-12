@@ -4,7 +4,7 @@ class Board {
 
         //seting up canvas
         this.canvas = canvas;
-
+        this.preloadedImages=new PreloadedImages();
         //arrays with board content
         this.width;
         this.height;
@@ -35,7 +35,7 @@ class Board {
         this.numberOfWaves = 0;
 
         //loading map from string
-        this.toLoad = 0;
+        
         this.loadMap(map);
 
         //creating paths and getting number of waves
@@ -102,10 +102,8 @@ class Board {
 
 
                                     piece.push(new TerrainTile());
-                                    this.toLoad++;
-                                    piece[j].image.img.onload = () => {
-                                        this.toLoad--
-                                    }
+                                    
+                                    
                                 }
                                 this.board.push(piece);
                             }
@@ -151,10 +149,7 @@ class Board {
 
 
             this.board[base[i]][base[i + 1]] = new PlayerBase();
-            this.toLoad++;
-            this.board[base[i]][base[i + 1]].image.img.onload = () => {
-                this.toLoad--
-            };
+            
 
             this.playerBase = new Vector2(base[i], base[i + 1]);
         }
@@ -165,10 +160,7 @@ class Board {
 
 
             this.board[enemySpawns[i]][enemySpawns[i + 1]] = new EnemySpawn([], this.drawingUtils);
-            this.toLoad++;
-            this.board[enemySpawns[i]][enemySpawns[i + 1]].image.img.onload = () => {
-                this.toLoad--
-            };
+           
             this.enemySpawns.push(new Vector2(enemySpawns[i], enemySpawns[i + 1]))
         }
     }
@@ -179,10 +171,7 @@ class Board {
 
 
             this.board[path[i]][path[i + 1]] = new PathTile();
-            this.toLoad++;
-            this.board[path[i]][path[i + 1]].image.img.onload = () => {
-                this.toLoad--
-            };
+            
         }
         this.updateBoardTilesGraphic();
     }
@@ -191,11 +180,8 @@ class Board {
 
         for (let i = 0; i < slots.length; i += 2) {
 
-            this.board[slots[i]][slots[i + 1]] = new TowerSlot(new BetterImage("./graphics/towerSlot.png", 16, 16, new Vector2(0, 0)), this, new Vector2(slots[i], slots[i + 1]));
-            this.toLoad++;
-            this.board[slots[i]][slots[i + 1]].image.img.onload = () => {
-                this.toLoad--
-            };
+            this.board[slots[i]][slots[i + 1]] = new TowerSlot(new BetterImage("towerSlot", 16, 16, new Vector2(0, 0)), this, new Vector2(slots[i], slots[i + 1]));
+           
         }
         this.updateBoardTilesGraphic();
     }
@@ -217,7 +203,7 @@ class Board {
         }
     }
     update() {
-        if (this.toLoad == 0) {
+        if (this.preloadedImages.loaded) {
             //checking if game is paused
             if (!this.paused) {
 
@@ -389,7 +375,7 @@ class Board {
                 this.enemySpawns.forEach(element => {
                     let pos = Object.create(element)
                     pos.offset(0.5);
-                    this.curUI.push(new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(112, 0)), 16, 16, pos, () => {
+                    this.curUI.push(new Button(new BetterImage("buttons", 16, 16, new Vector2(112, 0)), 16, 16, pos, () => {
                         this.sendNextWave();
 
                     }))
@@ -401,8 +387,8 @@ class Board {
 
 
             //displaying coin count
-            this.moneyCountDisplay.innerHTML = '<div><img src="./graphics/coin.png" alt="coins">:' + this.coins + "</div>";
-            this.hpCountDisplay.innerHTML = '<div><img src="./graphics/hp.png" alt="hp">:' + this.hp + "</div>";
+            this.moneyCountDisplay.innerHTML = '<div><img src="./graphics/ui/coin.png" alt="coins">:' + this.coins + "</div>";
+            this.hpCountDisplay.innerHTML = '<div><img src="./graphics/ui/hp.png" alt="hp">:' + this.hp + "</div>";
 
             this.inputUtils.ui = this.curUI;
 

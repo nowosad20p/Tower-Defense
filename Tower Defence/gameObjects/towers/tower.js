@@ -20,15 +20,15 @@ class Tower {
         this.maxTier = maxTier;
         this.towerButtons = new TowerButtonsContainer(0.5,
             [
-                new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(0, 0)), 16, 16, new Vector2(0, 0), () => {
+                new Button(new BetterImage("buttons", 16, 16, new Vector2(0, 0)), 16, 16, new Vector2(0, 0), () => {
                     this.levelUp();
 
 
                 }),
-                new Button(new BetterImage("./graphics/buttons.png", 16, 16, new Vector2(16, 0)), 16, 16, new Vector2(0, 0), () => {
+                new Button(new BetterImage("buttons", 16, 16, new Vector2(16, 0)), 16, 16, new Vector2(0, 0), () => {
 
 
-                    board.board[position.x][position.y] = new TowerSlot(new BetterImage("./graphics/towerSlot.png", 16, 16, new Vector2(0, 0)), this.board, Object.create(this.position))
+                    board.board[position.x][position.y] = new TowerSlot(new BetterImage("towerSlot", 16, 16, new Vector2(0, 0)), this.board, Object.create(this.position))
                     board.coins += 0.8 * this.stats.value;
                 })
             ]
@@ -55,7 +55,7 @@ class Tower {
     }
     attack() {
         if (this.curTarget != null) {
-            this.projectiles.push(new Projectile(new BetterImage("./graphics/fireball.png", 8, 8, new Vector2(0, 0), 0.25), Object.create(this.position), this.curTarget, 2, this.stats.damage, "normal"));
+            this.projectiles.push(new Projectile(new BetterImage("fireball", 8, 8, new Vector2(0, 0), 0.25), Object.create(this.position), this.curTarget, 2, this.stats.damage, "normal"));
         }
     }
     update(enemies, deltaTime) {

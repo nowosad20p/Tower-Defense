@@ -19,6 +19,8 @@ class Button {
     onClick() { //running function provided in constructor
         if (this.confirmed) {
             this.onclick();
+            this.unclick();
+
 
         } else {
             this.confirmed = true;

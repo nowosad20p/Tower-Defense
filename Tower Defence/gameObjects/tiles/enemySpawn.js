@@ -1,7 +1,7 @@
 class EnemySpawn extends Tile {
     constructor(waves = [], drawingUtils, board) {
         //setting up display settings
-        super(new BetterImage("./graphics/enemySpawn.png", 32, 32, new Vector2(0, 0)));
+        super(new BetterImage("enemySpawn", 32, 32, new Vector2(0, 0)));
         this.board = board;
 
         //saving needed utils and informations
