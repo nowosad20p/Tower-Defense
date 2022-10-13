@@ -70,7 +70,9 @@ class Board {
             
         }
         window.onblur = () => {
-            this.pause()
+            if(!this.paused){
+            this.pause();
+            }
         }
         this.pauseMenu=pauseMenu;
         this.pauseMenu.style.display="none";
