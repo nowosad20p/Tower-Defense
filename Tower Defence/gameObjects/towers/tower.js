@@ -7,9 +7,11 @@ class Tower {
         this.image = image;
         this.upgradePrice = upgradePrice;
         this.updateImage();
-
+       
         this.curTarget = null;
         this.position = position;
+        this.middleOfTower = new Vector2(this.position.x + 0.5, this.position.y + 0.5);
+
         //attack settings
         this.stats = new TowerStats(range, damage, attackSpeed * 100, exp, value);
 
@@ -54,13 +56,15 @@ class Tower {
         }
     }
     attack() {
+       
         if (this.curTarget != null) {
             this.projectiles.push(new Projectile(new BetterImage("fireball", 8, 8, new Vector2(0, 0), 0.25), Object.create(this.position), this.curTarget, 2, this.stats.damage, "normal"));
         }
     }
     update(enemies, deltaTime) {
         //checking if current target is in range and alive
-        if (this.curTarget == null || this.curTarget == undefined || distanceBetweenVectors(this.position, this.curTarget.position) > this.stats.range || this.curTarget.dead || this.curTarget.finished) {
+
+        if (this.curTarget == null || this.curTarget == undefined || distanceBetweenVectors(this.middleOfTower, this.curTarget.position) > this.stats.range || this.curTarget.dead || this.curTarget.finished) {
             this.getNewTarget(enemies);
             this.timeSinceLastAttack = 0;
 
@@ -71,7 +75,7 @@ class Tower {
 
             } else {
                 this.timeSinceLastAttack += deltaTime;
-
+                
             }
 
         }
@@ -87,25 +91,25 @@ class Tower {
 
     }
     getNewTarget(enemies) { //getting closest enemy in range
-
-        let middleOfTower = new Vector2(this.position.x + 0.5, this.position.y + 0.5);
+   
         if (enemies.length == 0) {
             return false;
         }
         let min = enemies[0];
         for (let i = 1; i < enemies.length; i++) {
             if (enemies[i].spawned && !min.dead && !min.finished) {
-                let position1 = distanceBetweenVectors(middleOfTower, min.position);
-                let position2 = distanceBetweenVectors(middleOfTower, enemies[i].position);
+                let position1 = distanceBetweenVectors(this.middleOfTower, min.position);
+                let position2 = distanceBetweenVectors(this.middleOfTower, enemies[i].position);
 
                 if (position2 < position1) {
                     min = enemies[i];
                 }
             }
         }
-        if (distanceBetweenVectors(middleOfTower, min.position) < this.stats.range) {
+        if (distanceBetweenVectors(this.middleOfTower, min.position) < this.stats.range) {
             if (min.spawned && !min.dead && !min.finished) {
                 this.curTarget = min;
+                console.log("znaleziony")
             } else {
                 this.curTarget = null;
 

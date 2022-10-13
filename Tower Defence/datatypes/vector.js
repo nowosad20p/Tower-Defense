@@ -37,7 +37,7 @@
         let b = v2.y - v1.y;
 
 
-        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)).toFixed(5);
     }
 
     function directionVectorPercents(v1, v2) { //returns what percent of ms should be added to x and y, to achieve vector2

@@ -12,7 +12,7 @@ class Board {
         this.enemySpawns = [];
         this.enemies = [];
         this.activeTile = null;
-
+        console.log(distanceBetweenVectors(new Vector2(-1,0),new Vector2(2,-4)))
         //board settings
         this.fpsCount = fpsCount;
 
