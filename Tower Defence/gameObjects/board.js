@@ -1,6 +1,6 @@
 class Board {
 
-    constructor(map, canvas, fpsCount, moneyCount, hpCount) {
+    constructor(map, canvas, fpsCount, moneyCount, hpCount, pauseMenu) {
         //seting up canvas
         this.canvas = canvas;
         this.preloadedImages=new PreloadedImages();
@@ -67,23 +67,26 @@ class Board {
 
         //handling alt tab
         window.onfocus = () => {
-            this.resume()
+            
         }
         window.onblur = () => {
             this.pause()
         }
+        this.pauseMenu=pauseMenu;
+        this.pauseMenu.style.display="none";
 
     }
     pause() { //pausing game
 
         this.drawingUtils.drawRectangle(new Vector2(0, 0), new Vector2(this.canvas.width, this.canvas.height), "rgba(92, 95, 90, 0.5)");
-       
+        this.pauseMenu.style.display="block";
         this.paused = true
 
     }
     resume() { //resuming game
         this.paused = false;
         this.timeUtils.update();
+        this.pauseMenu.style.display="none";
 
 
     }

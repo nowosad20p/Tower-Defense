@@ -7,6 +7,7 @@ canvas {
   image-rendering: -webkit-crisp-edges;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  position:absolute;
 }
 body {
   margin: 0;
@@ -18,4 +19,30 @@ nav {
   justify-content: space-evenly;
   z-index: 1;
   background-color: #Eab676;
+}
+#pauseMenu{
+  position:relative;
+  margin:auto;
+  margin-top:25vh;
+  background-color: rgba(44, 42, 42, 0.596);
+  width:30vw;
+  height: 50vh;
+
+}
+#pauseMenu>h2{
+  text-align: center;
+  color:white;
+}
+#pauseMenu>div{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+#pauseMenu>div>button{
+  width: 50%;
+  margin:auto;
+  margin-top:3vh;
+  height: 5vh;
+  font-size:30px;
 }

@@ -32,6 +32,8 @@ class Tower {
 
                     board.board[position.x][position.y] = new TowerSlot(new BetterImage("towerSlot", 16, 16, new Vector2(0, 0)), this.board, Object.create(this.position))
                     board.coins += 0.8 * this.stats.value;
+                    board.updateUI();
+
                 })
             ]
 
