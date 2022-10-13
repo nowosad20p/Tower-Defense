@@ -190,7 +190,7 @@ class Board {
 
         for (let i = 0; i < slots.length; i += 2) {
 
-            this.board[slots[i]][slots[i + 1]] = new TowerSlot(new BetterImage("towerSlot", 16, 16, new Vector2(0, 0)), this, new Vector2(slots[i], slots[i + 1]));
+            this.board[slots[i]][slots[i + 1]] = new TowerSlot(this, new Vector2(slots[i], slots[i + 1]));
            
         }
         this.updateBoardTilesGraphic();

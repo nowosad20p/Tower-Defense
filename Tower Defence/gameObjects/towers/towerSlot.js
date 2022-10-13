@@ -1,10 +1,10 @@
 class TowerSlot extends Tile {
-    constructor(image, board, position) {
-        super(image);
+    constructor( board, position) {
+        super(new BetterImage("towerSlot", 32, 32, new Vector2(0, 0)));
         this.startingPointOfImage = new Vector2(0, 0);
 
-        this.tileWidth = 16;
-        this.tileHeight = 16;
+        this.tileWidth = 32;
+        this.tileHeight = 32;
         this.board = board;
         //creating buttons to display on click
         this.towerButtons = new TowerButtonsContainer(0.5,
