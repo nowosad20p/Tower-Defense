@@ -12,7 +12,7 @@ class PreloadedImages {
             "canonBall": this.loadImage("./graphics/projectiles/cannonBall.png"),
             "arrow": this.loadImage("./graphics/projectiles/arrow.png"),
             "iceCrystal": this.loadImage("./graphics/projectiles/iceCrystal.png"),
-            "fireball": this.loadImage("./graphics/projectiles/fireBall.png"),
+            "fireball": this.loadImage("./graphics/projectiles/fireball.png"),
             "towerSlot": this.loadImage("./graphics/towers/towerSlot.png"),
             "archerTower": this.loadImage("./graphics/towers/archerTower.png"),
             "mortar": this.loadImage("./graphics/towers/mortar.png"),
