@@ -36,7 +36,7 @@ class Board {
         
         this.loadMap(map);
         //loading waves
-        let waves = stringToWave('(0,0){<1000,500>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<700,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}(7,2){<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}')
+        let waves = stringToWave('(0,0){<1000,500>["goblin","goblin","bat"]<2000,100>["bat","bat","goblin"]}{<700,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}(7,2){<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}')
                                   
         //creating paths and getting number of waves
         this.enemySpawns.forEach(element => {

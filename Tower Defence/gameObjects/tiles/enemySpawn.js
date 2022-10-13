@@ -36,6 +36,8 @@ class EnemySpawn extends Tile {
         switch (name) {
             case "goblin":
                 return new Goblin(this.position, this.path, delay);
+            case "bat":
+                return new Bat(this.position, this.path, delay);
         }
     }
     isWalkable(tile) { //returns if entity can walk on this tile
