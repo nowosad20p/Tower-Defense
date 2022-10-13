@@ -87,5 +87,18 @@ function stringToWave(string) {
 
 
 function wavesToString(spawners) {
+    let result="";
+    spawners.forEach(spawner => {
+        result+="("+spawner.position.x+","+spawner.position.y+")";
+   
+        spawner.waves.forEach(wave=>{
+            result+="{";
+            wave.groups.forEach(group=>{
+                result+="<"+group.delay+","+group.spawnRatio+">"+JSON.stringify(group.enemies);
+            });
+            result+="}";
 
+        })
+    });
+    return result;
 }

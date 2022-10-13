@@ -12,7 +12,6 @@ class Board {
         this.enemySpawns = [];
         this.enemies = [];
         this.activeTile = null;
-        console.log(distanceBetweenVectors(new Vector2(-1,0),new Vector2(2,-4)))
         //board settings
         this.fpsCount = fpsCount;
 
@@ -38,17 +37,23 @@ class Board {
         this.loadMap(map);
         //loading waves
         let waves = stringToWave('(0,0){<1000,500>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<700,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}(7,2){<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}')
-        
-        for(let i=0;i<waves.length;i+=2){
-           
-            this.board[waves[i].x][waves[i].y].waves=waves[i+1];
-        }
+                                  
         //creating paths and getting number of waves
         this.enemySpawns.forEach(element => {
             this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
             this.numberOfWaves = Math.max(this.numberOfWaves, this.board[element.x][element.y].waves.length)
         });
 
+       
+        for(let i=0;i<waves.length;i+=2){
+           
+            this.board[waves[i].x][waves[i].y].waves=waves[i+1];
+        }
+        let actualSpawns=[];
+
+        this.enemySpawns.forEach(element=>{actualSpawns.push(this.board[element.x][element.y])})
+    
+        console.log(wavesToString(actualSpawns));
         //setting up canvas size
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerWidth / this.width * this.height;
