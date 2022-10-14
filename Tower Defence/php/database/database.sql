@@ -6,9 +6,9 @@ CREATE TABLE users(
     user_id int PRIMARY KEY AUTO_INCREMENT NOT NULL ,
     email varchar(255) ,
     nickname varchar(25) ,
-    name varchar(25) ,
+    firstname varchar(25) ,
     surname varchar(25) ,
-    password varchar(255) 
+    user_password varchar(255) 
 )
 
 CREATE TABLE maps(

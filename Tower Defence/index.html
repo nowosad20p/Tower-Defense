@@ -1,83 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
-    <title>Tower Defense</title>
+    <link rel="stylesheet" href="styles/home.css">
+    <title>Home</title>
 </head>
-
 <body>
-    <nav>
-        <div id="hpCount">HP:</div>
-        <div id="moneyCount">Coins:</div>
-    </nav>
-    <canvas></canvas>
-    <div id="pauseMenu">
-        <h2>PAUSE</h2>
-        <div>
-            <button id="resumeBtn">Resume</button>
-            <button id="tryAgain">Try again</button>
-            <button id="settings">Settings</button>
-            <button id="home">Home</button>
+    <div class="homeButtons">
+        <button id="play">PLAY</button>
+        <button>SETTINGS</button>
+        <button>ACCOUNT</button>
 
-        </div>
     </div>
-    <script src="api/easystar.min.js"></script>
-
-    <script src="datatypes/betterImage.js"></script>
-    <script src="datatypes/vector.js"></script>
-
-    <script src="utils/mathUtils.js"></script>
-    <script src="utils/drawingUtils.js"></script>
-    <script src="utils/inputUtils.js"></script>
-    <script src="utils/timeUtils.js"></script>
-
-    <script src="other/preloadedImages.js"></script>
-
-    <script src="ui/button.js"></script>
-    <script src="ui/temporaryText.js"></script>
-    <script src="ui/towerButtonsContainer.js"></script>
-
-    <script src="gameObjects/entities/entity.js"></script>
-    <script src="gameObjects/entities/enemy.js"></script>
-    <script src="gameObjects/entities/goblin.js"></script>
-    <script src="gameObjects/entities/bat.js"></script>
-
-
-    <script src="gameObjects/waves/enemyGroup.js"></script>
-    <script src="gameObjects/waves/wave.js"></script>
-
-    <script src="gameObjects/tiles/tile.js"></script>
-    <script src="gameObjects/tiles/enemySpawn.js"></script>
-    <script src="gameObjects/tiles/playerBase.js"></script>
-    <script src="gameObjects/tiles/terrainTile.js"></script>
-    <script src="gameObjects/tiles/pathTile.js"></script>
-
-    <script src="gameObjects/projectiles/projectile.js"></script>
-    <script src="gameObjects/projectiles/canonBall.js"></script>
-
-
-    <script src="gameObjects/towers/towerStats.js"></script>
-    <script src="gameObjects/towers/towerSlot.js"></script>
-    <script src="gameObjects/towers/tower.js"></script>
-    <script src="gameObjects/towers/mortar.js"></script>
-    <script src="gameObjects/towers/mageTower.js"></script>
-    <script src="gameObjects/towers/iceTower.js"></script>
-    <script src="gameObjects/towers/archerTower.js"></script>
-    <script src="gameObjects/towers/trooperTower.js"></script>
-
-    <script src="converters/boardConverter.js"></script>
-    <script src="converters/wavesConverter.js"></script>
-
-    <script src="gameObjects/board.js"></script>
-
-
-
-    <script src="main.js"></script>
-
+    <script>
+        document.querySelector("#play").addEventListener("click",()=>{window.location='game.html';});
+    </script>
 </body>
-
 </html>

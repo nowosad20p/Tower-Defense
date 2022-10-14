@@ -7,12 +7,12 @@
     <body>
         <main>
          
-            <form>
+            <form method="POST" action="login.inc.php">
                 <fieldset>
                     <caption>Login</caption>
-                    <input type="text" placeholder="name">
-                    <input type="password" placeholder="password">
-                    <input type="submit">
+                    <input type="text" placeholder="username" name="username">
+                    <input type="password" placeholder="password" name="password">
+                    <input type="submit" name="submit">
                 </fieldset>
             </form>
         </main>

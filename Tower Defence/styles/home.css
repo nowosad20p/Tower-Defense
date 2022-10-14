@@ -1,0 +1,25 @@
+.homeButtons{
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:25vh;
+   
+}
+.homeButtons>button{
+    background-color: #41ba55;
+    color:white;
+    height: 5vh;
+    margin-bottom: 1vh;
+    border:none;
+  transition-duration: 0.5s;
+    border-radius: 10px;
+    border-bottom:0.5vh solid #3a9149;
+    border-right:0.5vh solid #3a9149;
+}
+.homeButtons>button:hover{
+    background-color: white;
+    color:black;
+  transition-duration: 0.5s;
+}
