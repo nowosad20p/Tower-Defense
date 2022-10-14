@@ -27,16 +27,19 @@ nav {
   background-color: rgba(44, 42, 42, 0.596);
   width:30vw;
   height: 50vh;
-
+  padding:10px;
 }
 #pauseMenu>h2{
+
+  font-size:40px;
   text-align: center;
   color:white;
 }
 #pauseMenu>div{
   display:flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  
   text-align: center;
 }
 button{

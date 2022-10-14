@@ -6,8 +6,9 @@ window.onscroll = () => {
 }
 
 //setting up pause buttons
-document.getElementById("resumeBtn").onclick=()=>{board.resume()
-}
+document.getElementById("resumeBtn").onclick=()=>{board.resume()}
+document.getElementById("homeBtn").onclick=()=>{window.location="index.html"}
+
 
 board.startLevel();
 /*
