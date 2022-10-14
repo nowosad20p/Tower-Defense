@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('http://fonts.cdnfonts.com/css/8bit-wonder');
 body{
-  font-family: 'Open Sans', sans-serif;
+  font-family: '8BIT WONDER', sans-serif;
 }
 canvas {
   image-rendering: -moz-crisp-edges;
@@ -39,10 +39,15 @@ nav {
   justify-content: center;
   text-align: center;
 }
+button{
+  font-family: '8BIT WONDER', sans-serif;
+
+}
 #pauseMenu>div>button{
   width: 50%;
   margin:auto;
   margin-top:3vh;
   height: 5vh;
-  font-size:30px;
+  font-size:20px;
+
 }
