@@ -10,14 +10,41 @@
     <title>Home</title>
 </head>
 <body>
-    <div class="homeButtons">
-        <button id="play">PLAY</button>
-        <button>SETTINGS</button>
-        <button>ACCOUNT</button>
+    <main>
+        <h1>TOWER DEFENSE</h1>
+        <div class="homeButtons">
+            <button id="play">PLAY</button>
+            <button>SETTINGS</button>
+            <button>ACCOUNT</button>
+    
+        </div>
+    </main>
+    <canvas></canvas>
 
-    </div>
+  
     <script>
         document.querySelector("#play").addEventListener("click",()=>{window.location='game.html';});
+        let canvas=document.querySelector("canvas");
+        canvas.width=window.innerWidth;
+        canvas.height=window.innerHeight;
+       
+        let ctx=canvas.getContext("2d");
+        ctx.filter = 'blur(0px)';
+        ctx.imageSmoothingEnabled = false;
+        ctx['oImageSmoothingEnabled']
+        let image= new Image();
+        image.src="graphics/mainMenuBg.png";
+        image.onload=()=>{
+        ctx.drawImage(image,0,0,64,36,0,0,window.innerWidth,window.innerHeight );
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(102, 98, 98,0.5)";
+        ctx.moveTo(0, 0);
+        ctx.lineTo(window.innerWidth, 0);
+        ctx.lineTo(window.innerWidth, window.innerHeight);
+        ctx.lineTo(0, window.innerHeight);
+        ctx.lineTo(0, 0);
+        ctx.fill();
+        }
     </script>
 </body>
 </html>

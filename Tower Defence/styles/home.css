@@ -23,3 +23,23 @@
     color:black;
   transition-duration: 0.5s;
 }
+img{
+  position:absolute;
+  margin:0;
+  width: 100vw;
+  height: 100vh;
+}
+canvas{
+ position:relative;
+z-index: -1;
+}
+main{
+ position:absolute;
+ width: 100vw;
+ height: 100vh;
+}
+h1{
+  text-align: center;
+  color:white;
+  font-size:100px;
+}
