@@ -21,12 +21,10 @@ class BoardCreator {
 
 
         this.tileToSet = new PathTile(img);
+        //filling board with empty tiles
         for (let i = 0; i < width; i++) {
             let piece = [];
             for (let j = 0; j < height; j++) {
-
-
-
                 piece.push(new TerrainTile(new BetterImage("./graphics/terrain.png", 32, 32, new Vector2(0, 0))));
             }
             this.board.push(piece)

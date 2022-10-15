@@ -12,8 +12,8 @@ class EnemySpawn extends Tile {
 
     sendWave(waveNumber) {
         console.log(this.waves)
-        if(waveNumber>this.waves.length){
-            return;
+        if(waveNumber>=this.waves.length){
+            return [];
         }
         //sends all mobs from wave
 

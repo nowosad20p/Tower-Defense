@@ -31,49 +31,62 @@ class Board {
         this.curWave = 0;
         this.timeSinceLastWave = 0;
         this.numberOfWaves = 0;
-
+        
         //loading map from string
         
-        this.loadMap(map);
-        //loading waves
-        let waves = stringToWave('(0,0){<1000,500>["goblin","goblin","bat"]<2000,100>["bat","bat","goblin"]}{<700,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}(7,2){<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}')
-                                  
-        //creating paths and getting number of waves
-        this.enemySpawns.forEach(element => {
-            this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
-            this.numberOfWaves = Math.max(this.numberOfWaves, this.board[element.x][element.y].waves.length)
-        });
+
+        let result = stringToBoard(map,this);
+        this.board=result[0];
+        this.playerBase=result[1];
+        this.enemySpawns=result[2];
+        this.width=result[3].x;
+        this.height=result[3].y;
+
+        
 
        
+        
+        //loading waves
+        let waves = stringToWave('(0,0){<1000,500>["goblin","goblin","bat"]<2000,100>["bat","bat","goblin"]}{<700,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}(7,2){<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}')
+                               
+        //creating paths and getting number of waves
+       
+        //setting waves
         for(let i=0;i<waves.length;i+=2){
            
             this.board[waves[i].x][waves[i].y].waves=waves[i+1];
         }
-        let actualSpawns=[];
 
+        //doesnt matter
+        let actualSpawns=[];
         this.enemySpawns.forEach(element=>{actualSpawns.push(this.board[element.x][element.y])})
-    
-        console.log(wavesToString(actualSpawns));
+
+        //getting number of waves
+        this.enemySpawns.forEach(element => {
+            this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
+            this.numberOfWaves = Math.max(this.numberOfWaves, this.board[element.x][element.y].waves.length)
+        });
+      
         //setting up canvas size
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerWidth / this.width * this.height;
 
 
 
-        //creating needed utils
+        //creating  utils
         this.timeUtils = new TimeUtils();
         this.inputUtils = new InputUtils(this, this.curUI, this.canvas);
         this.drawingUtils = new DrawingUtils(canvas.getContext("2d"), canvas.width, canvas.height, this.width, this.height);
 
         //handling alt tab
-        window.onfocus = () => {
-            
-        }
+
         window.onblur = () => {
             if(!this.paused){
             this.pause();
             }
         }
+        
+        //setting up pauseMenu
         this.pauseMenu=pauseMenu;
         this.pauseMenu.style.display="none";
 
@@ -92,131 +105,7 @@ class Board {
 
 
     }
-    loadMap(map) {
-        //creating arrays
-        let cur = "";
-        let curArray = [];
-        //reading map string
-        for (let i = 0; i < map.length; i++) {
-
-            if (isNaN(map[i]) || map[i] == " ") {
-                switch (map[i]) {
-                    case " ":
-                        curArray.push(cur);
-                        break;
-                    case "w": //board width
-                        this.width = cur;
-
-                        break;
-                    case "h": //board height
-                        this.height = cur;
-                        if (this.width != undefined) {
-                            for (let i = 0; i < this.width; i++) {
-                                let piece = [];
-                                for (let j = 0; j < this.height; j++) {
-
-
-                                    piece.push(new TerrainTile());
-                                    
-                                    
-                                }
-                                this.board.push(piece);
-                            }
-
-                        }
-                        break;
-                    case "p": //path
-                        curArray.push(cur);
-
-                        this.loadPath(curArray);
-                        curArray = [];
-                        break;
-                    case "s": //enemy spawns
-                        curArray.push(cur);
-                        this.loadEnemySpawns(curArray);
-                        curArray = [];
-
-                        break;
-                    case "t": //tower slots
-                        curArray.push(cur);
-                        this.loadTowerSlots(curArray);
-                        curArray = [];
-
-                        break;
-                    case "e": //player base
-                        curArray.push(cur);
-                        this.loadPlayerBase(curArray);
-                        curArray = [];
-
-                        break;
-                }
-                cur = "";
-            } else {
-                cur += map[i];
-            }
-        }
-
-    }
-    loadPlayerBase(base) {
-        //loading player base
-        for (let i = 0; i < base.length; i += 2) {
-
-
-
-            this.board[base[i]][base[i + 1]] = new PlayerBase();
-            
-
-            this.playerBase = new Vector2(base[i], base[i + 1]);
-        }
-    }
-    loadEnemySpawns(enemySpawns) {
-        //loading enemy spawns
-        for (let i = 0; i < enemySpawns.length; i += 2) {
-
-
-            this.board[enemySpawns[i]][enemySpawns[i + 1]] = new EnemySpawn([], this.drawingUtils);
-           
-            this.enemySpawns.push(new Vector2(enemySpawns[i], enemySpawns[i + 1]))
-        }
-    }
-    loadPath(path) {
-        //loading path
-
-        for (let i = 0; i < path.length; i += 2) {
-
-
-            this.board[path[i]][path[i + 1]] = new PathTile();
-            
-        }
-        this.updateBoardTilesGraphic();
-    }
-    loadTowerSlots(slots) {
-        //loading tower slots
-
-        for (let i = 0; i < slots.length; i += 2) {
-
-            this.board[slots[i]][slots[i + 1]] = new TowerSlot(this, new Vector2(slots[i], slots[i + 1]));
-           
-        }
-        this.updateBoardTilesGraphic();
-    }
-    updateBoardTilesGraphic() {
-        //updating path directions
-
-        for (let i = 0; i < this.board.length; i++) {
-            for (let j = 0; j < this.board[i].length; j++) {
-                if (this.board[i][j] instanceof PathTile) {
-                    let left = i > 0 ? this.board[i - 1][j] : undefined;
-                    let top = j > 0 ? this.board[i][j - 1] : undefined;
-                    let right = i < this.width - 1 ? this.board[i + 1][j] : undefined;
-                    let bottom = j < this.height - 1 ? this.board[i][j + 1] : undefined;
-
-
-                    this.board[i][j].setCorrectTile(left, right, top, bottom)
-                }
-            }
-        }
-    }
+   
     update() {
         if (this.preloadedImages.loaded) {
             //checking if game is paused
@@ -412,7 +301,7 @@ class Board {
     startLevel() {
 
         //starting utilities and update loops
-        this.updateBoardTilesGraphic();
+        //this.updateBoardTilesGraphic();
         this.inputUtils.startListening();
 
 
