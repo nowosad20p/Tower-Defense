@@ -111,57 +111,5 @@ class BoardCreator {
             }
         }
     }
-    generateMapCode() {
-        //creating arrays
-        let map = "";
-        let towers = [];
-        let path = [];
-
-        let camps = [];
-        let playerBase;
-        //adding vectors with tiles coordinates to correct arrays
-        for (let i = 0; i < this.board.length; i++) {
-            for (let j = 0; j < this.board[i].length; j++) {
-
-                if (this.board[i][j] instanceof PathTile) {
-                    path.push(new Vector2(i, j));
-                }
-                if (this.board[i][j] instanceof PlayerBase) {
-                    playerBase = new Vector2(i, j);
-
-                }
-                if (this.board[i][j] instanceof EnemySpawn) {
-                    camps.push(new Vector2(i, j));
-
-                }
-                if (this.board[i][j] instanceof TowerSlot) {
-                    towers.push(new Vector2(i, j));
-
-                }
-            }
-        }
-        //writing array content to string readable by importing function
-        map += this.width + "w" + this.height + "h";
-        path.forEach(element => {
-            map += element.x + " " + element.y + " ";
-        });
-        map = map.slice(0, -1)
-
-        map += "p";
-        towers.forEach(element => {
-            map += element.x + " " + element.y + " ";
-        });
-        map = map.slice(0, -1)
-        map += "t";
-
-        camps.forEach(element => {
-            map += element.x + " " + element.y + " ";
-        });
-        map = map.slice(0, -1)
-
-        map += "s";
-        map += playerBase.x + " " + playerBase.y + "e";
-        //returning result
-        return map;
-    }
+    
 }

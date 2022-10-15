@@ -60,7 +60,7 @@ class Board {
         //doesnt matter
         let actualSpawns=[];
         this.enemySpawns.forEach(element=>{actualSpawns.push(this.board[element.x][element.y])})
-
+ 
         //getting number of waves
         this.enemySpawns.forEach(element => {
             this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
