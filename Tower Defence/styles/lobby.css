@@ -1,0 +1,38 @@
+#gameModesContainer{
+    display:flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+h1{
+    text-align: center;
+}
+.gameModeDiv{
+        width: 20%;
+        border-top: 1px solid lightgray;
+        border-left: 1px solid lightgray;
+        border-right: 3px solid darkgray;
+        border-bottom: 3px solid darkgray;
+        border-radius: 5px;
+}
+
+.gameModeDiv>p{
+    text-align: center;
+
+}
+.imageContainer{
+    overflow: hidden;
+    width: 100%;
+}
+.imageContainer>img{
+    width: 100%;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+  
+
+}
+.imageContainer>img:hover{
+    transform: scale(1.5);
+    transition: 2s;
+
+}

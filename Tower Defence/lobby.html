@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles/lobby.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+
+    <title>Choose gamemode</title>
+</head>
+<body>
+    <main>
+
+        <h1>Choose gamemode</h1>
+        <div id="gameModesContainer">
+        <div id="levels" class="gameModeDiv">
+            <div class="imageContainer">
+            <img src="graphics/levels.png">
+            </div>
+            <p>Levels</p>
+        </div>
+        <div class="gameModeDiv">
+            <div class="imageContainer">
+            <img src="graphics/community.png">
+            </div>
+            <p>Community maps</p>
+        </div>
+        <div class="gameModeDiv">
+            <div class="imageContainer">
+            <img src="graphics/time.png">
+            </div>
+            <p>Infinity mode</p>
+        </div>
+        <div id="mapCreator" class="gameModeDiv"> 
+            <div  class="imageContainer">
+            <img src="graphics/mapCreator.png">
+            </div>
+            <p>Map creator</p>
+        </div>
+
+    </div>
+    </main>
+    <script>
+        document.querySelector("#levels").addEventListener("click",()=>{window.location="game.html";} );
+        document.querySelector("#mapCreator").addEventListener("click",()=>{window.location="mapCreator.html"});
+        
+    </script>
+</body>
+</html>
