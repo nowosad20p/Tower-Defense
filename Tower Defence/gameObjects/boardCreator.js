@@ -111,5 +111,5 @@ class BoardCreator {
             }
         }
     }
-    
+
 }

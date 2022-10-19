@@ -108,57 +108,58 @@ function stringToBoard(string, gameboard) {
     }
     return [board, playerBase, enemySpawns, new Vector2(width, height)]
 }
-function boardToString(board){
+
+function boardToString(board) {
     let map = "";
-        let towers = [];
-        let path = [];
+    let towers = [];
+    let path = [];
 
-        let camps = [];
-        let playerBase;
-        //adding vectors with tiles coordinates to correct arrays
-        let width=board.length;
-       let height=board[0].length;
-        for (let i = 0; i < board.length; i++) {
-            for (let j = 0; j < board[i].length; j++) {
+    let camps = [];
+    let playerBase;
+    //adding vectors with tiles coordinates to correct arrays
+    let width = board.length;
+    let height = board[0].length;
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
 
-                if (board[i][j] instanceof PathTile) {
-                    path.push(new Vector2(i, j));
-                }
-                if (board[i][j] instanceof PlayerBase) {
-                    playerBase = new Vector2(i, j);
+            if (board[i][j] instanceof PathTile) {
+                path.push(new Vector2(i, j));
+            }
+            if (board[i][j] instanceof PlayerBase) {
+                playerBase = new Vector2(i, j);
 
-                }
-                if (board[i][j] instanceof EnemySpawn) {
-                    camps.push(new Vector2(i, j));
+            }
+            if (board[i][j] instanceof EnemySpawn) {
+                camps.push(new Vector2(i, j));
 
-                }
-                if (board[i][j] instanceof TowerSlot) {
-                    towers.push(new Vector2(i, j));
+            }
+            if (board[i][j] instanceof TowerSlot) {
+                towers.push(new Vector2(i, j));
 
-                }
             }
         }
-        //writing array content to string readable by importing function
-        map += width + "w" + height + "h";
-        path.forEach(element => {
-            map += element.x + " " + element.y + " ";
-        });
-        map = map.slice(0, -1)
+    }
+    //writing array content to string readable by importing function
+    map += width + "w" + height + "h";
+    path.forEach(element => {
+        map += element.x + " " + element.y + " ";
+    });
+    map = map.slice(0, -1)
 
-        map += "p";
-        towers.forEach(element => {
-            map += element.x + " " + element.y + " ";
-        });
-        map = map.slice(0, -1)
-        map += "t";
+    map += "p";
+    towers.forEach(element => {
+        map += element.x + " " + element.y + " ";
+    });
+    map = map.slice(0, -1)
+    map += "t";
 
-        camps.forEach(element => {
-            map += element.x + " " + element.y + " ";
-        });
-        map = map.slice(0, -1)
+    camps.forEach(element => {
+        map += element.x + " " + element.y + " ";
+    });
+    map = map.slice(0, -1)
 
-        map += "s";
-        map += playerBase.x + " " + playerBase.y + "e";
-        //returning result
-        return map;
+    map += "s";
+    map += playerBase.x + " " + playerBase.y + "e";
+    //returning result
+    return map;
 }

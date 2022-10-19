@@ -7,7 +7,7 @@ class Tower {
         this.image = image;
         this.upgradePrice = upgradePrice;
         this.updateImage();
-       
+
         this.curTarget = null;
         this.position = position;
         this.middleOfTower = new Vector2(this.position.x + 0.5, this.position.y + 0.5);
@@ -58,7 +58,7 @@ class Tower {
         }
     }
     attack() {
-       
+
         if (this.curTarget != null) {
             this.projectiles.push(new Projectile(new BetterImage("fireball", 8, 8, new Vector2(0, 0), 0.25), Object.create(this.position), this.curTarget, 2, this.stats.damage, "normal"));
         }
@@ -77,7 +77,7 @@ class Tower {
 
             } else {
                 this.timeSinceLastAttack += deltaTime;
-                
+
             }
 
         }
@@ -93,7 +93,7 @@ class Tower {
 
     }
     getNewTarget(enemies) { //getting closest enemy in range
-   
+
         if (enemies.length == 0) {
             return false;
         }

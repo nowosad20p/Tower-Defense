@@ -3,7 +3,7 @@ class Board {
     constructor(map, canvas, fpsCount, moneyCount, hpCount, pauseMenu) {
         //seting up canvas
         this.canvas = canvas;
-        this.preloadedImages=new PreloadedImages();
+        this.preloadedImages = new PreloadedImages();
         //arrays with board content
         this.width;
         this.height;
@@ -31,42 +31,44 @@ class Board {
         this.curWave = 0;
         this.timeSinceLastWave = 0;
         this.numberOfWaves = 0;
-        
+
         //loading map from string
-        
 
-        let result = stringToBoard(map,this);
-        this.board=result[0];
-        this.playerBase=result[1];
-        this.enemySpawns=result[2];
-        this.width=result[3].x;
-        this.height=result[3].y;
 
-        
+        let result = stringToBoard(map, this);
+        this.board = result[0];
+        this.playerBase = result[1];
+        this.enemySpawns = result[2];
+        this.width = result[3].x;
+        this.height = result[3].y;
 
-       
-        
+
+
+
+
         //loading waves
         let waves = stringToWave('(0,0){<1000,500>["goblin","goblin","bat"]<2000,100>["bat","bat","goblin"]}{<700,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}(7,2){<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}')
-                               
+
         //creating paths and getting number of waves
-       
+
         //setting waves
-        for(let i=0;i<waves.length;i+=2){
-           
-            this.board[waves[i].x][waves[i].y].waves=waves[i+1];
+        for (let i = 0; i < waves.length; i += 2) {
+
+            this.board[waves[i].x][waves[i].y].waves = waves[i + 1];
         }
 
         //doesnt matter
-        let actualSpawns=[];
-        this.enemySpawns.forEach(element=>{actualSpawns.push(this.board[element.x][element.y])})
- 
+        let actualSpawns = [];
+        this.enemySpawns.forEach(element => {
+            actualSpawns.push(this.board[element.x][element.y])
+        })
+
         //getting number of waves
         this.enemySpawns.forEach(element => {
             this.board[element.x][element.y].findPath(new Vector2(element.x, element.y), this.playerBase, this.board);
             this.numberOfWaves = Math.max(this.numberOfWaves, this.board[element.x][element.y].waves.length)
         });
-      
+
         //setting up canvas size
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerWidth / this.width * this.height;
@@ -81,31 +83,31 @@ class Board {
         //handling alt tab
 
         window.onblur = () => {
-            if(!this.paused){
-            this.pause();
+            if (!this.paused) {
+                this.pause();
             }
         }
-        
+
         //setting up pauseMenu
-        this.pauseMenu=pauseMenu;
-        this.pauseMenu.style.display="none";
+        this.pauseMenu = pauseMenu;
+        this.pauseMenu.style.display = "none";
 
     }
     pause() { //pausing game
 
         this.drawingUtils.drawRectangle(new Vector2(0, 0), new Vector2(this.canvas.width, this.canvas.height), "rgba(92, 95, 90, 0.5)");
-        this.pauseMenu.style.display="block";
+        this.pauseMenu.style.display = "block";
         this.paused = true
 
     }
     resume() { //resuming game
         this.paused = false;
         this.timeUtils.update();
-        this.pauseMenu.style.display="none";
+        this.pauseMenu.style.display = "none";
 
 
     }
-   
+
     update() {
         if (this.preloadedImages.loaded) {
             //checking if game is paused

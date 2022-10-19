@@ -1,5 +1,5 @@
 class TowerSlot extends Tile {
-    constructor( board, position) {
+    constructor(board, position) {
         super(new BetterImage("towerSlot", 32, 32, new Vector2(0, 0)));
         this.startingPointOfImage = new Vector2(0, 0);
 

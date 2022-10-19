@@ -39,18 +39,18 @@ class PreloadedImages {
 
 
 
-       
+
         PreloadedImages.exists = true;
         PreloadedImages.instance = this;
         return this;
     }
-    loadImage(path) {//loading image
+    loadImage(path) { //loading image
         this.toLoad++;
         let newImage = new Image();
         newImage.src = path;
         newImage.onload = () => {
             this.toLoad--;
-           
+
             if (this.toLoad <= 0) {
 
                 this.loaded = true;
