@@ -1,6 +1,12 @@
 class Board {
 
     constructor(map, canvas, fpsCount, moneyCount, hpCount, pauseMenu) {
+        if (Board.exists) { //if instance of this object exist return this instance
+            return Board.instance;
+        }
+        Board.exists = true;
+        Board.instance = this;
+        
         //seting up canvas
         this.canvas = canvas;
         this.preloadedImages = new PreloadedImages();
@@ -91,7 +97,7 @@ class Board {
         //setting up pauseMenu
         this.pauseMenu = pauseMenu;
         this.pauseMenu.style.display = "none";
-
+        return this;
     }
     pause() { //pausing game
 
@@ -168,15 +174,7 @@ class Board {
                         }
 
                     }
-                    //drawing UI
-                    for (let i = 0; i < this.curUI.length; i++) {
-                        if (this.curUI[i] instanceof TowerButtonsContainer) {
-                            this.drawingUtils.drawTowerButtons(this.curUI[i], this.curUI[i].position);
-                        }
-                        if (this.curUI[i] instanceof Button) {
-                            this.drawingUtils.drawButton(this.curUI[i])
-                        }
-                    }
+                    
                     //drawing enemies and checking their state
 
                     for (let i = 0; i < this.enemies.length; i++) {
@@ -206,7 +204,32 @@ class Board {
                         }
 
                     }
+                    //drawing UI
+                    for (let i = 0; i < this.curUI.length; i++) {
+                        if (this.curUI[i] instanceof TowerButtonsContainer) {
+                            this.drawingUtils.drawTowerButtons(this.curUI[i], this.curUI[i].position);
+                        }
+                        if (this.curUI[i] instanceof Button) {
+                            this.drawingUtils.drawButton(this.curUI[i])
+                        }
+                      
 
+                        if (this.curUI[i] instanceof TemporaryText) {
+                            if(this.curUI[i].readyToDelete){
+                                 this.curUI.splice(i, 1);
+                                 i--;
+                              
+                               
+
+                            }else{
+                               
+                               
+                                this.drawingUtils.drawText(this.curUI[i].text,"red",this.curUI[i].position)
+                                this.curUI[i].update(this.timeElapsed);
+                            }
+                            
+                        }
+                    }
 
 
                     if (this.enemies.length == 0 && this.curWave != 0) { //sending next waves and checking if player won

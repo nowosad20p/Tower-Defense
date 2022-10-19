@@ -33,5 +33,8 @@ class Entity {
 
             this.die()
         }
+        let  board= new Board();
+        board.curUI.push(new TemporaryText(new Vector2(this.position.x,this.position.y),damage))
+        console.log(board.curUI)
     }
 }

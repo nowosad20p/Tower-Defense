@@ -21,8 +21,8 @@ class DrawingUtils {
         //drawing tile
         this.ctx.drawImage(tile.img, tile.startingPointOfImage.x, tile.startingPointOfImage.y, tile.width, tile.height, this.width / this.tilesInRow * posX, this.heigth / this.tilesInColumn * posY, this.width / this.tilesInRow, this.heigth / this.tilesInColumn);
     }
-    drawText(text, color = "black", position = new Vector2(this.width / 2, this.heigth / 2)) {
-
+    drawText(text, color = "black", position = new Vector2(this.tilesInRow / 2, this.tilesInColumn / 2)) {
+      
         this.ctx.fillStyle = color;
         this.ctx.fillText(text, position.x * this.rowTileSize, position.y * this.colTileSize);
     }
