@@ -35,17 +35,17 @@ class TowerSlot extends Tile {
 
                     }
                 }),
-                new Button(new BetterImage("buttons", 16, 16, new Vector2(64, 0)), 16, 16, new Vector2(0, 0), () => {
-                    let price = 100;
-                    if (price <= this.board.coins) {
-                        board.board[position.x * 1][position.y * 1] = new TrooperTower(position, board, price); //ludziki
+//                 new Button(new BetterImage("buttons", 16, 16, new Vector2(64, 0)), 16, 16, new Vector2(0, 0), () => {
+//                     let price = 100;
+//                     if (price <= this.board.coins) {
+//                         board.board[position.x * 1][position.y * 1] = new TrooperTower(position, board, price); //ludziki
 
 
-                        this.board.coins -= price;
-                    } else {
+//                         this.board.coins -= price;
+//                     } else {
 
-                    }
-                }),
+//                     }
+//                 }),
                 new Button(new BetterImage("buttons", 16, 16, new Vector2(80, 0)), 16, 16, new Vector2(0, 0), () => {
                     let price = 100;
                     if (price <= this.board.coins) {
