@@ -38,7 +38,7 @@ class BoardCreator {
         this.timeElapsed += this.timeUtils.deltaTime;
         //checking if next frame should be displayed
         if (this.timeElapsed > 1000 / this.fpsCount) {
-            console.log(this.board)
+          
             this.timeElapsed = 0;
             //based on tile chosen in input utils setting tile
             if (this.activeTile != null) {
