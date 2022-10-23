@@ -13,23 +13,11 @@
 
 <body>
     <main>
-        <form id="mapForm">
-            <input type="text" id="width" placeholder="width">
-            <input type="text" id="height" placeholder="height">
-            <input type="submit">
-        </form>
+        <div class="wavesCreator"></div>
+        <button class="createWaveBtn">Create new wave</button>
+        <button class="save"></button>
     </main>
-    <footer id="narzedzia">
-
-        <button id="terrainBtn">Terrain</button>
-        <button id="pathBtn">Path</button>
-        <button id="towerBtn">Tower Slot</button>
-        <button id="campBtn">Enemy camp</button>
-        <button id="baseBtn">Player base</button>
-        <br>
-        <button id="saveBtn">Save map</button>
-
-    </footer>
+   
     <script src="api/easystar.min.js"></script>
     <script src="datatypes/betterImage.js"></script>
     <script src="datatypes/vector.js"></script>
@@ -47,8 +35,8 @@
 
     <script src="gameObjects/waves/wave.js"></script>
     <script src="other/preloadedImages.js"></script>
-    <script src = "converters/boardConverter.js"></script>
-    <script src = "converters/wavesConverter.js"></script>
+    <script src="converters/boardConverter.js"></script>
+    <script src="converters/wavesConverter.js"></script>
 
     <script src="gameObjects/tiles/tile.js"></script>
     <script src="gameObjects/tiles/enemySpawn.js"></script>
@@ -66,8 +54,12 @@
 
     <script src="gameObjects/boardCreator.js"></script>
     <script src="gameObjects/wavesCreator.js"></script>
+    <script>
+        let waveCreator = new WavesCreator(document.querySelector(".wavesCreator"),document.querySelector(".createWaveBtn"));
+        
+    </script>
 
-    <script src="mapCreator.js"></script>
+   
 
 </body>
 

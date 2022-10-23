@@ -1,3 +1,53 @@
 footer{
     position:absolute;
 }
+form{
+    margin:auto;
+    width: 50%;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top:5vh;
+}
+input[type="text"]{
+    border:none;
+    height: 50px;
+
+}
+input[type="submit"]{
+    height: 75px;
+    border:none;
+    background-color: #1d9142;
+    color:white;
+}
+input[type="number"]{
+
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+    color: darkgray;
+}
+h3{
+    text-align: center;
+    color:lightgray;
+}
+.waveDiv{
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    margin-left:auto;
+    margin-right: auto;
+    background-color: rgb(53, 53, 53);
+}
+.groupsContainer{
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    margin-left:auto;
+    margin-right: auto;
+    background-color: rgb(104, 103, 103);
+
+}

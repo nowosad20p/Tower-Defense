@@ -161,5 +161,5 @@ function boardToString(board) {
     map += "s";
     map += playerBase.x + " " + playerBase.y + "e";
     //returning result
-    return map;
+    return [map,camps];
 }
