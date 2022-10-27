@@ -1,6 +1,6 @@
 class Board {
 
-    constructor(map, canvas, fpsCount, moneyCount, hpCount, pauseMenu) {
+    constructor(map,waves, canvas, fpsCount, moneyCount, hpCount, pauseMenu) {
         if (Board.exists) { //if instance of this object exist return this instance
             return Board.instance;
         }
@@ -53,7 +53,7 @@ class Board {
 
 
         //loading waves
-        let waves = stringToWave('(0,0){<1000,500>["goblin","goblin","bat"]<2000,100>["bat","bat","goblin"]}{<700,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}(7,2){<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}{<1000,200>["goblin","goblin","goblin"]<2000,100>["goblin","goblin","goblin"]}')
+        waves = stringToWave(waves);
 
         //creating paths and getting number of waves
 
@@ -125,7 +125,7 @@ class Board {
                 if (this.enemies.length == 0) {
                     //this.sendNextWave();
                 }
-
+                
                 //checking if another frame should be displayed
                 if (this.timeElapsed > 1000 / this.fpsCount) {
 

@@ -78,8 +78,12 @@ class WavesCreator{
                 for(let i=0;i<this.enemies.length;i++){
                     for(let j=0;j<group.querySelectorAll(".enemyNumber")[i].value;j++){
                         code+='"'+this.enemies[i]+'",';
+                      
                     }
                 }
+                
+                code=code.slice(0,-1)
+           
                 code+="]";
 
             })

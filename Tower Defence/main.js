@@ -1,6 +1,11 @@
 //creating and starting board
-let board = new Board("10w5h1 0 2 0 2 1 2 2 3 0 3 2 4 0 5 0 5 2 6 0 6 1 6 2p1 1 2 3 3 1 4 1 4 2 5 1t0 0 7 2s3 3e", document.querySelector("canvas"), 240, document.querySelector("#moneyCount"), document.querySelector("#hpCount"), document.querySelector("#pauseMenu"))
+localStorage.getItem("map_code")==null?map_code="":map_code=localStorage.getItem("map_code");
+localStorage.getItem("waves_code")==null?waves_code="":waves_code=localStorage.getItem("waves_code");
 
+console.log(map_code,waves_code)
+
+let board = new Board(map_code, waves_code,document.querySelector("canvas"), 240, document.querySelector("#moneyCount"), document.querySelector("#hpCount"), document.querySelector("#pauseMenu"))
+console.log(map_code, waves_code)
 window.onscroll = () => {
     window.scrollY == 0 ? document.querySelector("#moneyCount").style.position = "relative" : document.querySelector("#moneyCount").style.position = "fixed"
 }
