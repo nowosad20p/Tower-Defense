@@ -7,7 +7,7 @@ session_start();
     $map_creator=$_SESSION["user"];
     $map_code=$_POST["mapCode"];
     $waves_code=$_POST["waveCode"];
-    $image="a";
+    $image=$_POST["image"];
     $description="ae";
     $title="ae";
     $date_of_upload = date("Y/m/d");

@@ -83,7 +83,7 @@ class BoardCreator {
 
                 }
             }
-            this.drawingUtils.drawGrid();
+            //this.drawingUtils.drawGrid();
         }
         //getting another frame
         requestAnimationFrame(this.update.bind(this))

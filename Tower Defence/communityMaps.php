@@ -25,7 +25,8 @@ $description=$row["description"];
 echo "<div class='mapContainer'>";
 echo "<div class='title'>$mapName</div>";
 echo "<div class='author'>$author</div>";
-echo "<div class='image'>$image</div>";
+
+echo "<div class='image'><img src='$image'></div>";
 echo "<div class='description'>$description</div>";
 
 

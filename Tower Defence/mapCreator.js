@@ -74,7 +74,7 @@ function mapEditor() {
         console.log(boardToString(boardCreator.board))
         localStorage.setItem("mapCode", boardToString(boardCreator.board)[0])
         localStorage.setItem("spawners", JSON.stringify(boardToString(boardCreator.board)[1]))
-
+        localStorage.setItem("image",canvas.toDataURL());
         wavesEditor();
 
     }
@@ -123,8 +123,13 @@ function finish(waveCreators) {
     let waveCode = document.createElement("input");
     waveCode.type = "text";
     waveCode.name = "waveCode";
+    let image = document.createElement("input");
+    image.type = "text";
+    image.name = "image";
+    image.value=localStorage.getItem("image");
     mapCode.value=localStorage.getItem("mapCode");
     waveCode.value=code;
+    form.appendChild(image);
     form.appendChild(mapCode);
     form.appendChild(waveCode);
 
