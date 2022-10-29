@@ -42,7 +42,10 @@ h1{
 
     text-align: center;
 }
-
+.mapContainer>button{
+    grid-column: span 4;
+    border:none;
+}
 body{
 
     margin:0;

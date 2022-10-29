@@ -24,6 +24,11 @@ class PreloadedImages {
             //enemies
             "goblin": this.loadImage("./graphics/enemies/goblin.png"),
             "bat": this.loadImage("./graphics/enemies/bat.png"),
+            "orc":this.loadImage("./graphics/enemies/orc.png"),
+            "ghost":this.loadImage("./graphics/enemies/ghost.png"),
+            "villager":this.loadImage("./graphics/enemies/villager.png"),
+            "fireSpirit":this.loadImage("./graphics/enemies/fireSpirit.png"),
+
             //tiles
             "terrain": this.loadImage("./graphics/tiles/terrain.png"),
             "enemySpawn": this.loadImage("./graphics/tiles/enemySpawn.png"),

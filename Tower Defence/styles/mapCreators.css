@@ -20,9 +20,7 @@ input[type="submit"]{
     background-color: #1d9142;
     color:white;
 }
-input[type="number"]{
 
-}
 h1{
     text-align: center;
 }
@@ -51,3 +49,39 @@ h3{
     background-color: rgb(104, 103, 103);
 
 }
+#narzedzia{
+    background-color: #fff;
+  
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
+    margin-bottom: 0;
+
+}
+
+#narzedzia>button>img{
+    width: 5vw;
+    height: 5vw;
+}
+#saveBtn{
+    justify-self: flex-end;
+    
+}
+button>img{
+    width: 100%;
+
+}
+ canvas{
+    position: block;
+ }
+button{
+    padding:0;
+    border:none;
+}
+body{
+    margin:0;
+    padding: 0;
+}
+

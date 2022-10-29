@@ -10,23 +10,19 @@
 <?php
 session_start();
 require("../database/databaseConnection.php");
-if(!isset($_SESSION["mapID"])){
-echo "brak mapy do wczytania";
-}
- 
-$map=$_SESSION["mapID"];
 
+ 
+$map=$_POST["id"];
+echo $map;
 $query = "SELECT * FROM maps WHERE map_id=$map";
 $result=mysqli_query($connection,$query)->fetch_assoc();
 $map_code=$result["map_code"];
 $waves_code=$result["waves_code"];
 
 echo "<script>localStorage.setItem('map_code','$map_code');localStorage.setItem('waves_code','$waves_code');console.log(localStorage.getItem('map_code'));</script>";
-
+echo "<script>window.location='../../game.html'</script>";
 
 ?>
-<?php
-header("location:../../game.html");
-?>
+
 </body>
 </html>

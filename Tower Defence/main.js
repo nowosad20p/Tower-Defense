@@ -1,7 +1,7 @@
 //creating and starting board
 localStorage.getItem("map_code")==null?map_code="":map_code=localStorage.getItem("map_code");
 localStorage.getItem("waves_code")==null?waves_code="":waves_code=localStorage.getItem("waves_code");
-
+console.log(map_code,waves_code)
 console.log(map_code,waves_code)
 
 let board = new Board(map_code, waves_code,document.querySelector("canvas"), 240, document.querySelector("#moneyCount"), document.querySelector("#hpCount"), document.querySelector("#pauseMenu"))

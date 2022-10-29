@@ -3,6 +3,7 @@ console.log(document.querySelector("footer"))
 
 document.querySelector("footer").style.display = "none";
 
+
 function createForm() {
     if (document.querySelectorAll("canvas").length != 0) {
         document.querySelector("main").innerHTML = "";
@@ -31,6 +32,7 @@ function createForm() {
 
     document.querySelector("main").appendChild(newForm);
 
+  
 
 
 

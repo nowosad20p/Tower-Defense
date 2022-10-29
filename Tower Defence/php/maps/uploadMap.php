@@ -15,4 +15,5 @@ session_start();
     $query='INSERT INTO maps(map_creator,map_code,waves_code,image,description,title,date_of_upload) VALUES ("'.$map_creator.'","'.$map_code.'",'."'".$waves_code."'".',"'.$image.'","'.$description.'","'.$title.'","'.$date_of_upload.'");';
     mysqli_query($connection,$query);
     echo mysqli_error($connection);
+    header("location:../../communityMaps.php");
     ?>
