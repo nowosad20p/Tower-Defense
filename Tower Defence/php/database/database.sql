@@ -14,9 +14,9 @@ CREATE TABLE users(
 CREATE TABLE maps(
     map_id int PRIMARY KEY AUTO_INCREMENT NOT NULL ,
     map_creator int ,
-    map_code varchar(255) ,
-    waves_code varchar(255) ,
-    image varchar(25) ,
+    map_code TEXT ,
+    waves_code TEXT ,
+    image TEXT ,
     description varchar(255),
     title varchar(25) ,
     date_of_upload date ,
@@ -24,7 +24,7 @@ CREATE TABLE maps(
 
 )
 
-CREATE TABLE map_revies(
+CREATE TABLE map_reviews(
     map int,
     user int,
     map_review varchar(255),
