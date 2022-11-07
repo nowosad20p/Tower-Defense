@@ -1,3 +1,7 @@
+@import url('https://fonts.cdnfonts.com/css/8bit-wonder');
+body{
+  font-family: '8BIT WONDER', sans-serif;
+}
 #gameModesContainer{
     display:flex;
     width: 100%;
@@ -14,7 +18,11 @@ h1{
         border-bottom: 3px solid darkgray;
         border-radius: 5px;
 }
-
+nav{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
 .gameModeDiv>p{
     text-align: center;
 
@@ -35,4 +43,8 @@ h1{
     transform: scale(1.5);
     transition: 2s;
 
+}
+#home{
+    width: 2vw;
+    image-rendering: pixelated;
 }

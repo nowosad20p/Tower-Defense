@@ -5,6 +5,13 @@ document.querySelector("footer").style.display = "none";
 
 
 function createForm() {
+    document.querySelector("#previousStep").onclick = () => {
+        window.location = "lobby.html";
+    }
+    document.querySelector("#mapCreatorNav").className = "";
+    document.querySelector("#wavesCreatorNav").className = "";
+    document.querySelector("#mapFormNav").className = "navActive";
+
     if (document.querySelectorAll("canvas").length != 0) {
         document.querySelector("main").innerHTML = "";
     }
@@ -13,26 +20,41 @@ function createForm() {
     document.querySelector("footer").style.display = "none";
 
 
+    //<input type="text" id="title" placeholder="title">
+    //</input><input type="text" id="description" placeholder="description"></input>
+
+    let titleInput = document.createElement("input");
+    titleInput.type = "text";
+    titleInput.id = "title";
+    titleInput.placeholder = "title";
+
+    let descriptionInput = document.createElement("input");
+    descriptionInput.type = "text";
+    descriptionInput.id = "description";
+    descriptionInput.placeholder = "description";
+
     let widthInput = document.createElement("input");
     widthInput.type = "text";
-    widthInput.id = "#width";
+    widthInput.id = "width";
     widthInput.placeholder = "width";
 
     let heightInput = document.createElement("input");
     heightInput.type = "text";
-    heightInput.id = "#height";
+    heightInput.id = "height";
     widthInput.placeholder = "width";
 
     let submitBtn = document.createElement("input");
     submitBtn.type = "submit";
 
+    newForm.appendChild(titleInput);
+    newForm.appendChild(descriptionInput);
     newForm.appendChild(widthInput);
     newForm.appendChild(heightInput);
     newForm.appendChild(submitBtn);
 
     document.querySelector("main").appendChild(newForm);
 
-  
+
 
 
 
@@ -40,6 +62,12 @@ function createForm() {
 }
 
 function mapEditor() {
+    document.querySelector("#previousStep").onclick = () => {
+        createForm();
+    }
+    document.querySelector("#mapCreatorNav").className = "navActive";
+    document.querySelector("#wavesCreatorNav").className = "";
+    document.querySelector("#mapFormNav").className = "";
     document.querySelector("footer").style.display = "block";
 
     if (document.querySelectorAll("#width").length == 0 || document.querySelectorAll("#height").length == 0) {
@@ -76,7 +104,7 @@ function mapEditor() {
         console.log(boardToString(boardCreator.board))
         localStorage.setItem("mapCode", boardToString(boardCreator.board)[0])
         localStorage.setItem("spawners", JSON.stringify(boardToString(boardCreator.board)[1]))
-        localStorage.setItem("image",canvas.toDataURL());
+        localStorage.setItem("image", canvas.toDataURL());
         wavesEditor();
 
     }
@@ -84,6 +112,12 @@ function mapEditor() {
 }
 
 function wavesEditor() {
+    document.querySelector("#previousStep").onclick = () => {
+        mapEditor();
+    }
+    document.querySelector("#mapCreatorNav").className = "";
+    document.querySelector("#wavesCreatorNav").className = "navActive";
+    document.querySelector("#mapFormNav").className = "";
     document.querySelector("footer").style.display = "none";
     if (document.querySelectorAll("canvas").length != 0) {
         document.querySelector("main").innerHTML = "";
@@ -93,10 +127,15 @@ function wavesEditor() {
     let waveCreators = [];
 
     spawners.forEach(element => {
+        let h2 = document.createElement("h2");
+        h2.innerHTML = element.x + "," + element.y;
+
         let waveContainer = document.createElement("div");
         let newWaveBtn = document.createElement("button");
         newWaveBtn.innerHTML = "Create new wave"
         waveCreators.push(new WavesCreator(waveContainer, newWaveBtn, new Vector2(element.x, element.y)))
+        document.querySelector("main").appendChild(h2)
+
         document.querySelector("main").appendChild(waveContainer)
         document.querySelector("main").appendChild(newWaveBtn);
     })
@@ -128,9 +167,9 @@ function finish(waveCreators) {
     let image = document.createElement("input");
     image.type = "text";
     image.name = "image";
-    image.value=localStorage.getItem("image");
-    mapCode.value=localStorage.getItem("mapCode");
-    waveCode.value=code;
+    image.value = localStorage.getItem("image");
+    mapCode.value = localStorage.getItem("mapCode");
+    waveCode.value = code;
     form.appendChild(image);
     form.appendChild(mapCode);
     form.appendChild(waveCode);

@@ -2,7 +2,7 @@ class WavesCreator{
     constructor(container,createWaveBtn,position=new Vector2(0,0)){
         this.position=position;
         this.container=container;
-        this.enemies=["goblin","bat"];
+        this.enemies=["goblin","bat","orc","villager","fireSpirit","ghost"];
         createWaveBtn.onclick=()=>{this.createWave()};
     }
     createWave(){
@@ -72,7 +72,7 @@ class WavesCreator{
             let groups=element.querySelectorAll(".groupDiv");
             groups.forEach(group=>{
          
-                code+="<"+group.querySelector(".delay").value+","+group.querySelector(".spawnRatio").value+">";
+                code+="<"+group.querySelector(".delay").value*1000+","+group.querySelector(".spawnRatio").value*1000+">";
                 code+="[";
              
                 for(let i=0;i<this.enemies.length;i++){

@@ -20,7 +20,19 @@ input[type="submit"]{
     background-color: #1d9142;
     color:white;
 }
-
+nav{
+    display:flex;
+    justify-content: center;
+    padding:10px;
+    
+}
+nav>div{
+    margin-left:10px;
+    margin-right:10px;
+}
+.navActive{
+    background-color: lightgreen;
+}
 h1{
     text-align: center;
 }

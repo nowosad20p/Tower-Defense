@@ -38,6 +38,15 @@ class EnemySpawn extends Tile {
                 return new Goblin(this.position, this.path, delay);
             case "bat":
                 return new Bat(this.position, this.path, delay);
+            case "orc":
+                return new Orc(this.position, this.path, delay);
+            case "villager":
+                return new Villager(this.position, this.path, delay);
+            case "ghost":
+                return new Villager(this.position, this.path, delay);
+            case "fireSpirit":
+                return new Villager(this.position, this.path, delay);
+
         }
     }
     isWalkable(tile) { //returns if entity can walk on this tile
