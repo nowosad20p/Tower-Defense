@@ -1,0 +1,22 @@
+$background:lightgray;
+
+form{
+   
+    margin-left:auto;
+    margin-right:auto;
+    width:50%;
+    background-color: $background;
+    height: 200px;
+    border:none;
+    fieldset{
+    display:flex;
+    flex-direction: column;
+    border:1px solid black;
+    background-color: $background;
+    height: 100%;
+    }
+}
+#home{
+    width: 2vw;
+    image-rendering: pixelated;
+}
