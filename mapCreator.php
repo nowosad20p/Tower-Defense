@@ -12,21 +12,25 @@
 </head>
 
 <body>
-<?php
-session_start();
-if(!isset($_SESSION["user"])){
-    header("location:php/account/login.php");
-}
-?>
-    <nav><img src="graphics/leftArrow.png" alt="back" id="previousStep"></div><div id="mapFormNav" class="navActive">Map properties</div> <div id="mapCreatorNav">Map creator</div> <div id="wavesCreatorNav" >Waves creator</div><img src="graphics/homeIcon.png" alt="home" id="home"></div></nav>
-   <script>
-    document.querySelector("#previousStep").onclick=()=>{
-        window.location="lobby.html";
+    <?php
+    session_start();
+    if (!isset($_SESSION["user"])) {
+        header("location:php/account/login.php");
     }
-    document.querySelector("#home").onclick=()=>{
-        window.location="index.html";
-    }
-   </script>
+    ?>
+    <nav><img src="graphics/leftArrow.png" alt="back" id="previousStep"></div>
+        <div id="mapFormNav" class="navActive">Map properties</div>
+        <div id="mapCreatorNav">Map creator</div>
+        <div id="wavesCreatorNav">Waves creator</div><img src="graphics/homeIcon.png" alt="home" id="home"></div>
+    </nav>
+    <script>
+        document.querySelector("#previousStep").onclick = () => {
+            window.location = "lobby.html";
+        }
+        document.querySelector("#home").onclick = () => {
+            window.location = "index.html";
+        }
+    </script>
     <main>
         <form id="mapForm">
             <input type="text" id="title" placeholder="title">

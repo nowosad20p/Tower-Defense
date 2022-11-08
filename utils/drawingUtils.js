@@ -22,7 +22,7 @@ class DrawingUtils {
         this.ctx.drawImage(tile.img, tile.startingPointOfImage.x, tile.startingPointOfImage.y, tile.width, tile.height, this.width / this.tilesInRow * posX, this.heigth / this.tilesInColumn * posY, this.width / this.tilesInRow, this.heigth / this.tilesInColumn);
     }
     drawText(text, color = "black", position = new Vector2(this.tilesInRow / 2, this.tilesInColumn / 2)) {
-      
+
         this.ctx.fillStyle = color;
         this.ctx.fillText(text, position.x * this.rowTileSize, position.y * this.colTileSize);
     }
@@ -44,9 +44,9 @@ class DrawingUtils {
     drawTurretStats(turret) {
         this.drawRectangle(new Vector2(turret.position.x + 0.2, turret.position.y + 0.2), new Vector2(turret.position.x + 0.8, turret.position.y + 0.9), "rgba(0,0,0,0.5)");
         this.drawText("Stats:", "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.3));
-        this.drawText("Range:" + turret.stats.range, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.4));
-        this.drawText("Damage:" + turret.stats.damage, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.5));
-        this.drawText("AS:" + turret.stats.attackSpeed / 100, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.6));
+        this.drawText("Range:" + turret.statsToDisplay.range, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.4));
+        this.drawText("Damage:" + turret.statsToDisplay.damage, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.5));
+        this.drawText("AS:" + turret.statsToDisplay.attackSpeed / 100, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.6));
 
 
 

@@ -11,10 +11,10 @@ class Tower {
         this.curTarget = null;
         this.position = position;
         this.middleOfTower = new Vector2(this.position.x + 0.5, this.position.y + 0.5);
-
+        this.upgradeStats = new TowerStats(1, 1, 1, 0, 0);
         //attack settings
         this.stats = new TowerStats(range, damage, attackSpeed * 100, exp, value);
-
+        this.statsToDisplay = Object.create(this.stats);
         this.projectiles = [];
         this.timeSinceLastAttack = 0;
 
@@ -26,11 +26,16 @@ class Tower {
                     this.levelUp();
 
 
+
+                }, () => {
+                    this.statsToDisplay = Object.create(this.stats);
+                }, () => {
+                    this.statsToDisplay.addStats(this.upgradeStats);
                 }),
                 new Button(new BetterImage("buttons", 16, 16, new Vector2(16, 0)), 16, 16, new Vector2(0, 0), () => {
 
 
-                    board.board[position.x][position.y] = new TowerSlot(new BetterImage("towerSlot", 16, 16, new Vector2(0, 0)), this.board, Object.create(this.position))
+                    board.board[position.x][position.y] = new TowerSlot(this.board, Object.create(this.position));
                     board.coins += 0.8 * this.stats.value;
                     board.updateUI();
 

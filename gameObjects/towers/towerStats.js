@@ -6,4 +6,10 @@ class TowerStats {
         this.exp = exp;
         this.value = value;
     }
+    addStats(stats) {
+        this.range += stats.range;
+        this.damage += stats.damage;
+        this.attackSpeed += stats.attackSpeed;
+        console.log(this.range)
+    }
 }
