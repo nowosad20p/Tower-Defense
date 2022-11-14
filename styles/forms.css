@@ -35,6 +35,10 @@ input::placeholder{
   color:white;
   
 }
+.errorMessage{
+  color:red;
+  text-align: center;
+}
 a{
   color:black;
   font-size:50%;

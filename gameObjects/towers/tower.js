@@ -60,6 +60,7 @@ class Tower {
             this.board.coins -= this.upgradePrice;
             this.upgradePrice *= 1.1;
             this.updateImage();
+            this.stats.addStats(this.upgradeStats);
         }
     }
     attack() {

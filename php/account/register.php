@@ -30,6 +30,13 @@
             </fieldset>
 
         </form>
+        <p class="errorMessage">
+        <?php
+        if(isset($_GET["error"])){
+            echo str_replace("_"," ",$_GET["error"]);
+        }
+        ?>
+        </p>
         <a href="login.php">Login</a>
 
     </main>
