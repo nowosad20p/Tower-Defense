@@ -23,12 +23,16 @@ class Projectile {
 
         );
         if (pointIntersectRectangle(this.position, this.target.position, rightBot)) {
-            this.target.takeDamage(this.damage, this.damageType);
+            this.dealDamage();
             this.finished = true;
         }
 
         if (this.target.dead || this.target.finished) {
             this.finished = true;
         }
+    }
+    dealDamage() {
+        this.target.takeDamage(this.damage, this.damageType);
+
     }
 }

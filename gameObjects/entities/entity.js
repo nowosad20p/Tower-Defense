@@ -17,7 +17,7 @@ class Entity {
         this.spawned = false;
         this.widthRatio = this.image.width / this.image.height;
         this.heightRatio = this.image.height / this.image.width;
-
+        this.curEffects = [];
     }
     spawn() {
 
@@ -26,15 +26,21 @@ class Entity {
     die() {
         this.dead = true;
     }
-    takeDamage(damage, damageType) {
+    takeDamage(damage, damageType = normal, effect = "none") {
 
         this.hp -= damage;
+        console.log(effect)
+        if (effect instanceof Slow) {
+            this.curEffects.push(effect);
+            console.log("Dodaje efekt");
+        }
+        console.log("Currrent effects:" + this.curEffects)
         if (this.hp <= 0) {
 
             this.die()
         }
-        let  board= new Board();
-        board.curUI.push(new TemporaryText(new Vector2(this.position.x,this.position.y),damage))
+        let board = new Board();
+        board.curUI.push(new TemporaryText(new Vector2(this.position.x, this.position.y), damage))
         console.log(board.curUI)
     }
 }

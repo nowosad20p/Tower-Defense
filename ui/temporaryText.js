@@ -4,14 +4,14 @@ class TemporaryText {
         this.text = text;
         this.maxWidth = maxWidth;
         this.readyToDelete = false;
-        this.duration = duration*1000;
-       
+        this.duration = duration * 1000;
+
     }
     update(timeElapsed) {
-        this.duration-=timeElapsed;
-        console.log(this.duration)
+        this.duration -= timeElapsed;
+
         if (this.duration <= 0) {
-          
+
             this.readyToDelete = true;
         }
     }

@@ -82,7 +82,7 @@ function stringToBoard(string, gameboard) {
 
                 curArray.push(cur);
                 cur = "";
-                console.log(curArray)
+
                 for (let i = 0; i < curArray.length; i += 2) {
 
 
@@ -161,5 +161,5 @@ function boardToString(board) {
     map += "s";
     map += playerBase.x + " " + playerBase.y + "e";
     //returning result
-    return [map,camps];
+    return [map, camps];
 }

@@ -34,7 +34,21 @@ class Enemy extends Entity {
 
     }
     update(time) {
-
+        let damageToTake = 0;
+        let movementMultiplier = 1;
+        let i = 0;
+        this.curEffects.forEach(element => {
+            if (element instanceof Slow) {
+                movementMultiplier *= (1 - element.slowStrength);
+            }
+            if (element.finished) {
+                this.curEffects.splice(i, 1);
+                i--;
+            }
+            i++;
+            //element.update(time);
+        })
+        console.log(movementMultiplier)
         if (this.spawned) {
 
             if (this.hp <= 0) {
@@ -62,7 +76,7 @@ class Enemy extends Entity {
             let x = (this.path[0].x - this.position.x).toFixed(5)
             let y = (this.path[0].y - this.position.y).toFixed(5)
 
-            let movementMultiplier = (time / 100 * this.movementSpeed).toFixed(5);
+            movementMultiplier *= (time / 100 * this.movementSpeed).toFixed(5);
             x >= 0 ? this.position.x += Math.ceil(x) * movementMultiplier : this.position.x += Math.floor(x) * movementMultiplier;
             y >= 0 ? this.position.y += Math.ceil(y) * movementMultiplier : this.position.y += Math.floor(y) * movementMultiplier;
 
