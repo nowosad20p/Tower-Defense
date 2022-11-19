@@ -4,12 +4,12 @@ try{
 if (!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["submit"]) || !isset($_POST["repeatedPassword"]) || !isset($_POST["mail"]) || !isset($_POST["name"]) || !isset($_POST["surname"])) {
     throw new Exception("All inputs must be filled");
 }
-if (!empty($_POST["username"]) || !empty($_POST["password"]) || !empty($_POST["submit"]) || !empty($_POST["repeatedPassword"]) || !empty($_POST["mail"]) || !empty($_POST["name"]) || !empty($_POST["surname"])) {
-    throw new Exception("All inputs must be filled");
-}
-// if(count($_POST["password"])<7){
-//     throw new Exception("Password_must_have_between_7_and_25_characters");
+// if (!empty($_POST["username"]) || !empty($_POST["password"]) || !empty($_POST["repeatedPassword"]) || !empty($_POST["mail"]) || !empty($_POST["name"]) || !empty($_POST["surname"])) {
+//     throw new Exception("All inputs must be filled");
 // }
+ //if(count($_POST["password"])<7){
+   //  throw new Exception("Password_must_have_between_7_and_25_characters");
+ //}
 $firstname = $_POST["name"];
 $surname = $_POST["surname"];
 $nickname = $_POST["username"];
@@ -26,9 +26,11 @@ if (mysqli_query($connection, $query)) {
 } else {
    throw new Exception("Connection_to_database_failed");
 }
+
 }
 catch(Exception $ex){
+ 
      $exception=$ex->getMessage();
      header("location:register.php?error=$exception");
-    
+
 }

@@ -2,7 +2,7 @@ let form = document.querySelector("#mapForm");
 console.log(document.querySelector("footer"))
 
 document.querySelector("footer").style.display = "none";
-
+let mapImage = document.querySelector("#mapImage");
 
 function createForm() {
     document.querySelector("#previousStep").onclick = () => {
@@ -107,7 +107,9 @@ function mapEditor() {
         console.log(boardToString(boardCreator.board))
         localStorage.setItem("mapCode", boardToString(boardCreator.board)[0])
         localStorage.setItem("spawners", JSON.stringify(boardToString(boardCreator.board)[1]))
-        localStorage.setItem("image", canvas.toDataURL());
+        
+        mapImage.value=canvas.toDataURL("image/webp");
+        
         wavesEditor();
 
     }
@@ -181,7 +183,7 @@ function finish(waveCreators) {
     description.type = "text";
     description.name = "description";
     //setting up values
-    image.value = localStorage.getItem("image");
+    image.value = mapImage.value;
     mapCode.value = localStorage.getItem("mapCode");
     description.value = localStorage.getItem("description");
     title.value = localStorage.getItem("title");

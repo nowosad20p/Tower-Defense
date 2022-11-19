@@ -40,7 +40,10 @@
             <input type="text" id="height" placeholder="height">
             <input type="submit">
         </form>
+
     </main>
+    <input type="text" id="mapImage">
+
     <footer id="narzedzia">
 
         <button id="terrainBtn"><img src="graphics/tiles/grass.png"> </button>
