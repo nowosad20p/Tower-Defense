@@ -1,5 +1,12 @@
+@import url('https://fonts.cdnfonts.com/css/8bit-wonder');
+body{
+  font-family: '8BIT WONDER', sans-serif;
+  background-color: #232423;
+}
+
 footer{
     position:absolute;
+    
 }
 form{
     margin:auto;
@@ -8,11 +15,16 @@ form{
     justify-content: center;
     flex-direction: column;
     margin-top:5vh;
+   
+}
+input{
+    border-radius: 5px;
+    margin:3px;
 }
 input[type="text"]{
     border:none;
     height: 50px;
-
+    background-color: #3d403e;
 }
 input[type="submit"]{
     height: 75px;
@@ -20,11 +32,20 @@ input[type="submit"]{
     background-color: #1d9142;
     color:white;
 }
+input[type="submit"]:hover{
+    color: black;
+    background-color: #fff;
+    transition-duration: 0.5s;
+    cursor:pointer;
+}
 nav{
     display:flex;
     justify-content: center;
     padding:10px;
-    
+    background-color: #211f1f;
+    height: 50px;
+    align-items: center;
+    color:white;
 }
 nav>div{
     margin-left:10px;
@@ -48,9 +69,10 @@ h3{
     justify-content: center;
     flex-direction: column;
     display: flex;
-    margin-left:auto;
+    margin-left:20%;
     margin-right: auto;
     background-color: rgb(53, 53, 53);
+
 }
 .groupsContainer{
     justify-content: center;
@@ -62,25 +84,35 @@ h3{
 
 }
 #narzedzia{
-    background-color: #fff;
+    background-color: #211f1f;
   
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-  
+    align-items: center;
     margin-bottom: 0;
-
+    flex-wrap: wrap;
+    
 }
-
+#narzedzia>button{
+    margin:5px;
+    
+}
 #narzedzia>button>img{
     width: 5vw;
     height: 5vw;
 }
+
 #saveBtn{
-    justify-self: flex-end;
-    
+    height: 75px;
+    border:none;
+    background-color: #1d9142;
+    color:white;
+    width: 16.67%;
+ 
 }
+
 button>img{
     width: 100%;
 
@@ -97,3 +129,30 @@ body{
     padding: 0;
 }
 
+.groupBtn{
+    width: 50%;
+    margin-left:auto;
+    margin-right: auto;
+}
+.saveWavesBtn{
+    height: 75px;
+    border:none;
+    background-color: #1d9142;
+    color:white;
+    width: 33%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top:10px;
+    display:block;
+    border-radius: 5px;
+
+}
+.waveBtn{
+    margin-left:20%;
+    width: 100%;
+    background-color: #1d9142;
+    border-radius: 5px;
+    color:white;
+    height: 20px;
+    text-align: center;
+}

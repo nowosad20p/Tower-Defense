@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Map Creator</title>
 
     <link rel="stylesheet" href="styles/mapCreators.css">
 
 </head>
 
 <body>
+    
     <?php
     session_start();
     if (!isset($_SESSION["user"])) {
@@ -47,7 +48,7 @@
         <button id="towerBtn"><img src="graphics/towers/towerSlot.png"> </button>
         <button id="campBtn"><img src="graphics/tiles/enemySpawn.png"> </button>
         <button id="baseBtn"><img src="graphics/tiles/playerBase.png"> </button>
-
+       
         <button id="saveBtn">Save map</button>
 
     </footer>

@@ -10,16 +10,20 @@ class DrawingUtils {
         this.colTileSize = this.heigth / this.tilesInColumn;
     }
     drawTile(tile, posX, posY) {
-
+  
         tile = tile.image;
+       
+   
 
-
+ 
+       
         //setting up context properties
         this.ctx.filter = 'blur(0px)';
         this.ctx.imageSmoothingEnabled = false;
         this.ctx['oImageSmoothingEnabled']
         //drawing tile
         this.ctx.drawImage(tile.img, tile.startingPointOfImage.x, tile.startingPointOfImage.y, tile.width, tile.height, this.width / this.tilesInRow * posX, this.heigth / this.tilesInColumn * posY, this.width / this.tilesInRow, this.heigth / this.tilesInColumn);
+       
     }
     drawText(text, color = "black", position = new Vector2(this.tilesInRow / 2, this.tilesInColumn / 2)) {
 
@@ -52,8 +56,23 @@ class DrawingUtils {
 
     }
     drawProjectile(projectile) { //drawing image based on projectile object
-        this.ctx.drawImage(projectile.image.img, projectile.image.startingPointOfImage.x, projectile.image.startingPointOfImage.y, projectile.image.width, projectile.image.height, this.width / this.tilesInRow * projectile.position.x, this.heigth / this.tilesInColumn * projectile.position.y, this.width / this.tilesInRow * projectile.image.size, this.heigth / this.tilesInColumn * projectile.image.size);
-
+        this.ctx.save();
+        let imageX=projectile.image.startingPointOfImage.x;
+        let imageY = projectile.image.startingPointOfImage.y;
+        let imageWidth =projectile.image.width;
+        let imageHeight = projectile.image.height
+        let displayX = this.width / this.tilesInRow * projectile.position.x;
+        let displayY = this.heigth / this.tilesInColumn * projectile.position.y;
+        let displayWidth = this.width / this.tilesInRow * projectile.image.size;
+        let displayHeight = this.heigth / this.tilesInColumn * projectile.image.size;
+        //rotating image
+         this.ctx.translate(displayX+displayWidth/2, displayY+displayHeight/2);
+        this.ctx.rotate((Math.atan2(projectile.target.position.y - projectile.position.y, projectile.target.position.x - projectile.position.x) * 180 / Math.PI));
+        this.ctx.translate(-displayX-displayWidth/2, -displayY-displayHeight/2);
+        this.ctx.drawImage(projectile.image.img,imageX ,imageY ,imageWidth ,imageHeight , displayX, displayY, displayWidth, displayHeight);
+        console.log(projectile.image.img,imageX ,imageY ,imageWidth ,imageHeight , displayX, displayY, displayWidth, displayHeight)
+    this.ctx.restore();
+       
     }
     drawTurretRange(x, y, board) {
         //drawing circle expressing turret range on x,y 

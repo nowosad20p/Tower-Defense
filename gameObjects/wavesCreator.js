@@ -16,6 +16,7 @@ class WavesCreator{
         let newGroupBtn=document.createElement("button");
         newGroupBtn.onclick=this.createGroup;
         newGroupBtn.innerHTML="Create group";
+        newGroupBtn.className="groupBtn";
         newGroupBtn.onclick=()=>{
             this.createGroup(groupsContainer)
         }

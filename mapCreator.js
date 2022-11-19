@@ -68,7 +68,7 @@ function mapEditor() {
     document.querySelector("#mapCreatorNav").className = "navActive";
     document.querySelector("#wavesCreatorNav").className = "";
     document.querySelector("#mapFormNav").className = "";
-    document.querySelector("footer").style.display = "block";
+    document.querySelector("footer").style.display = "flex";
 
     if (document.querySelectorAll("#width").length == 0 || document.querySelectorAll("#height").length == 0) {
         createForm();
@@ -135,7 +135,8 @@ function wavesEditor() {
 
         let waveContainer = document.createElement("div");
         let newWaveBtn = document.createElement("button");
-        newWaveBtn.innerHTML = "Create new wave"
+        newWaveBtn.innerHTML = "Create new wave";
+        newWaveBtn.className="waveBtn";
         waveCreators.push(new WavesCreator(waveContainer, newWaveBtn, new Vector2(element.x, element.y)))
         document.querySelector("main").appendChild(h2)
 
@@ -144,9 +145,12 @@ function wavesEditor() {
     })
     let saveBtn = document.createElement("button");
     saveBtn.innerHTML = "Save";
+    saveBtn.className="saveWavesBtn";
     saveBtn.onclick = () => {
         finish(waveCreators)
     }
+    document.querySelector("main").appendChild(document.createElement("br"));
+
     document.querySelector("main").appendChild(saveBtn);
 
 }

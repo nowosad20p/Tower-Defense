@@ -9,10 +9,11 @@ class Projectile {
         this.finished = false;
         this.position.x += 0.5;
         this.position.y += 0.33;
-
+        this.animator=new Animator(this.image,4,1000);
     }
     update(deltaTime) {
-
+        
+        this.animator.update(deltaTime);
         let movementVector = directionVectorPercents(this.position, this.target.position);
 
         this.position.x += this.speed * movementVector.x * (deltaTime / 1000);

@@ -1,10 +1,18 @@
 //creating and starting board
 localStorage.getItem("map_code") == null ? map_code = "" : map_code = localStorage.getItem("map_code");
 localStorage.getItem("waves_code") == null ? waves_code = "" : waves_code = localStorage.getItem("waves_code");
+<<<<<<< Updated upstream
 
 
 let board = new Board(map_code, waves_code, document.querySelector("canvas"), 240, document.querySelector("#moneyCount"), document.querySelector("#hpCount"), document.querySelector("#pauseMenu"))
 
+=======
+
+
+
+let board = new Board(map_code, waves_code, document.querySelector("canvas"), 60, document.querySelector("#moneyCount"), document.querySelector("#hpCount"), document.querySelector("#pauseMenu"))
+console.log(map_code, waves_code)
+>>>>>>> Stashed changes
 window.onscroll = () => {
     window.scrollY == 0 ? document.querySelector("#moneyCount").style.position = "relative" : document.querySelector("#moneyCount").style.position = "fixed"
 }
