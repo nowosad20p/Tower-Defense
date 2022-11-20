@@ -17,6 +17,7 @@
             <button id="play">PLAY</button>
             <button>SETTINGS</button>
             <button id="account">ACCOUNT</button>
+            <button id="tutorial">HOW TO PLAY</button>
     
         </div>
     </main>
@@ -26,6 +27,7 @@
     <script>
         document.querySelector("#play").addEventListener("click",()=>{window.location='lobby.html';});
         document.querySelector("#account").addEventListener("click",()=>{window.location='php/account/account.php';});
+        document.querySelector("#tutorial").addEventListener("click",()=>{window.location='tutorial.html';});
         
         let canvas=document.querySelector("canvas");
         canvas.width=window.innerWidth;
