@@ -34,7 +34,7 @@ class TowerSlot extends Tile {
                     } else {
 
                     }
-                }),
+                }), 
 //                 new Button(new BetterImage("buttons", 16, 16, new Vector2(64, 0)), 16, 16, new Vector2(0, 0), () => {
 //                     let price = 100;
 //                     if (price <= this.board.coins) {

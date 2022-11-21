@@ -2,6 +2,7 @@
 body{
   font-family: '8BIT WONDER', sans-serif;
   color:white;
+  background-color: #232423;
 }
 h2{
   text-align: center;
@@ -18,18 +19,36 @@ form fieldset {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  background-color: #273e4a;
+  background-color: #181a18;
   height: 100%;
   padding:10px;
   
 }
 input{
   border:none;
-  background-color: #355e73;
+  background-color: #323332;
   color:white;
   
   height: 2vh;
-  border-bottom:#41748d 2px solid;
+  border-bottom: #3c3d3c 2px solid;
+  border-radius:5px;
+  padding:5px;
+}
+input[type="submit"]{
+  background-color: #41ba55;
+  color:white;
+  height: 5vh;
+  margin-bottom: 1vh;
+  border:none;
+transition-duration: 0.5s;
+  border-radius: 10px;
+  border-bottom:0.5vh solid #3a9149;
+  border-right:0.5vh solid #3a9149;
+}
+input[type="submit"]:hover{
+  color:black;
+  background-color: #fff;
+  cursor:pointer;
 }
 input::placeholder{
   color:white;
@@ -40,7 +59,7 @@ input::placeholder{
   text-align: center;
 }
 a{
-  color:black;
+  color:white;
   font-size:50%;
   text-align: center;
   margin-left:auto;
