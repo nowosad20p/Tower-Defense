@@ -45,10 +45,16 @@ class Enemy extends Entity {
                 this.curEffects.splice(i, 1);
                 i--;
             }
+            if (element instanceof Fire) {
+                if (element.tick > element.timeElapsed) {
+                    this.takeDamage(element.damage, "fire");
+                    element.timeElapsed = 0;
+                }
+            }
             i++;
-            //element.update(time);
+            element.update(time);
         })
-        console.log(movementMultiplier)
+
         if (this.spawned) {
 
             if (this.hp <= 0) {

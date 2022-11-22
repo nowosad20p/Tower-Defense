@@ -8,7 +8,7 @@ class MageTower extends Tower {
     attack() {
 
         if (this.curTarget != null) {
-            this.projectiles.push(new Projectile(new BetterImage("fireball", 8, 8, new Vector2(0, 0), 0.25), Object.create(this.position), this.curTarget, 2, this.stats.damage, "normal"));
+            this.projectiles.push(new FireBall(new BetterImage("fireball", 8, 8, new Vector2(0, 0), 0.25), Object.create(this.position), this.curTarget, 2, this.stats.damage, "normal"));
         }
     }
 }

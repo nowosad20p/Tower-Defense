@@ -29,7 +29,7 @@ class Entity {
     takeDamage(damage, damageType = normal, effect = "none") {
 
         this.hp -= damage;
-        console.log(effect)
+
         if (effect instanceof Slow) {
             this.curEffects.push(effect);
             console.log("Dodaje efekt");
@@ -41,6 +41,6 @@ class Entity {
         }
         let board = new Board();
         board.curUI.push(new TemporaryText(new Vector2(this.position.x, this.position.y), damage))
-        console.log(board.curUI)
+
     }
 }

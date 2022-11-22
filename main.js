@@ -16,7 +16,11 @@ document.getElementById("homeBtn").onclick = () => {
 }
 
 
+
 board.startLevel();
+
+document.querySelector("#home").addEventListener("click", () => { board.pause() })
+
 /*
 wieża maga - wieża maga który podpala, wskrzesza przeciwników, zadaje obrażenia kilku naraz(jak inferno tower w coc)
 wieża lodu - wieża która ma aure która spowalnia, większy zasięg i dmg i slow, szybkie ataki, kumulujący się slow

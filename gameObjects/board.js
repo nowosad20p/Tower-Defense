@@ -1,12 +1,12 @@
 class Board {
 
-    constructor(map,waves, canvas, fpsCount, moneyCount, hpCount, pauseMenu) {
+    constructor(map, waves, canvas, fpsCount, moneyCount, hpCount, pauseMenu) {
         if (Board.exists) { //if instance of this object exist return this instance
             return Board.instance;
         }
         Board.exists = true;
         Board.instance = this;
-        
+
         //seting up canvas
         this.canvas = canvas;
         this.preloadedImages = new PreloadedImages();
@@ -93,7 +93,12 @@ class Board {
                 this.pause();
             }
         }
+        window.onresize = () => {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerWidth / this.width * this.height;
+            this.drawingUtils.resize(this.canvas.width, this.canvas.height);
 
+        }
         //setting up pauseMenu
         this.pauseMenu = pauseMenu;
         this.pauseMenu.style.display = "none";
@@ -125,7 +130,7 @@ class Board {
                 if (this.enemies.length == 0) {
                     //this.sendNextWave();
                 }
-                
+
                 //checking if another frame should be displayed
                 if (this.timeElapsed > 1000 / this.fpsCount) {
 
@@ -174,7 +179,7 @@ class Board {
                         }
 
                     }
-                    
+
                     //drawing enemies and checking their state
 
                     for (let i = 0; i < this.enemies.length; i++) {
@@ -212,22 +217,22 @@ class Board {
                         if (this.curUI[i] instanceof Button) {
                             this.drawingUtils.drawButton(this.curUI[i])
                         }
-                      
+
 
                         if (this.curUI[i] instanceof TemporaryText) {
-                            if(this.curUI[i].readyToDelete){
-                                 this.curUI.splice(i, 1);
-                                 i--;
-                              
-                               
+                            if (this.curUI[i].readyToDelete) {
+                                this.curUI.splice(i, 1);
+                                i--;
 
-                            }else{
-                               
-                               
-                                this.drawingUtils.drawText(this.curUI[i].text,"red",this.curUI[i].position)
+
+
+                            } else {
+
+
+                                this.drawingUtils.drawText(this.curUI[i].text, "red", this.curUI[i].position)
                                 this.curUI[i].update(this.timeElapsed);
                             }
-                            
+
                         }
                     }
 
@@ -335,6 +340,7 @@ class Board {
 
         this.update();
         this.updateUI();
+
     }
 
 }

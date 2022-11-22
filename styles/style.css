@@ -13,12 +13,17 @@ body {
   margin: 0;
   padding: 0;
 }
+#home{
+  justify-self: flex-end;
+}
 nav {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
   z-index: 1;
   background-color: #Eab676;
+  
+  height: 30px;
 }
 #pauseMenu{
   position:relative;
