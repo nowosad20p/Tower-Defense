@@ -7,6 +7,6 @@ class Effect {
         if (this.timer <= 0) {
             this.finished = true;
         }
-        timer -= timeElapsed;
+        this.timer -= timeElapsed;
     }
 }
