@@ -73,7 +73,8 @@ class DrawingUtils {
         let displayHeight = this.heigth / this.tilesInColumn * 1.5 * projectile.image.size;
         //rotating image
         this.ctx.translate(displayX + displayWidth / 2, displayY + displayHeight / 2);
-        this.ctx.rotate((Math.atan2(projectile.target.position.y - projectile.position.y, projectile.target.position.x - projectile.position.x) * 180 / Math.PI));
+     
+        this.ctx.rotate(Math.atan2(projectile.target.position.y - projectile.position.y, projectile.target.position.x - projectile.position.x));
 
 
         this.ctx.translate(-displayX - displayWidth / 2, -displayY - displayHeight / 2);
