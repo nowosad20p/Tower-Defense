@@ -7,13 +7,14 @@ class Animator {
         this.timeElapsed = 0;
     }
     update(timeElapsed) {
-
+       
         this.timeElapsed += timeElapsed;
         if (this.timeElapsed > this.interval) {
             this.curFrame++;
             if (this.curFrame >= this.numberOfFrames) {
                 this.curFrame = 0;
             }
+            this.timeElapsed=0;
             this.image.startingPointOfImage.x = this.image.width * this.curFrame;
         }
     }

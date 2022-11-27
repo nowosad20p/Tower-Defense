@@ -28,6 +28,8 @@ class PreloadedImages {
             "ghost":this.loadImage("./graphics/enemies/ghost.png"),
             "villager":this.loadImage("./graphics/enemies/villager.png"),
             "fireSpirit":this.loadImage("./graphics/enemies/fireSpirit.png"),
+            "amogus":this.loadImage("./graphics/enemies/amogus.png"),
+
 
             //tiles
             "terrain": this.loadImage("./graphics/tiles/terrain.png"),

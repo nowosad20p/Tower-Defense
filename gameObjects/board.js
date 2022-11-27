@@ -1,6 +1,6 @@
 class Board {
 
-    constructor(map, waves, canvas, fpsCount, moneyCount, hpCount, pauseMenu) {
+    constructor(map, waves, canvas, fpsCount, moneyCount, hpCount, pauseMenu,endMenu) {
         if (Board.exists) { //if instance of this object exist return this instance
             return Board.instance;
         }
@@ -31,6 +31,7 @@ class Board {
 
         //game states
         this.paused = false;
+        this.finished = false;
 
         //waves settings
         this.timeBetweenWaves = 5000;
@@ -54,6 +55,10 @@ class Board {
 
         //loading waves
         waves = stringToWave(waves);
+       
+        this.coins=waves.shift();
+        waves.shift()
+        
 
         //creating paths and getting number of waves
 
@@ -102,6 +107,9 @@ class Board {
         //setting up pauseMenu
         this.pauseMenu = pauseMenu;
         this.pauseMenu.style.display = "none";
+        this.endMenu=endMenu;
+        this.endMenu.style.display = "none";
+
         return this;
     }
     pause() { //pausing game
@@ -115,14 +123,24 @@ class Board {
         this.paused = false;
         this.timeUtils.update();
         this.pauseMenu.style.display = "none";
-
+     
 
     }
+    endGame(result){//ending game, 0 means lose 1 means victory
+        this.finished=true;
+        this.endMenu.style.display="block";
+        if(result){
+            this.endMenu.querySelector("h2").innerHTML="You won!";
+        }else{
+            this.endMenu.querySelector("h2").innerHTML="Game over, get good";
 
+        }
+        
+    }
     update() {
         if (this.preloadedImages.loaded) {
             //checking if game is paused
-            if (!this.paused) {
+            if (!this.paused && !this.finished) {
 
                 //updating time
                 this.timeUtils.update();
@@ -180,7 +198,7 @@ class Board {
 
                     }
 
-                    //drawing enemies and checking their state
+                    //enemies
 
                     for (let i = 0; i < this.enemies.length; i++) {
 
@@ -197,14 +215,17 @@ class Board {
 
 
                                 if (this.hp <= 0) { //checking if player base is destroyed
-                                    this.gameOver();
+                                    this.endGame(0);
                                 }
                                 this.enemies.splice(i, 1);
                                 this.updateUI();
                                 i--;
                             } else { //updating enemies
                                 this.enemies[i].update(this.timeElapsed);
+                                //drawing enemies
+                                if(this.enemies[i].spawned){
                                 this.drawingUtils.drawEntity(this.enemies[i]);
+                                }
                             }
                         }
 
@@ -239,7 +260,7 @@ class Board {
 
                     if (this.enemies.length == 0 && this.curWave != 0) { //sending next waves and checking if player won
                         if (this.curWave == this.numberOfWaves) {
-                            this.win();
+                            this.endGame(1);
 
                         } else {
 
@@ -269,16 +290,7 @@ class Board {
 
 
     }
-    gameOver() { //game over function
-        this.drawingUtils.drawText("Pozdro poćwicz");
-
-        this.paused = true;
-    }
-    win() { //win function
-        this.drawingUtils.drawText("Kurde poćwiczył i wygrał");
-
-        this.paused = true;
-    }
+  
     sendNextWave() {
         //sending waves and saving spawned enemies in enemies array
         this.enemySpawns.forEach(element => {
@@ -333,6 +345,7 @@ class Board {
         //starting utilities and update loops
         //this.updateBoardTilesGraphic();
         this.inputUtils.startListening();
+        this.pauseMenu.style.display="none";
 
 
         this.timeElapsed = 0;

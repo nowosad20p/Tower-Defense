@@ -46,7 +46,8 @@ class EnemySpawn extends Tile {
                 return new Villager(this.position, this.path, delay);
             case "fireSpirit":
                 return new Villager(this.position, this.path, delay);
-
+            case "amogus":
+                return new Amogus(this.position, this.path, delay);
         }
     }
     isWalkable(tile) { //returns if entity can walk on this tile

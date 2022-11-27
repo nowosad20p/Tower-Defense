@@ -25,22 +25,22 @@ nav {
   
   height: 30px;
 }
-#pauseMenu{
+#pauseMenu,#endMenu{
   position:relative;
   margin:auto;
   margin-top:25vh;
   background-color: rgba(44, 42, 42, 0.596);
-  width:30vw;
+  width:50%;
   height: 50vh;
   padding:10px;
 }
-#pauseMenu>h2{
+#pauseMenu>h2,#endMenu>h2{
 
   font-size:40px;
   text-align: center;
   color:white;
 }
-#pauseMenu>div{
+#pauseMenu>div,#endMenu>div{
   display:flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -51,8 +51,8 @@ button{
   font-family: '8BIT WONDER', sans-serif;
 
 }
-#pauseMenu>div>button{
-  width: 50%;
+#pauseMenu>div>button,#endMenu>div>button{
+  width: 60%;
   margin:auto;
   margin-top:3vh;
   height: 5vh;
@@ -62,3 +62,9 @@ button{
 body{
   background-color: #506034;
 }
+
+@media only screen and (max-width: 600px) {
+  #pauseMenu,#endMenu{
+    width: 100%;
+  }
+ }

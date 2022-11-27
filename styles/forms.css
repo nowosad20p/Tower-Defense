@@ -67,8 +67,13 @@ a{
   display:block;
 }
 #home {
-  width: 2vw;
+  width: 30px;
   -ms-interpolation-mode: nearest-neighbor;
       image-rendering: -moz-crisp-edges;
       image-rendering: pixelated;
-}/*# sourceMappingURL=forms.css.map */
+}
+@media only screen and (max-width: 600px) {
+ form{
+  width: 100%;
+ }
+}

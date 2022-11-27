@@ -2,8 +2,14 @@ class CanonBall extends Projectile {
     constructor(position, target, speed, damage, damageType, enemies, size = 0.5) {
         super(new BetterImage("canonBall", 8, 8, new Vector2(0, 0), 0.25), position);
         this.size = size;
-        this.target = new Enemy("canonBall", target, [new Vector2(0, 0)], 0);
+        this.target = new Enemy(new BetterImage("canonBall", target.image.width,  target.image.height, new Vector2(0, 0), target.image.size), new Vector2(target.position.x,target.position.y), [new Vector2(0, 0)], 0);
+        //calculating real target position
+      
+
+        this.target.position.x=this.target.position.x+(this.target.size * this.target.widthRatio/2);
+        this.target.position.y=  this.target.position.y+(this.target.size * this.target.heightRatio/2);
         this.speed = speed;
+
         this.damage = damage;
         this.damageType = damageType;
         this.finished = false;
@@ -23,12 +29,12 @@ class CanonBall extends Projectile {
 
         //checking if reached destination
         let leftTop = new Vector2(
-            this.position.x - (this.size * 0.5),
-            this.position.y - (this.size * 0.5)
+            this.position.x - (this.size),
+            this.position.y - (this.size)
         );
         let rightBot = new Vector2(
-            this.position.x + (this.size * 0.5),
-            this.position.y + (this.size * 0.5)
+            this.position.x + (this.size),
+            this.position.y + (this.size)
         );
 
         if (pointIntersectRectangle(this.target.position, leftTop, rightBot)) {

@@ -1,6 +1,6 @@
 class Enemy extends Entity {
-    constructor(image, position = new Vector2(0, 0), path, delay) {
-        super(image, Object.create(position));
+    constructor(image, position = new Vector2(0, 0), path, delay,hp=10,damage=1,movementSpeed=0.1) {
+        super(image, Object.create(position),movementSpeed,hp,damage);
         this.path = [];
         path.forEach(element => {
 
@@ -10,15 +10,15 @@ class Enemy extends Entity {
         this.yDir = Math.sign(this.path[0].y - this.position.y);
 
 
-        this.offset = (Math.random() * (0.55 - 0.45) + 0.45).toFixed(2);
-
+        this.offset = (Math.random() * (0.25+this.image.size-0.75) + 0.75).toFixed(2);
+        console.log(this.offset)
         this.wasOffset = false;
         this.prevPosition = new Vector2();
         this.prevPath = [];
         this.dead = false;
 
         this.value = 10;
-        this.damageToTurret = 1;
+        this.damageToTurret = damage;
         this.path.forEach(element => {
             element.offset(this.offset);
         });
@@ -27,14 +27,17 @@ class Enemy extends Entity {
         this.size = this.image.size;
         this.xDir;
         this.yDir;
-
+      
     }
 
     die() {
 
     }
     update(time) {
-        let damageToTake = 0;
+    
+        this.animator.update(time);
+                    
+              
         let movementMultiplier = 1;
         let i = 0;
         this.curEffects.forEach(element => {

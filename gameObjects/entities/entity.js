@@ -1,14 +1,14 @@
 class Entity {
-    constructor(image, position = new Vector2(0, 0), movementSpeed = 0.1) {
+    constructor(image, position = new Vector2(0, 0), movementSpeed = 0.1,hp,damage) {
 
         this.image = image;
         this.position = position;
 
         //entity stats
         this.movementSpeed = movementSpeed;
-        this.hp = 10;
+        this.hp = hp;
         this.maxHp = this.hp;
-        this.damage = 100;
+        this.damage = damage;
         this.armor = 10;
 
         //entity state
@@ -18,6 +18,7 @@ class Entity {
         this.widthRatio = this.image.width / this.image.height;
         this.heightRatio = this.image.height / this.image.width;
         this.curEffects = [];
+        this.animator=new Animator(this.image,this.image.img.width/this.image.width,200)
     }
     spawn() {
 
@@ -32,9 +33,9 @@ class Entity {
 
         if (effect instanceof Slow) {
             this.curEffects.push(effect);
-            console.log("Dodaje efekt");
+           
         }
-        console.log("Currrent effects:" + this.curEffects)
+      
         if (this.hp <= 0) {
 
             this.die()

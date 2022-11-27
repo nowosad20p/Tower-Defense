@@ -77,8 +77,8 @@ function mapEditor() {
     let canvas = document.createElement("canvas");
     let width = document.querySelector("#width").value;
     let height = document.querySelector("#height").value;
-    localStorage.setItem("description",document.querySelector("#description").value);
-    localStorage.setItem("title",document.querySelector("#title").value);
+    localStorage.setItem("description", document.querySelector("#description").value);
+    localStorage.setItem("title", document.querySelector("#title").value);
 
     //changing form to canvas
     document.querySelector("main").appendChild(canvas);
@@ -107,9 +107,9 @@ function mapEditor() {
         console.log(boardToString(boardCreator.board))
         localStorage.setItem("mapCode", boardToString(boardCreator.board)[0])
         localStorage.setItem("spawners", JSON.stringify(boardToString(boardCreator.board)[1]))
-        
-        mapImage.value=canvas.toDataURL("image/webp");
-        
+
+        mapImage.value = canvas.toDataURL("image/webp");
+
         wavesEditor();
 
     }
@@ -138,19 +138,31 @@ function wavesEditor() {
         let waveContainer = document.createElement("div");
         let newWaveBtn = document.createElement("button");
         newWaveBtn.innerHTML = "Create new wave";
-        newWaveBtn.className="waveBtn";
+        newWaveBtn.className = "waveBtn";
         waveCreators.push(new WavesCreator(waveContainer, newWaveBtn, new Vector2(element.x, element.y)))
         document.querySelector("main").appendChild(h2)
 
         document.querySelector("main").appendChild(waveContainer)
         document.querySelector("main").appendChild(newWaveBtn);
     })
+    let label = document.createElement("label");
+    label.htmlFor = "goldAmmount";
+    label.innerHTML = "Gold:";
+    let goldAmmount = document.createElement("input");
+    goldAmmount.id = "goldAmmount";
+    goldAmmount.value = 200;
+    goldAmmount.type = "number";
     let saveBtn = document.createElement("button");
     saveBtn.innerHTML = "Save";
-    saveBtn.className="saveWavesBtn";
+    saveBtn.className = "saveWavesBtn";
     saveBtn.onclick = () => {
         finish(waveCreators)
     }
+    label.appendChild(goldAmmount);
+    document.querySelector("main").appendChild(document.createElement("br"));
+
+    document.querySelector("main").appendChild(label);
+
     document.querySelector("main").appendChild(document.createElement("br"));
 
     document.querySelector("main").appendChild(saveBtn);
@@ -158,7 +170,7 @@ function wavesEditor() {
 }
 
 function finish(waveCreators) {
-    let code = "";
+    let code = "g" + document.querySelector("#goldAmmount").value;
 
     waveCreators.forEach(element => {
         code += element.getCode();

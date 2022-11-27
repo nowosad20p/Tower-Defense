@@ -57,7 +57,8 @@ class DrawingUtils {
         this.drawText("Range:" + turret.statsToDisplay.range, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.4));
         this.drawText("Damage:" + turret.statsToDisplay.damage, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.5));
         this.drawText("AS:" + turret.statsToDisplay.attackSpeed / 100, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.6));
-
+        this.drawText(turret.description, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.8));
+        
 
 
     }

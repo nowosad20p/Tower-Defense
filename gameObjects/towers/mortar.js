@@ -9,7 +9,7 @@ class Mortar extends Tower {
         if (this.curTarget != null) { //sending canonball last to enemy position
 
 
-            this.projectiles.push(new CanonBall(Object.create(this.position), new Vector2(this.curTarget.position.x, this.curTarget.position.y), 2, this.stats.damage, "normal", this.board.enemies));
+            this.projectiles.push(new CanonBall(Object.create(this.position), this.curTarget, 2, this.stats.damage, "normal", this.board.enemies));
 
         }
     }

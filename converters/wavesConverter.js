@@ -5,6 +5,19 @@ function stringToWave(string) {
     let waves = [];
     for (let i = 0; i < string.length; i++) {
 
+        if(string[i]=="g"){
+            
+            let gold="";
+            i++;
+            while(!isNaN(string[i])){
+                gold+=string[i]+"";
+              
+
+                i++;
+            }
+        
+            result.push(gold*1);
+        }
         if (string[i] == "(") { //getting spawn position
             if (result.length != 0) {
                 result.push(waves);
