@@ -53,7 +53,7 @@ button:hover{
     justify-content: flex-end;
 }
 .image>img{
-   
+    border-top-right-radius: 10px;
     height: 100%;
     
 }

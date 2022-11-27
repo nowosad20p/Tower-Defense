@@ -107,8 +107,7 @@ class Enemy extends Entity {
                     this.position.y = this.path[0].y;
                 }
             }
-            // this.position.x += 
-            // this.position.y += (Math.ceil(this.path[0].y - this.position.y) * time / 100 * this.movementSpeed)
+            
 
         } else {
             if (this.timeWaited >= this.delay) {
