@@ -34,6 +34,7 @@ class DrawingUtils {
     drawText(text, color = "black", position = new Vector2(this.tilesInRow / 2, this.tilesInColumn / 2)) {
 
         this.ctx.fillStyle = color;
+        this.ctx.font = "1.5vw Arial";
         this.ctx.fillText(text, position.x * this.rowTileSize, position.y * this.colTileSize);
     }
     drawEntity(entity) {
@@ -57,8 +58,9 @@ class DrawingUtils {
         this.drawText("Range:" + turret.statsToDisplay.range, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.4));
         this.drawText("Damage:" + turret.statsToDisplay.damage, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.5));
         this.drawText("AS:" + turret.statsToDisplay.attackSpeed / 100, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.6));
+        if(turret.description!=undefined){
         this.drawText(turret.description, "white", new Vector2(turret.position.x + 0.4, turret.position.y + 0.8));
-        
+        }
 
 
     }
@@ -161,7 +163,9 @@ class DrawingUtils {
         //drawing button image
 
         this.ctx.drawImage(button.image.img, button.image.startingPointOfImage.x, button.image.startingPointOfImage.y, button.image.width, button.image.height, this.width / this.tilesInRow * button.position.x - 0.5 * button.size * this.width / this.tilesInRow, this.heigth / this.tilesInColumn * button.position.y - 0.5 * button.size * this.heigth / this.tilesInColumn, this.width / this.tilesInRow * button.size, this.heigth / this.tilesInColumn * button.size);
-
+        if(button.value!=null){
+            this.drawText(button.value,"black",new Vector2(button.position.x-(button.size/3),button.position.y+button.size))
+        }
     }
     drawLine(start, end) { //drawing line between two points
 

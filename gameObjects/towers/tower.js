@@ -31,7 +31,7 @@ class Tower {
                     this.statsToDisplay = Object.create(this.stats);
                 }, () => {
                     this.statsToDisplay.addStats(this.upgradeStats);
-                }),
+                },0.2,this.upgradePrice),
                 new Button(new BetterImage("buttons", 16, 16, new Vector2(16, 0)), 16, 16, new Vector2(0, 0), () => {
 
 
@@ -39,7 +39,7 @@ class Tower {
                     board.coins += 0.8 * this.stats.value;
                     board.updateUI();
 
-                })
+                },()=>{},()=>{},0.2,this.upgradePrice)
             ]
 
         );

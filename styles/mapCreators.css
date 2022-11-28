@@ -8,6 +8,9 @@ footer{
     position:absolute;
     
 }
+input:placeholder{
+    color:white;
+}
 form{
     margin:auto;
     width: 50%;

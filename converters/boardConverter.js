@@ -17,6 +17,7 @@ function stringToBoard(string, gameboard) {
                 break;
             case "h": //height
                 height = cur;
+                
                 cur = "";
                 for (let i = 0; i < width; i++) {
                     let column = [];
@@ -106,6 +107,8 @@ function stringToBoard(string, gameboard) {
 
 
     }
+    
+   
     return [board, playerBase, enemySpawns, new Vector2(width, height)]
 }
 
@@ -123,24 +126,24 @@ function boardToString(board) {
         for (let j = 0; j < board[i].length; j++) {
 
             if (board[i][j] instanceof PathTile) {
-                path.push(new Vector2(i, j));
+                path.push(new Vector2(i+1, j+1));
             }
             if (board[i][j] instanceof PlayerBase) {
-                playerBase = new Vector2(i, j);
+                playerBase = new Vector2(i+1, j+1);
 
             }
             if (board[i][j] instanceof EnemySpawn) {
-                camps.push(new Vector2(i, j));
+                camps.push(new Vector2(i+1, j+1));
 
             }
             if (board[i][j] instanceof TowerSlot) {
-                towers.push(new Vector2(i, j));
+                towers.push(new Vector2(i+1, j+1));
 
             }
         }
     }
     //writing array content to string readable by importing function
-    map += width + "w" + height + "h";
+    map += (width+2) + "w" + (height+2) + "h";
     path.forEach(element => {
         map += element.x + " " + element.y + " ";
     });

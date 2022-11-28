@@ -1,5 +1,5 @@
 class Button {
-    constructor(image, height, width, position = new Vector2(0, 0), onclick, unclick = () => { }, onfirstclick = () => { }, size = 0.25) {
+    constructor(image, height, width, position = new Vector2(0, 0), onclick, unclick = () => { }, onfirstclick = () => { }, size = 0.25,value=null) {
         //saving informations
         this.image = image;
         this.position = position;
@@ -13,6 +13,7 @@ class Button {
 
         this.unclickfunction = unclick;
         this.onfirstclick = onfirstclick;
+        this.value=value;
     }
     unclick() {
 
