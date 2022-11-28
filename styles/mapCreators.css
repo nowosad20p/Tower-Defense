@@ -100,11 +100,11 @@ h3{
 }
 #narzedzia>button{
     margin:5px;
-    
+    width: 75px;
 }
 #narzedzia>button>img{
-    width: 5vw;
-    height: 5vw;
+    width: 100%;
+    height: 100%
 }
 
 #saveBtn{
@@ -165,4 +165,14 @@ body{
 label{
     margin-left:auto;
     margin-right: auto;
+}
+@media only screen and (max-width: 600px) {
+    #narzedzia>button{
+        height: 50px;
+        width: 50px;
+    }
+    #narzedzia>button>img{
+        width: 100%;
+        height: 100%;
+    }
 }

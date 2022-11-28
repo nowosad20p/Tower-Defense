@@ -38,7 +38,7 @@ class DrawingUtils {
         this.ctx.fillText(text, position.x * this.rowTileSize, position.y * this.colTileSize);
     }
     drawEntity(entity) {
-
+      
         this.ctx.drawImage(entity.image.img, entity.image.startingPointOfImage.x, entity.image.startingPointOfImage.y, entity.image.width, entity.image.height, this.width / this.tilesInRow * entity.position.x, this.heigth / this.tilesInColumn * entity.position.y, this.width / this.tilesInRow * entity.image.size, this.heigth / this.tilesInColumn * entity.image.size);
         if (entity.hp < entity.maxHp) { //drawing hp bar 
             let leftTop = new Vector2(entity.position.x, entity.position.y - (entity.image.size * 0.1));
@@ -50,6 +50,9 @@ class DrawingUtils {
             this.drawRectangle(leftTop, rightBot, "#a63c24");
 
         }
+   
+
+
 
     }
     drawTurretStats(turret) {
