@@ -21,7 +21,7 @@
         <?php
         session_start();
         require("php/database/databaseConnection.php");
-        $query = "SELECT title, image, description, map_id, nickname FROM maps INNER JOIN users on users.user_id=maps.map_creator";
+        $query = "SELECT title, image, description, map_id, nickname,date_of_upload FROM maps INNER JOIN users on users.user_id=maps.map_creator";
         $result = mysqli_query($connection, $query);
         while ($row = $result->fetch_assoc()) {
 
@@ -30,11 +30,14 @@
             $image = $row["image"];
             $description = $row["description"];
             $id = $row["map_id"];
+            $date=$row["date_of_upload"];
             echo "<div class='mapContainer'>";
             echo "<div class='title'>$mapName</div>";
-            echo "<div class='author'>$author</div>";
+            echo "<div class='author'>$author <i>$date</i></div>";
 
             echo "<div class='image'><img src='$image'></div>";
+           
+
             echo "<div class='description'>$description</div>";
             echo "<input type='hidden' value=$id>";
             echo "<button>PLAY</button>";
