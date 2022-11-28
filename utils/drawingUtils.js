@@ -34,7 +34,7 @@ class DrawingUtils {
     drawText(text, color = "black", position = new Vector2(this.tilesInRow / 2, this.tilesInColumn / 2)) {
 
         this.ctx.fillStyle = color;
-        this.ctx.font = "1.5vw Arial";
+        this.ctx.font = this.rowTileSize/7+"px Arial";
         this.ctx.fillText(text, position.x * this.rowTileSize, position.y * this.colTileSize);
     }
     drawEntity(entity) {
