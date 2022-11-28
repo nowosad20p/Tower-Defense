@@ -23,7 +23,7 @@
 
             offset *= 1
 
-            this.x += offset;
+            this.x += 1 - offset;
             this.y += 1 - offset;
 
 

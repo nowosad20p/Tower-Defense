@@ -11,7 +11,7 @@ class Enemy extends Entity {
 
 
         this.offset = (Math.random() * (0.25+this.image.size-0.75) + 0.75).toFixed(2);
-        console.log(this.offset)
+       
         this.wasOffset = false;
         this.prevPosition = new Vector2();
         this.prevPath = [];
