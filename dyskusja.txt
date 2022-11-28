@@ -1,0 +1,23 @@
+1) Podstawowe założenia:
+-gra typu tower defense,
+-grafika 8-bit,
+-możliwość tworzenia własnych map.
+
+2)
+-ustalenie typów wieży:
+*lód,
+*ogień,
+*moździerz,
+*łucznik
+-przeciwnicy idą najkrótszą drogą do zamku
+
+3)
+-przeciwnicy pojawiają się w falach, które podzielone są na grupy.
+Każda grupa pojawia się w określonym czasie od rozpoczęcia fali oraz przeciwnicy w grupach w równych określonych odstępach. Kolejna fala następuje po ukończeniu poprzedniej.
+
+4)
+-animacje mają być proste(4 klatki) i dotyczyć jedynie obiektów poruszających się po planszy
+-kreator map składa się z 3 etapów - właściwości, mapa i fale przeciwników.
+
+5)
+-poprawy kosmetyczne,

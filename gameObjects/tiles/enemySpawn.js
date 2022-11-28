@@ -43,9 +43,9 @@ class EnemySpawn extends Tile {
             case "villager":
                 return new Villager(this.position, this.path, delay);
             case "ghost":
-                return new Villager(this.position, this.path, delay);
+                return new Ghost(this.position, this.path, delay);
             case "fireSpirit":
-                return new Villager(this.position, this.path, delay);
+                return new FireSpirit(this.position, this.path, delay);
             case "amogus":
                 return new Amogus(this.position, this.path, delay);
         }
