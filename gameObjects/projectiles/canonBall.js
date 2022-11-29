@@ -2,12 +2,12 @@ class CanonBall extends Projectile {
     constructor(position, target, speed, damage, damageType, enemies, size = 0.5) {
         super(new BetterImage("canonBall", 8, 8, new Vector2(0, 0), 0.25), position);
         this.size = size;
-        this.target = new Enemy(new BetterImage("canonBall", target.image.width,  target.image.height, new Vector2(0, 0), target.image.size), new Vector2(target.position.x,target.position.y), [new Vector2(0, 0)], 0);
+        this.target = new Enemy(new BetterImage("canonBall", target.image.width, target.image.height, new Vector2(0, 0), target.image.size), new Vector2(target.position.x, target.position.y), [new Vector2(0, 0)], 0);
         //calculating real target position
-      
 
-        this.target.position.x+=(this.target.size * this.target.widthRatio/2);
-        this.target.position.y+=(this.target.size * this.target.heightRatio/2);
+
+        this.target.position.x += (this.target.size * this.target.widthRatio / 2);
+        this.target.position.y += (this.target.size * this.target.heightRatio / 2);
         this.speed = speed;
 
         this.damage = damage;

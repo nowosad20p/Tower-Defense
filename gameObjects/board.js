@@ -1,6 +1,6 @@
 class Board {
 
-    constructor(map, waves, canvas, fpsCount, moneyCount, hpCount, pauseMenu,endMenu) {
+    constructor(map, waves, canvas, fpsCount, moneyCount, hpCount, pauseMenu, endMenu) {
         if (Board.exists) { //if instance of this object exist return this instance
             return Board.instance;
         }
@@ -55,10 +55,10 @@ class Board {
 
         //loading waves
         waves = stringToWave(waves);
-       
-        this.coins=waves.shift();
+
+        this.coins = waves.shift();
         waves.shift()
-        
+
 
         //creating paths and getting number of waves
 
@@ -81,8 +81,8 @@ class Board {
         });
 
         //setting up canvas size
-        this.canvas.width = window.innerHeight/ this.width * this.height;
-            this.canvas.height = window.innerHeight ;
+        this.canvas.width = window.innerHeight / this.width * this.height;
+        this.canvas.height = window.innerHeight;
 
 
 
@@ -99,15 +99,15 @@ class Board {
             }
         }
         window.onresize = () => {
-            this.canvas.width = window.innerHeight/ this.width * this.height;
-            this.canvas.height = window.innerHeight ;
+            this.canvas.width = window.innerHeight / this.width * this.height;
+            this.canvas.height = window.innerHeight;
             this.drawingUtils.resize(this.canvas.width, this.canvas.height);
 
         }
         //setting up pauseMenu
         this.pauseMenu = pauseMenu;
         this.pauseMenu.style.display = "none";
-        this.endMenu=endMenu;
+        this.endMenu = endMenu;
         this.endMenu.style.display = "none";
 
         return this;
@@ -123,19 +123,19 @@ class Board {
         this.paused = false;
         this.timeUtils.update();
         this.pauseMenu.style.display = "none";
-     
+
 
     }
-    endGame(result){//ending game, 0 means lose 1 means victory
-        this.finished=true;
-        this.endMenu.style.display="block";
-        if(result){
-            this.endMenu.querySelector("h2").innerHTML="You won!";
-        }else{
-            this.endMenu.querySelector("h2").innerHTML="Game over, get good";
+    endGame(result) { //ending game, 0 means lose 1 means victory
+        this.finished = true;
+        this.endMenu.style.display = "block";
+        if (result) {
+            this.endMenu.querySelector("h2").innerHTML = "You won!";
+        } else {
+            this.endMenu.querySelector("h2").innerHTML = "Game over, get good";
 
         }
-        
+
     }
     update() {
         if (this.preloadedImages.loaded) {
@@ -159,9 +159,9 @@ class Board {
 
                         }
                     }
-                     //enemies
+                    //enemies
 
-                     for (let i = 0; i < this.enemies.length; i++) {
+                    for (let i = 0; i < this.enemies.length; i++) {
 
                         if (this.enemies[i].dead) { //deleting dead enemies and adding coins for killing enemies
                             this.coins += this.enemies[i].value;
@@ -184,8 +184,8 @@ class Board {
                             } else { //updating enemies
                                 this.enemies[i].update(this.timeElapsed);
                                 //drawing enemies
-                                if(this.enemies[i].spawned){
-                                this.drawingUtils.drawEntity(this.enemies[i]);
+                                if (this.enemies[i].spawned) {
+                                    this.drawingUtils.drawEntity(this.enemies[i]);
                                 }
                             }
                         }
@@ -230,7 +230,7 @@ class Board {
 
                     }
 
-                   
+
                     //drawing UI
                     for (let i = 0; i < this.curUI.length; i++) {
                         if (this.curUI[i] instanceof TowerButtonsContainer) {
@@ -291,7 +291,7 @@ class Board {
 
 
     }
-  
+
     sendNextWave() {
         //sending waves and saving spawned enemies in enemies array
         this.enemySpawns.forEach(element => {
@@ -346,7 +346,7 @@ class Board {
         //starting utilities and update loops
         //this.updateBoardTilesGraphic();
         this.inputUtils.startListening();
-        this.pauseMenu.style.display="none";
+        this.pauseMenu.style.display = "none";
 
 
         this.timeElapsed = 0;
