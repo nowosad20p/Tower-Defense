@@ -81,8 +81,8 @@ class Board {
         });
 
         //setting up canvas size
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerWidth / this.width * this.height;
+        this.canvas.width = window.innerHeight/ this.width * this.height;
+            this.canvas.height = window.innerHeight ;
 
 
 
@@ -94,13 +94,13 @@ class Board {
         //handling alt tab
 
         window.onblur = () => {
-            if (!this.paused) {
+            if (!this.paused && !this.finished) {
                 this.pause();
             }
         }
         window.onresize = () => {
-            this.canvas.width = window.innerWidth;
-            this.canvas.height = window.innerWidth / this.width * this.height;
+            this.canvas.width = window.innerHeight/ this.width * this.height;
+            this.canvas.height = window.innerHeight ;
             this.drawingUtils.resize(this.canvas.width, this.canvas.height);
 
         }
@@ -159,6 +159,38 @@ class Board {
 
                         }
                     }
+                     //enemies
+
+                     for (let i = 0; i < this.enemies.length; i++) {
+
+                        if (this.enemies[i].dead) { //deleting dead enemies and adding coins for killing enemies
+                            this.coins += this.enemies[i].value;
+                            this.enemies.splice(i, 1);
+                            i--;
+                            this.updateUI();
+
+                        } else {
+
+                            if (this.enemies[i].finished) { //deleting enemies that finished their path
+                                this.hp -= this.enemies[i].damageToTurret;
+
+
+                                if (this.hp <= 0) { //checking if player base is destroyed
+                                    this.endGame(0);
+                                }
+                                this.enemies.splice(i, 1);
+                                this.updateUI();
+                                i--;
+                            } else { //updating enemies
+                                this.enemies[i].update(this.timeElapsed);
+                                //drawing enemies
+                                if(this.enemies[i].spawned){
+                                this.drawingUtils.drawEntity(this.enemies[i]);
+                                }
+                            }
+                        }
+
+                    }
                     for (let i = 0; i < this.board.length; i++) {
                         for (let j = 0; j < this.board[i].length; j++) {
 
@@ -198,38 +230,7 @@ class Board {
 
                     }
 
-                    //enemies
-
-                    for (let i = 0; i < this.enemies.length; i++) {
-
-                        if (this.enemies[i].dead) { //deleting dead enemies and adding coins for killing enemies
-                            this.coins += this.enemies[i].value;
-                            this.enemies.splice(i, 1);
-                            i--;
-                            this.updateUI();
-
-                        } else {
-
-                            if (this.enemies[i].finished) { //deleting enemies that finished their path
-                                this.hp -= this.enemies[i].damageToTurret;
-
-
-                                if (this.hp <= 0) { //checking if player base is destroyed
-                                    this.endGame(0);
-                                }
-                                this.enemies.splice(i, 1);
-                                this.updateUI();
-                                i--;
-                            } else { //updating enemies
-                                this.enemies[i].update(this.timeElapsed);
-                                //drawing enemies
-                                if(this.enemies[i].spawned){
-                                this.drawingUtils.drawEntity(this.enemies[i]);
-                                }
-                            }
-                        }
-
-                    }
+                   
                     //drawing UI
                     for (let i = 0; i < this.curUI.length; i++) {
                         if (this.curUI[i] instanceof TowerButtonsContainer) {

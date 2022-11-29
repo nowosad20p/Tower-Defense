@@ -16,9 +16,10 @@ class Projectile {
         this.animator.update(deltaTime);
         //calculating center of enemy
         let realTarget = new Vector2(this.target.position.x+(this.target.size * this.target.widthRatio/2),this.target.position.y+(this.target.size * this.target.heightRatio/2))
-     
+        
         //getting movement
         let movementVector = directionVectorPercents(this.position, realTarget);
+      
         //calculating new position
         this.position.x += this.speed * movementVector.x * (deltaTime / 1000);
         this.position.y += this.speed * movementVector.y * (deltaTime / 1000);
@@ -32,6 +33,7 @@ class Projectile {
         if (pointIntersectRectangle(this.position, realTarget, rightBot)) {
             this.dealDamage();
             this.finished = true;
+           
         }
         //checking if projectile finished
         if (this.target.dead || this.target.finished) {

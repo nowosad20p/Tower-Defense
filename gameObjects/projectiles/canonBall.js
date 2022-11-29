@@ -6,8 +6,8 @@ class CanonBall extends Projectile {
         //calculating real target position
       
 
-        this.target.position.x=this.target.position.x+(this.target.size * this.target.widthRatio/2);
-        this.target.position.y=  this.target.position.y+(this.target.size * this.target.heightRatio/2);
+        this.target.position.x+=(this.target.size * this.target.widthRatio/2);
+        this.target.position.y+=(this.target.size * this.target.heightRatio/2);
         this.speed = speed;
 
         this.damage = damage;
@@ -42,8 +42,8 @@ class CanonBall extends Projectile {
             //dealing damage to nearby enemies
             this.enemies.forEach(element => {
                 let enemyRightBot = new Vector2(
-                    element.position.x + element.size * element.widthRatio,
-                    element.position.y + element.size * element.heightRatio
+                    element.position.x + (element.size * element.widthRatio),
+                    element.position.y + (element.size * element.heightRatio)
                 );
                 if (rectanglesIntersect(leftTop, rightBot, element.position, enemyRightBot)) {
                     element.takeDamage(this.damage, this.damageType);
